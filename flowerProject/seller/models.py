@@ -1,22 +1,22 @@
 from django.db import models
 
 # Create your models here.
-class FlowerShop(models.Model):
+class Shop(models.Model):
     idx = models.AutoField(primary_key=True)
-    shopName = models.CharField(max_length=100)
-    location = models.CharField(max_length=300)
-    phoneNum = models.CharField(max_length=15)
-    openHours = models.CharField(max_length=50)
+    shopName = models.CharField(max_length=100, null=False)
+    location = models.CharField(max_length=300, null=False)
+    phoneNum = models.CharField(max_length=20, null=False)
+    openHours = models.CharField(max_length=50, null=False)
     
     def __str__(self):
         return self.shopName
     
 class MainFlower(models.Model):
     idx = models.AutoField(primary_key=True)
-    shop = models.ForeignKey(FlowerShop, on_delete=models.CASCADE)
-    flowerName = models.CharField(max_length=100)
-    price = models.IntegerField(default=0)
-    quantity = models.IntegerField(default=0)
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    flowerName = models.CharField(max_length=100, null=False)
+    oneFlowerPrice = models.IntegerField(default=0, null=False)
+    quantity = models.IntegerField(default=0, null=False)
     CATEGORY_CHOICES = [
         ('no bloom', '개화 안함'),
         ('start bloom', '개화 초기'),
@@ -27,18 +27,18 @@ class MainFlower(models.Model):
         choices=CATEGORY_CHOICES,
         default='full bloom',
     ) 
-    date = models.DateTimeField()
-    floriography = models.CharField(max_length=100)
+    floriography = models.CharField(max_length=100, null=False)
+    flowerPhoto = models.ImageField(null=True, black=True, upload_to='mainfLower/')
     
     def __str__(self):
         return self.flowerName
     
 class SubFlower(models.Model):
     idx = models.AutoField(primary_key=True)
-    shop = models.ForeignKey(FlowerShop, on_delete=models.CASCADE)
-    flowerName = models.CharField(max_length=100)
-    price = models.IntegerField(default=0)
-    quantity = models.IntegerField(default=0)
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    flowerName = models.CharField(max_length=100, null=False)
+    oneFlowerPrice = models.IntegerField(default=0, null=False)
+    quantity = models.IntegerField(default=0, null=False)
     CATEGORY_CHOICES = [
         ('no bloom', '개화 안함'),
         ('start bloom', '개화 초기'),
@@ -49,24 +49,21 @@ class SubFlower(models.Model):
         choices=CATEGORY_CHOICES,
         default='full bloom',
     ) 
-    date = models.DateTimeField()
-    floriography = models.CharField(max_length=100)
+    floriography = models.CharField(max_length=100, null=False)
+    flowerPhoto = models.ImageField(null=True, black=True, upload_to='subfLower/')
     
     def __str__(self):
         return self.flowerName
     
-class Bouquet(models.Model):
+class BunchOfFlowers(models.Model):
     idx = models.AutoField(primary_key=True)
-    shop = models.ForeignKey(FlowerShop, on_delete=models.CASCADE)
-    mainFlower = models.ForeignKey(MainFlower, on_delete=models.CASCADE, null=True)
-    subFlower = models.ForeignKey(SubFlower, on_delete=models.CASCADE, null=True)
-    price = models.IntegerField(null=True)
-    color = models.CharField(max_length=1000, null = True)
-    date = models.DateTimeField()
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    price = models.IntegerField(null=False)
+    color = models.CharField(max_length=1000, null = False)
+    flowerPhoto = models.ImageField(null=True, black=True, upload_to='bunchofflowers/')
     
 class Deliver(models.Model):
     idx = models.AutoField(primary_key=True)
-    shop = models.ForeignKey(FlowerShop, on_delete=models.CASCADE)
-    address = models.CharField(max_length=300)
-    deliverPrice = models.IntegerField(default=0)
-    
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    address = models.CharField(max_length=300, null=False)
+    deliverPrice = models.IntegerField(default=0, null=True)
