@@ -1,15 +1,15 @@
 from django.db import models
-from flowerseaBackEnd.flowerProject.seller.models import BunchOfFlowers, MainFlower, SubFlower
-from seller.models import FlowerShop
+from seller.models import Shop, BunchOfFlowers, MainFlower, SubFlower
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class UserInfo(models.Model):
+class UserInfo(AbstractUser):
     idx = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, null=False)
     phoneNum = models.CharField(max_length=15, null=False)
     address = models.CharField(max_length=300, null=False)
-    ID = models.CharField(max_length=30, null=False)
-    PW = models.CharField(max_length=30, null=False)
+    # ID = models.CharField(max_length=30, null=False)
+    # PW = models.CharField(max_length=30, null=False)
     
     def __str__(self):
         return self.name
@@ -41,9 +41,9 @@ class PickUpLocation(models.Model):
     
 class Cart(models.Model):
     user = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
-    flowerHouse = models.ForeignKey(FlowerShop, null=True)
-    mainFlower = models.ForeignKey(MainFlower, null=True)
-    subFlower = models.ForeignKey(SubFlower, null=True)
-    bunchOfFLowers = models.ForeignKey(BunchOfFlowers, null=True)
-    orderTable = models.ForeignKey(OrderTable, null=True)
+    Shop = models.ForeignKey(Shop, null=True, on_delete=models.PROTECT)
+    mainFlower = models.ForeignKey(MainFlower, null=True, on_delete=models.PROTECT)
+    subFlower = models.ForeignKey(SubFlower, null=True, on_delete=models.PROTECT)
+    bunchOfFLowers = models.ForeignKey(BunchOfFlowers, null=True, on_delete=models.PROTECT)
+    orderTable = models.ForeignKey(OrderTable, null=True, on_delete=models.PROTECT)
     amount = models.IntegerField(null=False)

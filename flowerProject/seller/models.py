@@ -28,7 +28,7 @@ class MainFlower(models.Model):
         default='full bloom',
     ) 
     floriography = models.CharField(max_length=100, null=False)
-    flowerPhoto = models.ImageField(null=True, black=True, upload_to='mainfLower/')
+    flowerPhoto = models.ImageField(null=True, blank=True, upload_to='mainflower/')
     
     def __str__(self):
         return self.flowerName
@@ -50,7 +50,7 @@ class SubFlower(models.Model):
         default='full bloom',
     ) 
     floriography = models.CharField(max_length=100, null=False)
-    flowerPhoto = models.ImageField(null=True, black=True, upload_to='subfLower/')
+    flowerPhoto = models.ImageField(null=True, blank=True, upload_to='subflower/')
     
     def __str__(self):
         return self.flowerName
@@ -60,7 +60,7 @@ class BunchOfFlowers(models.Model):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     price = models.IntegerField(null=False)
     color = models.CharField(max_length=1000, null = False)
-    flowerPhoto = models.ImageField(null=True, black=True, upload_to='bunchofflowers/')
+    flowerPhoto = models.ImageField(null=True, blank=True, upload_to='bunchofflowers/')
     
 class Deliver(models.Model):
     idx = models.AutoField(primary_key=True)
