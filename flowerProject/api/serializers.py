@@ -59,5 +59,25 @@ class Mainflowerserializer(serializers.ModelSerializer):
 
     class Meta:
         model = MainFlower
-        fields = '__all__'
+        fields = ('flowerName', 'flowerPhoto')
+
+class Mainflowerdetailserializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SubFlower
+        fields = ('flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
+##############################################
+
+############### Subflower 구현 ###############
+class Subflowerserializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SubFlower
+        fields = ('flowerName', 'flowerPhoto')
+
+class Subflowerdetailserializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SubFlower
+        fields = ('flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
 ##############################################
