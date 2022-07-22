@@ -52,4 +52,14 @@ class LoginSerializer(serializers.Serializer): # 로그인 구현
             return token
         raise serializers.ValidationError(
             {"error": "Unable to log in with provided credentials."})
+        
+class MyPageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserInfo
+        fields = ('name', 'phoneNum', 'address')
+        
+class MyAddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserInfo
+        fields = ('address')
 ##############################################
