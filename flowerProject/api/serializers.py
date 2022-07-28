@@ -63,3 +63,27 @@ class MyAddressSerializer(serializers.ModelSerializer):
         model = UserInfo
         fields = ('address')
 ##############################################
+
+##############BunchOfFlowers 구현##############
+
+class PickUpLocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PickUpLocation
+        fields = ['depart', 'dest']
+
+
+##############################################
+
+##############BunchOfFlowers 구현##############
+
+class BunchOfFlowersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BunchOfFlowers
+        fields = ['flowerPhoto', 'color']
+
+class BunchOfFlowersDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BunchOfFlowers
+        fields = ['flowerPhoto', 'color', 'price']
+
+##############################################

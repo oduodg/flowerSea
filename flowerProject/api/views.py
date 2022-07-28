@@ -61,3 +61,31 @@ class UserAddressAPIView(APIView):
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 ##############################################
+
+###############PickUpLocation 구현#############
+
+from rest_framework import generics
+from rest_framework import mixins 
+from customer.models import PickUpLocation
+class PickUpLocationAPIGenerics(mixins.):
+    queryset = PickUpLocation.objects.all() 
+
+##############################################
+
+##############BunchOfFlowers 구현##############
+from rest_framework import generics
+from seller.models import BunchOfFlowers
+
+class BunchOfFlowersAPIGenerics(generics.ListAPIView):
+    queryset = BunchOfFlowers.objects.all() 
+    serializer_class = BunchOfFlowersSerializer 
+    lookup_field = 'shop'
+    # 특정 꽃집의 꽃다발 
+
+class BunchOfFlowersDetailAPIGenerics(generics.RetrieveAPIView):
+    queryset = BunchOfFlowers.objects.all() 
+    serializer_class = BunchOfFlowersDetailSerializer
+    lookup_field = 'idx'
+    # 특정 꽃집 꽃다발의 세부정보 
+
+##############################################
