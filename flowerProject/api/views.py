@@ -75,12 +75,15 @@ class PickUpLocationAPIGenerics(mixins.):
 ##############BunchOfFlowers 구현##############
 from rest_framework import generics
 from seller.models import BunchOfFlowers
+from .serializers import BunchOfFlowersSerializer, BunchOfFlowersDetailSerializer
+from rest_framework import api_view 
 
-class BunchOfFlowersAPIGenerics(generics.ListAPIView):
-    queryset = BunchOfFlowers.objects.all() 
-    serializer_class = BunchOfFlowersSerializer 
-    lookup_field = 'shop'
-    # 특정 꽃집의 꽃다발 
+@api_view(['GET'])
+def BunchOfFlowersView(request, shop):
+    bunchofflowers = BunchOfFlowers.objects.filter(shop=shop) 
+    serializer = BunchOfFlowersSerializer(bunchofflowers, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class BunchOfFlowersDetailAPIGenerics(generics.RetrieveAPIView):
     queryset = BunchOfFlowers.objects.all() 

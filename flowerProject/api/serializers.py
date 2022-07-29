@@ -64,7 +64,7 @@ class MyAddressSerializer(serializers.ModelSerializer):
         fields = ('address')
 ##############################################
 
-##############BunchOfFlowers 구현##############
+##############PickUpLocation 구현##############
 
 class PickUpLocationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -75,15 +75,15 @@ class PickUpLocationSerializer(serializers.ModelSerializer):
 ##############################################
 
 ##############BunchOfFlowers 구현##############
-
 class BunchOfFlowersSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = BunchOfFlowers
-        fields = ['flowerPhoto', 'color']
+        fields = ('flowerPhoto', 'color')
+
 
 class BunchOfFlowersDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = BunchOfFlowers
         fields = ['flowerPhoto', 'color', 'price']
-
 ##############################################
