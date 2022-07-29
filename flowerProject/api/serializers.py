@@ -71,12 +71,16 @@ class PickUpLocationSerializer(serializers.ModelSerializer):
         model = PickUpLocation
         fields = ('depart', 'dest')
 
+# class PickUpLocationCreateSerializer(serializers.ModelSerializer):
+#     class Meta: 
+#         model = PickUpLocation
+#         fields = ('depart', 'dest')
+
 
 ##############################################
 
 ##############BunchOfFlowers 구현##############
 class BunchOfFlowersSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = BunchOfFlowers
         fields = ('flowerPhoto', 'color')
@@ -85,5 +89,5 @@ class BunchOfFlowersSerializer(serializers.ModelSerializer):
 class BunchOfFlowersDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = BunchOfFlowers
-        fields = ['flowerPhoto', 'color', 'price']
+        fields = ('flowerPhoto', 'color', 'price')
 ##############################################
