@@ -69,7 +69,7 @@ class MyAddressSerializer(serializers.ModelSerializer):
 class PickUpLocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = PickUpLocation
-        fields = ['depart', 'dest']
+        fields = ('depart', 'dest')
 
 
 ##############################################
