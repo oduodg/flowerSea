@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
-############### UserInfo 구현 ###############
+##################UserInfo 구현###############
 
 class RegisterSerializer(serializers.ModelSerializer): # 회원가입 구현
     password = serializers.CharField(
@@ -52,7 +52,17 @@ class LoginSerializer(serializers.Serializer): # 로그인 구현
             return token
         raise serializers.ValidationError(
             {"error": "Unable to log in with provided credentials."})
-############################################
+        
+class MyPageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserInfo
+        fields = ('name', 'phoneNum', 'address')
+        
+class MyAddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserInfo
+        fields = ('address')
+##############################################
 
 ############### Mainflower 구현 ###############
 class Mainflowerserializer(serializers.ModelSerializer):
@@ -68,7 +78,7 @@ class Mainflowerdetailserializer(serializers.ModelSerializer):
         fields = ('flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
 ##############################################
 
-############### Subflower 구현 ###############
+############### Subflower 구현 ################
 class Subflowerserializer(serializers.ModelSerializer):
 
     class Meta:
@@ -81,3 +91,58 @@ class Subflowerdetailserializer(serializers.ModelSerializer):
         model = SubFlower
         fields = ('flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
 ##############################################
+
+class Cartserializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = '__all__'
+############### Ordertable 구현 ################
+
+class Ordertableserializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = OrderTable
+            fields = ('address', 'requirement')
+            # fields = ('user', 'cart', 'orderDate', 'address', 'requirement', 'totalPrice', 'status')
+
+class Orderdetailserializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = OrderTable
+            fields = '__all__'
+class AllOrdertableserializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = OrderTable
+            # fields = ('address', 'requirement')
+            fields = ('orderDate', 'address', 'requirement', 'totalPrice', 'status')
+##############################################
+
+###################CART 구현##################
+class CartSerializer(serializers.ModelSerializer):      
+    class Meta:
+        model = Cart
+        fields = ('mainFlower1_ID', 'mainFlower1_amount', 
+                  'mainFlower2_ID', 'mainFlower2_amount',
+                  'mainFlower3_ID', 'mainFlower3_amount',
+                  'subFlower1_ID', 'subFlower1_amount',
+                  'subFlower2_ID', 'subFlower2_amount',
+                  'subFlower3_ID', 'subFlower3_amount',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount'
+                  )
+
+class CartPostSerializer(serializers.ModelSerializer):      
+    class Meta:
+        model = Cart
+        fields = ('user',
+                  'mainFlower1_ID', 'mainFlower1_amount', 
+                  'mainFlower2_ID', 'mainFlower2_amount',
+                  'mainFlower3_ID', 'mainFlower3_amount',
+                  'subFlower1_ID', 'subFlower1_amount',
+                  'subFlower2_ID', 'subFlower2_amount',
+                  'subFlower3_ID', 'subFlower3_amount',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount'
+                  )
+#############################################
