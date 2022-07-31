@@ -1,6 +1,4 @@
 ##################UserInfo 구현###############
-
-from logging import raiseExceptions
 from django.contrib.auth.models import AbstractUser
 from customer.models import UserInfo
 from rest_framework import generics, status
@@ -145,30 +143,30 @@ class CartAPIView(APIView):
         user=get_object_or_404(UserInfo, username = "jimin")
         if serializer.is_valid():
             price = 0
-            if serializer.validated_data['mainFlower1_ID']:
-                mainflower = get_object_or_404(MainFlower, pk=serializer.validated_data['mainFlower1_ID'])
-                price += mainflower.oneFlowerPrice * serializer.validated_data['mainFlower1_amount']
-            if serializer.validated_data['mainFlower2_ID']:
-                mainflower = get_object_or_404(MainFlower, pk=serializer.validated_data['mainFlower2_ID'])
-                price += mainflower.oneFlowerPrice * serializer.validated_data['mainFlower2_amount']
-            if serializer.validated_data['mainFlower3_ID']:
-                mainflower = get_object_or_404(MainFlower, pk=serializer.validated_data['mainFlower3_ID'])
-                price += mainflower.oneFlowerPrice * serializer.validated_data['mainFlower3_amount']
-            if serializer.validated_data['subFlower1_ID']:
-                subflower = get_object_or_404(SubFlower, pk=serializer.validated_data['subFlower1_ID'])
-                price += subflower.oneFlowerPrice * serializer.validated_data['subFlower1_amount']
-            if serializer.validated_data['subFlower2_ID']:
-                subflower = get_object_or_404(SubFlower, pk=serializer.validated_data['subFlower2_ID'])
-                price += subflower.oneFlowerPrice * serializer.validated_data['subFlower2_amount']
-            if serializer.validated_data['subFlower3_ID']:
-                subflower = get_object_or_404(SubFlower, pk=serializer.validated_data['subFlower3_ID'])
-                price += subflower.oneFlowerPrice * serializer.validated_data['subFlower3_amount']
-            if serializer.validated_data['bunchOfFlowers1_ID']:
-                bunchofflowers = get_object_or_404(BunchOfFlowers, pk=serializer.validated_data['bunchOfFlowers1_ID'])
-                price += bunchofflowers.price * serializer.validated_data['bunchOfFlowers1_amount']
-            if serializer.validated_data['bunchOfFlowers2_ID']:
-                bunchofflowers = get_object_or_404(BunchOfFlowers, pk=serializer.validated_data['bunchOfFlowers2_ID'])
-                price += bunchofflowers.price * serializer.validated_data['bunchOfFlowers2_amount']
+            if request.data['mainFlower1_ID']:
+                mainflower = get_object_or_404(MainFlower, idx=request.data['mainFlower1_ID'])
+                price += mainflower.oneFlowerPrice * int(request.data['mainFlower1_amount'])
+            if request.data['mainFlower2_ID']:
+                mainflower = get_object_or_404(MainFlower, idx=request.data['mainFlower2_ID'])
+                price += mainflower.oneFlowerPrice * int(request.data['mainFlower2_amount'])
+            # if request.data['mainFlower3_ID']:
+            #     mainflower = get_object_or_404(MainFlower, idx=request.data['mainFlower3_ID'])
+            #     price += mainflower.oneFlowerPrice * int(request.data['mainFlower3_amount'])
+            if request.data['subFlower1_ID']:
+                subflower = get_object_or_404(SubFlower, idx=request.data['subFlower1_ID'])
+                price += subflower.oneFlowerPrice * int(request.data['subFlower1_amount'])
+            # if request.data['subFlower2_ID']:
+            #     subflower = get_object_or_404(SubFlower, idx=request.data['subFlower2_ID'])
+            #     price += subflower.oneFlowerPrice * int(request.data['subFlower2_amount'])
+            # if request.data['subFlower3_ID']:
+            #     subflower = get_object_or_404(SubFlower, idx=request.data['subFlower3_ID'])
+            #     price += subflower.oneFlowerPrice * int(request.data['subFlower3_amount'])
+            # if request.data['bunchOfFlowers1_ID']:
+            #     bunchofflowers = get_object_or_404(BunchOfFlowers, idx=request.data['bunchOfFlowers1_ID'])
+            #     price += bunchofflowers.price * int(request.data['bunchOfFlowers1_amount'])
+            # if request.data['bunchOfFlowers2_ID']:
+            #     bunchofflowers = get_object_or_404(BunchOfFlowers, idx=request.data['bunchOfFlowers2_ID'])
+            #     price += bunchofflowers.price * int(request.data['bunchOfFlowers2_amount'])
                 
             serializer.save(user=user, totalPrice = price)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
