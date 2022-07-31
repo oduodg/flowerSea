@@ -63,3 +63,57 @@ class MyAddressSerializer(serializers.ModelSerializer):
         model = UserInfo
         fields = ('address')
 ##############################################
+##################Cart 구현###############
+class CartSerializer(serializers.ModelSerializer):      
+    class Meta:
+        model = Cart
+        fields = ('mainFlower1_ID', 'mainFlower1_amount', 
+                  'mainFlower2_ID', 'mainFlower2_amount',
+                  'mainFlower3_ID', 'mainFlower3_amount',
+                  'subFlower1_ID', 'subFlower1_amount',
+                  'subFlower2_ID', 'subFlower2_amount',
+                  'subFlower3_ID', 'subFlower3_amount',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount',
+                  'totalPrice'
+                  )
+
+class CartPostSerializer(serializers.ModelSerializer):      
+    class Meta:
+        model = Cart
+        fields = ('user',
+                  'mainFlower1_ID', 'mainFlower1_amount', 
+                  'mainFlower2_ID', 'mainFlower2_amount',
+                  'mainFlower3_ID', 'mainFlower3_amount',
+                  'subFlower1_ID', 'subFlower1_amount',
+                  'subFlower2_ID', 'subFlower2_amount',
+                  'subFlower3_ID', 'subFlower3_amount',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount',
+                  'totalPrice'
+                  )
+
+
+##############################################
+############### Mainflower 구현 ###############
+class MainFlowerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MainFlower
+        fields = ('idx', 'flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
+##############################################
+
+############### Subflower 구현 ################
+class SubFlowerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SubFlower
+        fields = ('idx', 'flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
+##############################################
+############### bunchofflowers 구현 ################
+class BunchOfFlowersSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = BunchOfFlowers
+        fields = ('idx', 'flowerphoto', 'color', 'price')
+##############################################
