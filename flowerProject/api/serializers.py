@@ -130,8 +130,8 @@ class PickUpLocationSerializer(serializers.ModelSerializer):
         model = PickUpLocation
         fields = ('depart', 'dest')
 
-
 ##############################################
+
 ############### Mainflower 구현 ###############
 class MainFlowerSerializer(serializers.ModelSerializer):
 

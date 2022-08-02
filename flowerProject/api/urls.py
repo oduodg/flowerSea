@@ -12,6 +12,9 @@ urlpatterns = [
     path('userifo/delete/', UserDeleteAPIView.as_view()),
     path('userinfo/address/', UserAddressAPIView.as_view()),
     
+    #Flowerhouse
+    path('api/flowerhouse/', PickUpLocationAPIView.as_view()),
+    
     #Cart
     path('cart/all/', CartAllAPIView.as_view()),
     path('cart/', CartAPIView.as_view()),

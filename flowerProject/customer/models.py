@@ -61,4 +61,3 @@ class PickUpLocation(models.Model):
     depart = models.CharField(max_length=150, null=False)
     dest = models.CharField(max_length=150, null=False)
     user = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
-    

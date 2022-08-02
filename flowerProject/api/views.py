@@ -220,23 +220,23 @@ class AllOrderTableAPIView(APIView):
 class PickUpLocationAPIView(APIView):
 
     def post(self, request): 
-        serializer = PickUpLocationSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        #if request.user:
+            serializer = PickUpLocationSerializer(data=request.data)
+            user=get_object_or_404(UserInfo, username = "jimin")
+            if serializer.is_valid():
+                serializer.save(user=user)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+       # else:
+        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     def get(self, request):
-        pickuplocation = PickUpLocation.objects.filter.all() 
-        serializer = PickUpLocationSerializer(pickuplocation, many=False)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def put(self, request, pk):
-        pickuplocation = get_object_or_404(PickUpLocation, id=pk) 
-        serializer = PickUpLocationSerializer(pickuplocation, data=request.data) 
-        if serializer.is_valid():
-            serializer.save()
+        # if request.user.is_authenticated:
+            user=get_object_or_404(UserInfo, username = "jimin")
+            pickuplocations = PickUpLocation.objects.filter(user=user)
+            pickuplocation = pickuplocations.last()
+            serializer = PickUpLocationSerializer(pickuplocation, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+        # else:
+        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 ##############################################
