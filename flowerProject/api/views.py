@@ -111,28 +111,28 @@ class CartAPIView(APIView):
         # price = 0
         # if cart.mainFlower1_ID:
         #     mainflower = get_object_or_404(MainFlower, pk=cart.mainFlower1_ID)
-        #     price += mainflower.oneFlowerPrice * cart.mainFlower1_amount
+        #     price += mainflower.oneFlowerPrice * int(cart.mainFlower1_amount)
         # if cart.mainFlower2_ID:
         #     mainflower = get_object_or_404(MainFlower, pk=cart.mainFlower2_ID)
-        #     price += mainflower.oneFlowerPrice * cart.mainFlower2_amount
+        #     price += mainflower.oneFlowerPrice * int(cart.mainFlower2_amount)
         # if cart.mainFlower3_ID:
         #     mainflower = get_object_or_404(MainFlower, pk=cart.mainFlower3_ID)
-        #     price += mainflower.oneFlowerPrice * cart.mainFlower3_amount
+        #     price += mainflower.oneFlowerPrice * int(cart.mainFlower3_amount)
         # if cart.subFlower1_ID:
         #     subflower = get_object_or_404(SubFlower, pk=cart.subFlower1_ID)
-        #     price += subflower.oneFlowerPrice * cart.subFlower1_amount
+        #     price += subflower.oneFlowerPrice * int(cart.subFlower1_amount)
         # if cart.subFlower2_ID:
         #     subflower = get_object_or_404(SubFlower, pk=cart.subFlower2_ID)
-        #     price += subflower.oneFlowerPrice * cart.subFlower2_amount
+        #     price += subflower.oneFlowerPrice * int(cart.subFlower2_amount)
         # if cart.subFlower3_ID:
         #     subflower = get_object_or_404(SubFlower, pk=cart.subFlower3_ID)
-        #     price += subflower.oneFlowerPrice * cart.subFlower3_amount
+        #     price += subflower.oneFlowerPrice * int(cart.subFlower3_amount)
         # if cart.bunchOfFlowers1_ID:
         #     bunchofflowers = get_object_or_404(BunchOfFlowers, pk=cart.bunchOfFlowers1_ID)
-        #     price += bunchofflowers.price * cart.bunchOfFlowers1_amount
+        #     price += bunchofflowers.price * int(cart.bunchOfFlowers1_amount)
         # if cart.bunchOfFlowers2_ID:
         #     bunchofflowers = get_object_or_404(BunchOfFlowers, pk=cart.bunchOfFlowers2_ID)
-        #     price += bunchofflowers.price * cart.bunchOfFlowers2_amount
+        #     price += bunchofflowers.price * int(cart.bunchOfFlowers2_amount)
         serializer = CartSerializer(cart, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
         # else:
