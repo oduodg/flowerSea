@@ -1,18 +1,17 @@
-##################UserInfo 구현###############
 from contextlib import nullcontext
 from http import server
 from logging import raiseExceptions
-from msilib.schema import ServiceInstall
 from django.contrib.auth.models import AbstractUser
 from django.shortcuts import get_object_or_404
-from customer.models import UserInfo
-from rest_framework import generics, status
+from customer.models import UserInfo, PickUpLocation, OrderTable, Cart
+from seller.models import MainFlower, SubFlower, BunchOfFlowers, Shop, Deliver
+from rest_framework import generics, status, viewsets, permissions
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .serializers import PickUpLocationSerializer, RegisterSerializer, LoginSerializer, MyPageSerializer, MyAddressSerializer, OrderPostSerializer, AllOrdertableserializer, OrderPutSerializer, CartSerializer, CartPostSerializer, MainFlowerSerializer, SubFlowerSerializer, BunchOfFlowersSerializer
 
-from .serializers import PickUpLocationCreateSerializer, RegisterSerializer, LoginSerializer, MyPageSerializer, MyAddressSerializer
-
-from .serializers import RegisterSerializer, LoginSerializer, MyPageSerializer, MyAddressSerializer
+##################UserInfo 구현###############
 
 class RegisterView(generics.CreateAPIView): # 회원가입
     queryset = UserInfo.objects.all()
@@ -66,52 +65,37 @@ class UserAddressAPIView(APIView):
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 ################################################
 
-##################Cart 기능 구현###############
-from customer.models import Cart,BunchOfFlowers
-from .serializers import CartSerializer, CartPostSerializer
-##############################################
-
 ##################MainFlower 구현###############
-from rest_framework.decorators import api_view
-from rest_framework import viewsets, permissions
-from rest_framework .generics import get_object_or_404
-
-from seller.models import MainFlower
-from .serializers import MainFlowerSerializer
 
 @api_view(['GET'])
 def MainflowerAPIView(request, shop):
     mainflower = MainFlower.objects.filter(shop=shop) 
     serializer = MainFlowerSerializer(mainflower, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
 ##############################################
 
 ##################SubFlower 구현###############
-from seller.models import SubFlower
-from .serializers import SubFlowerSerializer
 
 @api_view(['GET'])
 def SubflowerAPIView(request, shop):
     subflower = SubFlower.objects.filter(shop=shop) 
     serializer = SubFlowerSerializer(subflower, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
 ##############################################
 
 ##################BunchOfFlowers 구현###############
-from seller.models import BunchOfFlowers
-from .serializers import BunchOfFlowersSerializer
 
 @api_view(['GET'])
 def BunchOfFlowersAPIView(request, shop):
     bunchOfFlowers = BunchOfFlowers.objects.filter(shop=shop) 
     serializer = BunchOfFlowersSerializer(bunchOfFlowers, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
 ##############################################
 
 ##################Cart 구현###############
-from customer.models import Cart
-from .serializers import CartSerializer, CartPostSerializer
-from django.shortcuts import get_object_or_404
 
 class CartAPIView(APIView):
     def get(self, request): 
@@ -172,12 +156,10 @@ class CartAllAPIView(APIView):      #유저의 모든 주문내역 불러오기
             return Response(serializer.data, status=status.HTTP_200_OK)
         # else:
         #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        
 #############################################
 
 ################ OrderTable 구현 #################
-from customer.models import OrderTable
-from .serializers import OrderPostSerializer, AllOrdertableserializer, OrderPutSerializer
-from rest_framework.views import APIView
 
 class OrderTableAPIView(APIView):
     def post(self, request):
@@ -235,17 +217,10 @@ class AllOrderTableAPIView(APIView):
 
 ###############PickUpLocation 구현#############
 
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import veiwsets 
-from customer.models import PickUpLocation
-from .serializers import PickUpLocationSerializer
-
 class PickUpLocationAPIView(APIView):
 
     def post(self, request): 
-        serializer = PickUpLocationCreateSerializer(data=request.data)
+        serializer = PickUpLocationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -258,7 +233,7 @@ class PickUpLocationAPIView(APIView):
 
     def put(self, request, pk):
         pickuplocation = get_object_or_404(PickUpLocation, id=pk) 
-        serializer = PickUpLocationCreateSerializer(pickuplocation, data=request.data) 
+        serializer = PickUpLocationSerializer(pickuplocation, data=request.data) 
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

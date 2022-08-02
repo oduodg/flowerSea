@@ -1,4 +1,3 @@
-from pyexpat import model
 from customer.models import UserInfo, OrderTable, PickUpLocation, Cart
 from seller.models import Shop, MainFlower, SubFlower, BunchOfFlowers, Deliver
 
