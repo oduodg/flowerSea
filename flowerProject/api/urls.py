@@ -20,5 +20,7 @@ urlpatterns = [
     # path('cart/', CartAPIView.as_view()),
     path('cart/all/', CartAllAPIView.as_view()),
     path('cart/', CartAPIView.as_view()),
-    path('ordertable/all/', OrderTableAPIView.as_view()),
+
+    path('ordertable/', OrderTableAPIView.as_view()),
+    path('ordertable/all/', AllOrderTableAPIView.as_view()),
 ]

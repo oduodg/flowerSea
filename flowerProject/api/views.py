@@ -1,5 +1,6 @@
 ##################UserInfo 구현###############
 
+from contextlib import nullcontext
 from logging import raiseExceptions
 from django.contrib.auth.models import AbstractUser
 from customer.models import UserInfo
@@ -8,7 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
-from .serializers import Orderdetailserializer, RegisterSerializer, LoginSerializer
+from .serializers import RegisterSerializer, LoginSerializer
 
 from .serializers import RegisterSerializer, LoginSerializer, MyPageSerializer, MyAddressSerializer
 
@@ -114,12 +115,11 @@ def SubflowerdetailView(request, shop, idx):
 
 ################################################
 ##################Cart 기능 구현###############
-from customer.models import Cart
+from customer.models import Cart,BunchOfFlowers
 from .serializers import CartSerializer, CartPostSerializer
 
 class CartAPIView(APIView):
     def get(self, request): 
-        
         # if request.user:
         user=get_object_or_404(UserInfo, username = "jimin")
         carts = Cart.objects.filter(user=user)
@@ -129,23 +129,50 @@ class CartAPIView(APIView):
         # else:
         #     return Response(status=status.HTTP_401_UNAUTHORIZED)
     
-    def post(self, request):    #카트 생성
+    def post(self, request):
         serializer = CartPostSerializer(data=request.data)
         user=get_object_or_404(UserInfo, username = "jimin")
-        if serializer.is_valid():       #유효한 데이터라면
-            # serializer.user=user    #Post요청으로 들어온 데이터 시리얼라이저에 넣기
+        price = 0
+
+        if serializer.is_valid():
             serializer.save(user=user)
-                       #역직렬화로 save, 모델시리얼라이저의 기본 create() 함수 동작
+            if serializer.data['mainFlower1_ID']:
+                mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower1_ID'])
+                price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower1_amount'])
+            if serializer.data['mainFlower2_ID']:
+                mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower2_ID'])
+                price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower2_amount'])
+            if serializer.data['mainFlower3_ID']:
+                mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower3_ID'])
+                price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower3_amount'])
+            if serializer.data['subFlower1_ID']:
+                subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower1_ID'])
+                price += subflower.oneFlowerPrice * int(serializer.data['subFlower1_amount'])
+            if serializer.data['subFlower2_ID']:
+                subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower2_ID'])
+                price += subflower.oneFlowerPrice * int(serializer.data['subFlower2_amount'])
+            if serializer.data['subFlower3_ID']:
+                subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower3_ID'])
+                price += subflower.oneFlowerPrice * int(serializer.data['subFlower3_amount'])
+            if serializer.data['bunchOfFlowers1_ID']:
+                bunchofflowers = get_object_or_404(BunchOfFlowers, idx=serializer.data['bunchOfFlowers1_ID'])
+                price += bunchofflowers.price * int(serializer.data['bunchOfFlowers1_amount'])
+            if serializer.data['bunchOfFlowers2_ID']:
+                bunchofflowers = get_object_or_404(BunchOfFlowers, idx=serializer.data['bunchOfFlowers2_ID'])
+                price += bunchofflowers.price * int(serializer.data['bunchOfFlowers2_amount'])
+            carts = Cart.objects.filter(user=user)
+            cart = carts.last()
+            cart.totalPrice = price
+            cart.save()
+            serializer = CartSerializer(cart, many=False)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)
         return Response('안돼~', status=status.HTTP_401_UNAUTHORIZED)
-        
 class CartAllAPIView(APIView):      #유저의 모든 주문내역 불러오기
     def get(self, request):    
         # if request.user:
-            # user=UserInfo.objects.filter(name = "jimin")
-            # cart = Cart.objects.filter(user=user).order_by('-idx')
-            cart = Cart.objects.all().order_by('-idx')
+            user=get_object_or_404(UserInfo, username = "jimin")
+            cart = Cart.objects.filter(user=user).order_by('-idx')
             serializer = CartPostSerializer(cart, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         # else:
@@ -153,39 +180,58 @@ class CartAllAPIView(APIView):      #유저의 모든 주문내역 불러오기
 #############################################
 ################ OrderTable 구현 #################
 from customer.models import OrderTable
-from .serializers import Ordertableserializer, Orderdetailserializer, AllOrdertableserializer
+from .serializers import OrderPostSerializer, AllOrdertableserializer, OrderPutSerializer
 from rest_framework.views import APIView
 
 class OrderTableAPIView(APIView):
     def post(self, request):
         # if request.user.is_authenticated:
             
-            serializer = AllOrdertableserializer(data=request.data)
+            serializer = OrderPostSerializer(data=request.data)
+            user=get_object_or_404(UserInfo, username = "jimin")
 
+            # request의 user가 cart 객체를 가지고 있다면 == request의 user가 장바구니를 만들어 놓았다면
             # if Cart.objects.filter(user=request.user).exists():
-            carts = Cart.objects.filter(pk=2) # 해당 유저의 모든 cart 정보 가져오기
-            cart = carts.last() # 맨 나중에 생성된 cart 객체만 빼오기
-            user = UserInfo.objects.all()
+            
             if serializer.is_valid():
-                # serializer.user = get_object_or_404(UserInfo, idx=user[1])
-                serializer.cart = cart
-                serializer.save(user=cart.user,cart=cart)
+                carts = Cart.objects.filter(user=user) # 해당 유저의 모든 cart 정보 가져오기
+                cart = carts.last() # 맨 나중에 생성된 cart 객체만 빼오기
+
+                # serializer.save(user=cart.user,cart=cart)
+                serializer.save(user=cart.user,cart=cart, totalPrice=cart.totalPrice)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         # else:
         #     return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-        
-        # request의 user가 cart 객체를 가지고 있다면 == request의 user가 장바구니를 만들어 놓았다면
         
     def get(self, request):
-        order = OrderTable.objects.all()
-        serializer = Orderdetailserializer(order, many=True)
+        user=get_object_or_404(UserInfo, username = "jimin")
+        orders = OrderTable.objects.filter(user=user)
+        order = orders.last()
+        serializer = OrderPostSerializer(order, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def put(self, request):
+        # if request.user.is_authenticated:
+            user=get_object_or_404(UserInfo, username = "jimin")
+            orders = OrderTable.objects.filter(user=user)
+            order = orders.last()
+            # request의 user가 ordertable 객체를 가지고 있다면 == request의 user가 주문을 했다면
+            # if Ordertable.objects.filter(user=request.user).exists():
+            
+            serializer = OrderPutSerializer(order, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # else:
+        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        
 
-class AllOrderTableAPIVIew(APIView):
+class AllOrderTableAPIView(APIView):
     def get(self, request):
-        order = OrderTable.objects.all()
+        user=get_object_or_404(UserInfo, username = "jimin")
+        order = OrderTable.objects.filter(user=user).order_by('-idx')
         serializer = AllOrdertableserializer(order, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

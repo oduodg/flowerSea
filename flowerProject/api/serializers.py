@@ -1,3 +1,4 @@
+from pyexpat import model
 from customer.models import UserInfo, OrderTable, PickUpLocation, Cart
 from seller.models import Shop, MainFlower, SubFlower, BunchOfFlowers, Deliver
 
@@ -92,10 +93,6 @@ class Subflowerdetailserializer(serializers.ModelSerializer):
         fields = ('flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
 ##############################################
 
-class Cartserializer(serializers.ModelSerializer):
-    class Meta:
-        model = Cart
-        fields = '__all__'
 ############### Ordertable 구현 ################
 
 class Ordertableserializer(serializers.ModelSerializer):
@@ -105,17 +102,23 @@ class Ordertableserializer(serializers.ModelSerializer):
             fields = ('address', 'requirement')
             # fields = ('user', 'cart', 'orderDate', 'address', 'requirement', 'totalPrice', 'status')
 
-class Orderdetailserializer(serializers.ModelSerializer):
+class OrderPostSerializer(serializers.ModelSerializer):
 
         class Meta:
             model = OrderTable
-            fields = '__all__'
+            fields = ('user', 'cart', 'orderDate', 'address', 'requirement', 'totalPrice', 'status')
 class AllOrdertableserializer(serializers.ModelSerializer):
 
         class Meta:
             model = OrderTable
             # fields = ('address', 'requirement')
             fields = ('orderDate', 'address', 'requirement', 'totalPrice', 'status')
+
+class OrderPutSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = OrderTable
+        fields = ['status']
 ##############################################
 
 ###################CART 구현##################
@@ -129,7 +132,8 @@ class CartSerializer(serializers.ModelSerializer):
                   'subFlower2_ID', 'subFlower2_amount',
                   'subFlower3_ID', 'subFlower3_amount',
                   'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
-                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount'
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount',
+                  'totalPrice'
                   )
 
 class CartPostSerializer(serializers.ModelSerializer):      
@@ -143,6 +147,7 @@ class CartPostSerializer(serializers.ModelSerializer):
                   'subFlower2_ID', 'subFlower2_amount',
                   'subFlower3_ID', 'subFlower3_amount',
                   'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
-                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount'
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount',
+                  'totalPrice'
                   )
 #############################################
