@@ -130,3 +130,28 @@ class PickUpLocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = PickUpLocation
         fields = ('depart', 'dest')
+
+
+##############################################
+############### Mainflower 구현 ###############
+class MainFlowerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MainFlower
+        fields = ('idx', 'flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
+##############################################
+
+############### Subflower 구현 ################
+class SubFlowerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SubFlower
+        fields = ('idx', 'flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
+##############################################
+############### bunchofflowers 구현 ################
+class BunchOfFlowersSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = BunchOfFlowers
+        fields = ('idx', 'flowerphoto', 'color', 'price')
+##############################################

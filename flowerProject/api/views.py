@@ -69,6 +69,49 @@ class UserAddressAPIView(APIView):
 ##################Cart 기능 구현###############
 from customer.models import Cart,BunchOfFlowers
 from .serializers import CartSerializer, CartPostSerializer
+##############################################
+
+##################MainFlower 구현###############
+from rest_framework.decorators import api_view
+from rest_framework import viewsets, permissions
+from rest_framework .generics import get_object_or_404
+
+from seller.models import MainFlower
+from .serializers import MainFlowerSerializer
+
+@api_view(['GET'])
+def MainflowerAPIView(request, shop):
+    mainflower = MainFlower.objects.filter(shop=shop) 
+    serializer = MainFlowerSerializer(mainflower, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+##############################################
+
+##################SubFlower 구현###############
+from seller.models import SubFlower
+from .serializers import SubFlowerSerializer
+
+@api_view(['GET'])
+def SubflowerAPIView(request, shop):
+    subflower = SubFlower.objects.filter(shop=shop) 
+    serializer = SubFlowerSerializer(subflower, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+##############################################
+
+##################BunchOfFlowers 구현###############
+from seller.models import BunchOfFlowers
+from .serializers import BunchOfFlowersSerializer
+
+@api_view(['GET'])
+def BunchOfFlowersAPIView(request, shop):
+    bunchOfFlowers = BunchOfFlowers.objects.filter(shop=shop) 
+    serializer = BunchOfFlowersSerializer(bunchOfFlowers, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+##############################################
+
+##################Cart 구현###############
+from customer.models import Cart
+from .serializers import CartSerializer, CartPostSerializer
+from django.shortcuts import get_object_or_404
 
 class CartAPIView(APIView):
     def get(self, request): 

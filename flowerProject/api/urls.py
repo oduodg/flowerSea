@@ -3,6 +3,7 @@ from . import views
 from .views import *
 from flowerseaBackEnd.flowerProject.api.serializers import BunchOfFlowersDetailSerializer
 from .views import BunchOfFlowersView, BunchOfFlowersDetailView, PickUpLocationAPIView, LoginView, MyPageAPIView, RegisterView, UserAddressAPIView, UserDeleteAPIView
+from .views import LoginView, MyPageAPIView, RegisterView, UserAddressAPIView, UserDeleteAPIView, CartAllAPIView, CartAPIView, MainflowerAPIView, SubflowerAPIView, BunchOfFlowersAPIView
 
 urlpatterns = [
     path('userinfo/signup/', RegisterView.as_view()),
@@ -17,7 +18,10 @@ urlpatterns = [
     
     path('ordertable/', OrderTableAPIView.as_view()),
     path('ordertable/all/', AllOrderTableAPIView.as_view()),
-    path('pickuplocation/', PickUpLocationAPIView.as_view()),
-    path('bunchofflowers/<str:flowerHouse_id>/', views.BunchOfFlowersView),
-    path('bunchofflowers/<str:bunchofflowers_id>/', views.BunchOfFlowersDetailView), 
-]  
+    
+    path('pickuplocation/', PickUpLocationAPIView.as_view()), 
+    
+    path('mainflower/<str:shop>/', MainflowerAPIView, name="mainflower"),
+    path('subflower/<str:shop>/', SubflowerAPIView, name="subflower"),
+    path('bunchofflowers/<str:shop>/', BunchOfFlowersAPIView, name="bunchofflowers"),
+]

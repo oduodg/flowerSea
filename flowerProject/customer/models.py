@@ -61,3 +61,26 @@ class PickUpLocation(models.Model):
     dest = models.CharField(max_length=150, null=False)
     user = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     
+<<<<<<< HEAD
+=======
+class Cart(models.Model):
+    idx = models.AutoField(primary_key=True)
+    user = models.ForeignKey(UserInfo, null=True, on_delete=models.CASCADE)
+    mainFlower1_ID = models.ForeignKey(MainFlower, null=True, on_delete=models.PROTECT, related_name='mainFlower1')
+    mainFlower1_amount = models.IntegerField(null=True)
+    mainFlower2_ID = models.ForeignKey(MainFlower, null=True, on_delete=models.PROTECT, related_name='mainFlower2')
+    mainFlower2_amount = models.IntegerField(null=True)
+    mainFlower3_ID = models.ForeignKey(MainFlower, null=True, on_delete=models.PROTECT, related_name='mainFlower3')
+    mainFlower3_amount = models.IntegerField(null=True)
+    subFlower1_ID = models.ForeignKey(SubFlower, null=True, on_delete=models.PROTECT, related_name='subFlower1')
+    subFlower1_amount = models.IntegerField(null=True)
+    subFlower2_ID = models.ForeignKey(SubFlower, null=True, on_delete=models.PROTECT, related_name='subFlower2')
+    subFlower2_amount = models.IntegerField(null=True)
+    subFlower3_ID = models.ForeignKey(SubFlower, null=True, on_delete=models.PROTECT, related_name='subFlower3')
+    subFlower3_amount = models.IntegerField(null=True)
+    bunchOfFlowers1_ID = models.ForeignKey(BunchOfFlowers, null=True, on_delete=models.PROTECT, related_name='bunchOfFlower1')
+    bunchOfFlowers1_amount = models.IntegerField(null=True)
+    bunchOfFlowers2_ID = models.ForeignKey(BunchOfFlowers, null=True, on_delete=models.PROTECT, related_name='bunchOfFlower2')
+    bunchOfFlowers2_amount = models.IntegerField(null=True)
+    totalPrice = models.IntegerField(null=True)
+>>>>>>> hoo
