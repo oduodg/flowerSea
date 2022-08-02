@@ -115,7 +115,7 @@ def SubflowerdetailView(request, shop, idx):
 
 ################################################
 ##################Cart 기능 구현###############
-from customer.models import Cart
+from customer.models import Cart,BunchOfFlowers
 from .serializers import CartSerializer, CartPostSerializer
 
 class CartAPIView(APIView):
@@ -142,24 +142,24 @@ class CartAPIView(APIView):
             if serializer.data['mainFlower2_ID']:
                 mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower2_ID'])
                 price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower2_amount'])
-            # if request.data['mainFlower3_ID']:
-            #     mainflower = get_object_or_404(MainFlower, idx=request.data['mainFlower3_ID'])
-            #     price += mainflower.oneFlowerPrice * int(request.data['mainFlower3_amount'])
+            if serializer.data['mainFlower3_ID']:
+                mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower3_ID'])
+                price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower3_amount'])
             if serializer.data['subFlower1_ID']:
                 subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower1_ID'])
                 price += subflower.oneFlowerPrice * int(serializer.data['subFlower1_amount'])
             if serializer.data['subFlower2_ID']:
                 subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower2_ID'])
                 price += subflower.oneFlowerPrice * int(serializer.data['subFlower2_amount'])
-            # if request.data['subFlower3_ID']:
-            #     subflower = get_object_or_404(SubFlower, idx=request.data['subFlower3_ID'])
-            #     price += subflower.oneFlowerPrice * int(request.data['subFlower3_amount'])
-            # if request.data['bunchOfFlowers1_ID']:
-            #     bunchofflowers = get_object_or_404(BunchOfFlowers, idx=request.data['bunchOfFlowers1_ID'])
-            #     price += bunchofflowers.price * int(request.data['bunchOfFlowers1_amount'])
-            # if request.data['bunchOfFlowers2_ID']:
-            #     bunchofflowers = get_object_or_404(BunchOfFlowers, idx=request.data['bunchOfFlowers2_ID'])
-            #     price += bunchofflowers.price * int(request.data['bunchOfFlowers2_amount'])
+            if serializer.data['subFlower3_ID']:
+                subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower3_ID'])
+                price += subflower.oneFlowerPrice * int(serializer.data['subFlower3_amount'])
+            if serializer.data['bunchOfFlowers1_ID']:
+                bunchofflowers = get_object_or_404(BunchOfFlowers, idx=serializer.data['bunchOfFlowers1_ID'])
+                price += bunchofflowers.price * int(serializer.data['bunchOfFlowers1_amount'])
+            if serializer.data['bunchOfFlowers2_ID']:
+                bunchofflowers = get_object_or_404(BunchOfFlowers, idx=serializer.data['bunchOfFlowers2_ID'])
+                price += bunchofflowers.price * int(serializer.data['bunchOfFlowers2_amount'])
             carts = Cart.objects.filter(user=user)
             cart = carts.last()
             cart.totalPrice = price
@@ -197,8 +197,8 @@ class OrderTableAPIView(APIView):
                 carts = Cart.objects.filter(user=user) # 해당 유저의 모든 cart 정보 가져오기
                 cart = carts.last() # 맨 나중에 생성된 cart 객체만 빼오기
 
-                serializer.save(user=cart.user,cart=cart)
-                # serializer.save(user=cart.user,cart=cart, TotalPrice=cart.totalAmount)
+                # serializer.save(user=cart.user,cart=cart)
+                serializer.save(user=cart.user,cart=cart, totalPrice=cart.totalPrice)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         # else:
