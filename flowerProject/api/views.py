@@ -75,10 +75,6 @@ from customer.models import PickUpLocation
 from .serializers import PickUpLocationSerializer
 
 class PickUpLocationAPIView(APIView):
-    def get(self, request):
-        pickuplocation = PickUpLocation.objects.all() 
-        serializer = PickUpLocationSerializer(pickuplocation, many=False)
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request): 
         serializer = PickUpLocationCreateSerializer(data=request.data)
@@ -86,6 +82,11 @@ class PickUpLocationAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request):
+        pickuplocation = PickUpLocation.objects.filter.all() 
+        serializer = PickUpLocationSerializer(pickuplocation, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk):
         pickuplocation = get_object_or_404(PickUpLocation, id=pk) 
