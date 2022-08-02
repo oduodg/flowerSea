@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import *
 from . import views
+from .views import *
+from flowerseaBackEnd.flowerProject.api.serializers import BunchOfFlowersDetailSerializer
+from .views import BunchOfFlowersView, BunchOfFlowersDetailView, PickUpLocationAPIView, LoginView, MyPageAPIView, RegisterView, UserAddressAPIView, UserDeleteAPIView
 
 urlpatterns = [
     path('userinfo/signup/', RegisterView.as_view()),
@@ -8,19 +10,14 @@ urlpatterns = [
     path('userinfo/', MyPageAPIView.as_view()),
     path('userifo/delete/', UserDeleteAPIView.as_view()),
     path('userinfo/address/', UserAddressAPIView.as_view()),
-    path('user/', ShowUsers.as_view()),
-
-    # path('', views.getData),
-    path('mainflower/<int:shop>/', views.MainflowerView),
-    path('mainflower/<int:shop>/<int:idx>/', views.MainflowerdetailView),
-
-    path('subflower/<int:shop>/', views.SubflowerView),
-    path('subflower/<int:shop>/<int:idx>/', views.SubflowerdetailView),
-
+    
     # path('cart/', CartAPIView.as_view()),
     path('cart/all/', CartAllAPIView.as_view()),
     path('cart/', CartAPIView.as_view()),
-
+    
     path('ordertable/', OrderTableAPIView.as_view()),
     path('ordertable/all/', AllOrderTableAPIView.as_view()),
-]
+    path('pickuplocation/', PickUpLocationAPIView.as_view()),
+    path('bunchofflowers/<str:flowerHouse_id>/', views.BunchOfFlowersView),
+    path('bunchofflowers/<str:bunchofflowers_id>/', views.BunchOfFlowersDetailView), 
+]  

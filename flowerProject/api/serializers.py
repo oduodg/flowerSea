@@ -65,34 +65,6 @@ class MyAddressSerializer(serializers.ModelSerializer):
         fields = ('address')
 ##############################################
 
-############### Mainflower 구현 ###############
-class Mainflowerserializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = MainFlower
-        fields = ('flowerName', 'flowerPhoto')
-
-class Mainflowerdetailserializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = SubFlower
-        fields = ('flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
-##############################################
-
-############### Subflower 구현 ################
-class Subflowerserializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = SubFlower
-        fields = ('flowerName', 'flowerPhoto')
-
-class Subflowerdetailserializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = SubFlower
-        fields = ('flowerName', 'oneFlowerPrice', 'quantity', 'enlightened', 'floriography', 'flowerPhoto')
-##############################################
-
 ############### Ordertable 구현 ################
 
 class Ordertableserializer(serializers.ModelSerializer):
@@ -151,3 +123,10 @@ class CartPostSerializer(serializers.ModelSerializer):
                   'totalPrice'
                   )
 #############################################
+
+##############PickUpLocation 구현##############
+
+class PickUpLocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PickUpLocation
+        fields = ('depart', 'dest')
