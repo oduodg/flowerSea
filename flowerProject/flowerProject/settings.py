@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from .my_settings import mySECRET_KEY, myDATABASES
+
+SECRET_KEY = mySECRET_KEY
+
+DATABASES = myDATABASES
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-59d1*0!3)(b*mklmp#bh8kqq$_tfra#ypz%xz(uf%^-)&^yy4$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,13 +87,6 @@ WSGI_APPLICATION = 'flowerProject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation

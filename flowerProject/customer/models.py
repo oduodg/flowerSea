@@ -35,7 +35,7 @@ class Cart(models.Model):
     bunchOfFlowers2_ID = models.ForeignKey(BunchOfFlowers, null=True, on_delete=models.PROTECT, related_name='bunchOfFlower2')
     bunchOfFlowers2_amount = models.IntegerField(null=True)
     totalPrice = models.IntegerField(null=True)
-    
+
 class OrderTable(models.Model):
     idx = models.AutoField(primary_key=True)
     user = models.ForeignKey(UserInfo, null=True, on_delete=models.CASCADE)
