@@ -4,7 +4,7 @@ from logging import raiseExceptions
 from django.contrib.auth.models import AbstractUser
 from django.shortcuts import get_object_or_404
 from customer.models import UserInfo, PickUpLocation, OrderTable, Cart
-from seller.models import MainFlower, SubFlower, BunchOfFlowers, Shop, Deliver
+from seller.models import MainFlower, SubFlower, BunchOfFlowers, Shop
 from rest_framework import generics, status, viewsets, permissions
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -147,12 +147,13 @@ class CartAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)
         return Response('안돼~', status=status.HTTP_401_UNAUTHORIZED)
+    
 class CartAllAPIView(APIView):      #유저의 모든 주문내역 불러오기
     def get(self, request):    
         # if request.user:
             user=get_object_or_404(UserInfo, username = "jimin")
             cart = Cart.objects.filter(user=user).order_by('-idx')
-            serializer = CartPostSerializer(cart, many=True)
+            serializer = CartSerializer(cart, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         # else:
         #     return Response(status=status.HTTP_401_UNAUTHORIZED)

@@ -5,8 +5,8 @@ myDATABASES = {
 					'ENGINE': 'django.db.backends.mysql',
 					'NAME' : 'flowersea',
 					'USER' : 'hoo',
-					'PASSWORD' : '1254410',
-					'HOST' : '127.0.0.1',
+					'PASSWORD' : 'wlgn1254410',
+					'HOST' : 'flowerseainstance.czwnvzkepohe.ap-northeast-2.rds.amazonaws.com',
 					'PORT' : '3306'
 		}
 }

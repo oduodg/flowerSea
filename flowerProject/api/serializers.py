@@ -1,5 +1,5 @@
 from customer.models import UserInfo, OrderTable, PickUpLocation, Cart
-from seller.models import Shop, MainFlower, SubFlower, BunchOfFlowers, Deliver
+from seller.models import Shop, MainFlower, SubFlower, BunchOfFlowers
 
 from django.contrib.auth.models import AbstractUser, User
 from django.contrib.auth.password_validation import validate_password

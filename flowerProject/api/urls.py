@@ -13,7 +13,7 @@ urlpatterns = [
     path('userinfo/address/', UserAddressAPIView.as_view()),
     
     #Flowerhouse
-    path('api/flowerhouse/', PickUpLocationAPIView.as_view()),
+    path('flowerhouse/', PickUpLocationAPIView.as_view()),
     
     #Cart
     path('cart/all/', CartAllAPIView.as_view()),

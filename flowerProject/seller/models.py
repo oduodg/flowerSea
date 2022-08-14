@@ -7,6 +7,8 @@ class Shop(models.Model):
     location = models.CharField(max_length=300, null=False)
     phoneNum = models.CharField(max_length=20, null=False)
     openHours = models.CharField(max_length=50, null=False)
+    x = models.FloatField(default=0)
+    y = models.FloatField(default=0)
     
     def __str__(self):
         return self.shopName
@@ -61,9 +63,3 @@ class BunchOfFlowers(models.Model):
     price = models.IntegerField(null=False)
     color = models.CharField(max_length=1000, null = False)
     flowerPhoto = models.ImageField(null=True, blank=True, upload_to='bunchofflowers/')
-    
-class Deliver(models.Model):
-    idx = models.AutoField(primary_key=True)
-    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
-    address = models.CharField(max_length=300, null=False)
-    deliverPrice = models.IntegerField(default=0, null=True)
