@@ -154,3 +154,10 @@ class BunchOfFlowersSerializer(serializers.ModelSerializer):
         model = BunchOfFlowers
         fields = ('idx', 'flowerphoto', 'color', 'price')
 ##############################################
+############### flowerHouse 구현 ################
+class FlowerShopSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Shop
+        fields = ('shopName', 'location', 'phoneNum', 'openHours', 'x', 'y')
+##############################################

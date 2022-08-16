@@ -9,7 +9,7 @@ from rest_framework import generics, status, viewsets, permissions
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import PickUpLocationSerializer, RegisterSerializer, LoginSerializer, MyPageSerializer, MyAddressSerializer, OrderPostSerializer, AllOrdertableserializer, OrderPutSerializer, CartSerializer, CartPostSerializer, MainFlowerSerializer, SubFlowerSerializer, BunchOfFlowersSerializer
+from .serializers import PickUpLocationSerializer, RegisterSerializer, LoginSerializer, MyPageSerializer, MyAddressSerializer, OrderPostSerializer, AllOrdertableserializer, OrderPutSerializer, CartSerializer, CartPostSerializer, MainFlowerSerializer, SubFlowerSerializer, BunchOfFlowersSerializer, FlowerShopSerializer
 
 ##################UserInfo 구현###############
 
@@ -240,4 +240,11 @@ class PickUpLocationAPIView(APIView):
         # else:
         #     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
+##############################################
+###############flowerShop 구현#############
+class FlowerShopAPIView(APIView):
+    def get(self, request):
+        flowerShops = Shop.objects.all()
+        serializer = FlowerShopSerializer(flowerShops, many = True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 ##############################################
