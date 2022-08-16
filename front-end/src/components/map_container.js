@@ -8,7 +8,7 @@ export default function MapContainer() {
 	}, []); // 두번째 인자로 []를 주면 처음 렌더링될 때 한번만 띄움
 
 	return (
-		<div id='myMap'style={{
+		<div id='map'style={{
 			width: '100vw',
 			height: '100vh'
 		}}></div>
