@@ -11,6 +11,7 @@ export default function App() {
         <Route path="/" element={<Main />} exact={true} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
       </Routes>
     </BrowserRouter>
   );
