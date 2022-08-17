@@ -9,7 +9,7 @@ export default function Login() {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	
+
 	const [id, setId] = useState('');
 	const [pw, setPw] = useState('');
 
@@ -29,6 +29,10 @@ export default function Login() {
 
 	const onSubmit = async () => {
 		try {
+			if (id === "" || pw === "") {
+				alert("아이디와 비밀번호를 입력해주세요.");
+				return;
+			}
 			const res = await axios.post(domain + "api/userinfo/login/", userData);
 			// 쿠키와 store에 Token 저장
 			setRefreshToken(res.data.token);
@@ -37,8 +41,10 @@ export default function Login() {
 			return navigate("/");
 		} catch (err) {
 			// console.log(err);
-			if(err.response.status === 400){
+			if (err.response.status === 400) {
 				alert("아이디와 비밀번호를 확인해주세요.");
+			} else {
+				alert("서버 에러입니다.");
 			}
 		}
 	}
