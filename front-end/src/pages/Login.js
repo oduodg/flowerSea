@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setRefreshToken } from '../storage/Cookie';
 import { SET_TOKEN } from '../store/Auth';
+import './Login.css';
 
 export default function Login() {
 
@@ -50,22 +51,60 @@ export default function Login() {
 	}
 
 	return (
-		<div className='text-center'>
-			<p className='pt-10 text-xl'>로그인</p>
 
-			<div className='pt-10'>
-				<label className='pr-2' htmlFor='id'>아이디</label>
-				<input className='border-2 rounded-lg' type='text' id='id' name='id' value={id} onChange={handleId} />
-			</div>
-
-			<div className='pt-10'>
-				<label className='pr-2' htmlFor='pw'>비밀번호</label>
-				<input className='border-2 rounded-lg' type='password' id='pw' name='pw' value={pw} onChange={handlePw} />
-			</div>
-
-			<div className='pt-10'>
-				<button className='px-20 text-blue-400 border-2 border-blue-400 rounded-lg' type='submit' onClick={onSubmit}>로그인하기</button>
-			</div>
+		<div style={{
+			display: 'flex', justifyContent: 'center', alignItems: 'center',
+			width: '100%', height: '100vh'
+			}}
+		>
+			<form 
+				class="p-10 bg-white rounded-xl space-y-5" 
+				action=""
+				style={{ display: 'flex', flexDirection: 'column'}}
+				onSubmit={onSubmit}
+			>
+				<h1 class="login">로그인</h1>
+				<img className="loginlogo" alt="symbol_temporary" src="/images/symbol.png" />
+				<div class="loginbd">
+				</div>
+				<div class="ID">
+					<label class="" htmlFor='id'>아이디</label>
+					<input 
+						class="IDbox" 
+						type='text' 
+						id = 'id'
+						name='id' 
+						value={id} 
+						onChange={handleId} 
+						placeholder="아이디를 입력해주세요!"
+					/>
+				</div>
+				<div class="PW">
+					<label class="" htmlFor='pw'>비밀번호</label>
+					<input 
+						class="PWbox" 
+						type='password' 
+						id='pw'
+						name='pw' 
+						value={pw} 
+						onChange={handlePw}
+						placeholder ="비밀번호를 입력해주세요!" 
+					/>
+				</div>
+				<div class="lgbt">
+					<button 
+						class="button"
+						type="submit"
+						onClick={onSubmit}
+					>로그인하기</button>
+				</div>
+				<div class="bt">
+					<Link to="/register">
+					<button class="GoRegister"><u>회원가입하기</u></button>
+					</Link>
+				</div>
+			</form>
 		</div>
+	
 	)
 }
