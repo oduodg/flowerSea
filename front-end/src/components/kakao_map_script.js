@@ -6,7 +6,7 @@ export default function KakaoMapScript() {
 	const mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center: new kakao.maps.LatLng(37.5518, 126.925), // 지도의 중심좌표(홍익대학교)
-			level: 3 // 지도의 확대 레벨
+			level: 4 // 지도의 확대 레벨
 		};
 
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -21,10 +21,10 @@ export default function KakaoMapScript() {
 			//console.log(flowerShop);
 
 			// 마커 이미지의 이미지 주소입니다
-			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+			var imageSrc = "/images/marker.png";
 			for (let i = 0; i < flowerShop.length; i++) {
 				// 마커 이미지의 이미지 크기 입니다
-				var imageSize = new kakao.maps.Size(24, 35);
+				var imageSize = new kakao.maps.Size(35, 45);
 
 				// 마커 이미지를 생성합니다    
 				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
