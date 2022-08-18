@@ -87,12 +87,15 @@ export default function Cart() {
 			return nstr;
 		};
 	  return (
-		<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+		<form name="orderform" id="orderform" method="post" className="pt-9 orderform" action="/Page" onSubmit="return false;">
 		
 				<input type="hidden" name="cmd" value="order" />
 				<div class="basketdiv" id="basket">
-					<div class="img flex-auto mr-0"><img src="./images/cart.png" width="60" /></div>
-					<h1 class="f text-3xl m-4 mb-8 flex-auto">장바구니</h1>
+					<div className="m-10 mr-0 img">
+            <img className="inline" src="/images/icon_cart_color.png" width="60" />
+            <p className="inline pt-3 m-3 text-3xl f">장바구니</p>
+          </div>
+					
 					<h1 class="f text-2xl pl-4 m-4 border-b-4 ">홍익꽃집</h1>
 					<div class="row head ">
 						<div class="subdiv">
@@ -114,8 +117,8 @@ export default function Cart() {
 			
 					<div class="row data">
 						<div class="subdiv">
-							<div class="check"><input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();" />&nbsp;</div>
-							<div class="img"><img src="./images/rose.jpeg" width="60" /></div>
+							<div class="check"><input type="checkbox" name="buy" value="260" checked="" onClick="javascript:basket.checkItem();" />&nbsp;</div>
+							<div class="img"><img src="/images/flower_temp.png" width="40" /></div>
 							<div class="pname">
 								<span class="text-center justify-center">장미</span>
 							</div>
@@ -125,20 +128,20 @@ export default function Cart() {
 							<div class="num">
 								<div class="updown">
 									<input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="5" onkeyup="javascript:basket.changePNum(1);" />
-									<span onclick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-up up"></i></span>
-									<span onclick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-down down"></i></span>
+									<span onClick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-up up"></i></span>
+									<span onClick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-down down"></i></span>
 								</div>
 							</div>
 							<div class="sum">25,000원</div>
 						</div>
 						<div class="subdiv">
-							<div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
+							<div class="basketcmd"><a href="javascript:void(0)" class="abutton" onClick="javascript:basket.delItem();">삭제</a></div>
 						</div>
 					</div>
 					<div class="row data">
 						<div class="subdiv">
-							<div class="check"><input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();" />&nbsp;</div>
-							<div class="img"><img src="./images/tulip.jpeg" width="60" /></div>
+							<div class="check"><input type="checkbox" name="buy" value="260" checked="" onClick="javascript:basket.checkItem();" />&nbsp;</div>
+							<div class="img"><img src="/images/flower_temp.png" width="40" /></div>
 							<div class="pname">
 								<span class="text-center justify-center">튤립</span>
 							</div>
@@ -148,20 +151,20 @@ export default function Cart() {
 							<div class="num">
 								<div class="updown">
 									<input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="3" onkeyup="javascript:basket.changePNum(1);" />
-									<span onclick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-up up"></i></span>
-									<span onclick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-down down"></i></span>
+									<span onClick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-up up"></i></span>
+									<span onClick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-down down"></i></span>
 								</div>
 							</div>
 							<div class="sum">21,000원</div>
 						</div>
 						<div class="subdiv">
-							<div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
+							<div class="basketcmd"><a href="javascript:void(0)" class="abutton" onClick="javascript:basket.delItem();">삭제</a></div>
 						</div>
 					</div>
 					<div class="row data">
 						<div class="subdiv">
 							<div class="check"><input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();" />&nbsp;</div>
-							<div class="img"><img src="./images/mistflower.jpeg" width="60" /></div>
+							<div class="img"><img src="/images/flower_temp.png" width="40" /></div>
 							<div class="pname">
 								<span class="text-center justify-center">안개꽃</span>
 							</div>
@@ -171,21 +174,21 @@ export default function Cart() {
 							<div class="num">
 								<div class="updown">
 									<input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="10" onkeyup="javascript:basket.changePNum(1);" />
-									<span onclick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-up up"></i></span>
-									<span onclick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-down down"></i></span>
+									<span onClick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-up up"></i></span>
+									<span onClick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-down down"></i></span>
 								</div>
 							</div>
 							<div class="sum">30,000원</div>
 						</div>
 						<div class="subdiv">
-							<div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
+							<div class="basketcmd"><a href="javascript:void(0)" class="abutton" onClick="javascript:basket.delItem();">삭제</a></div>
 						</div>
 					</div>
 				</div>
 				
 				<div class="right-align basketrowcmd">
-					<a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delCheckedItem();">선택상품삭제</a>
-					<a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delAllItem();">장바구니비우기</a>
+					<a href="javascript:void(0)" class="abutton" onClick="javascript:basket.delCheckedItem();">선택상품삭제</a>
+					<a href="javascript:void(0)" class="abutton" onClick="javascript:basket.delAllItem();">장바구니비우기</a>
 				</div>
 		
 				<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 3개</div>
