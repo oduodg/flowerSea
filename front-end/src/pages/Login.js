@@ -31,7 +31,7 @@ return (
             onSubmit={onSubmitHandler}
         >
             <h1 class="login">로그인</h1>
-            <img className="loginlogo" alt="symbol_temporary" src="/images/symbol_temporary.png" />
+            <img className="loginlogo" alt="symbol_temporary" src="/images/symbol.png" />
             <div class="loginbd">
             </div>
             <div class="ID">
