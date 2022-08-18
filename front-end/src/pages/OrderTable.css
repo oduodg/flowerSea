@@ -208,7 +208,7 @@ body{
     width: 357px;
     height: 32px;
     left: 400px;
-    top: 520px;
+    top: 420px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -230,7 +230,7 @@ body{
     width: 700px;
     height: 40px;
     left: 400px;
-    top: 570px;
+    top: 470px;
 
     /* B_1 */
 
@@ -247,7 +247,7 @@ body{
     width: 357px;
     height: 32px;
     left: 400px;
-    top: 620px;
+    top: 520px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -269,7 +269,7 @@ body{
     width: 310px;
     height: 40px;
     left: 400px;
-    top: 670px;
+    top: 570px;
 
     /* B_1 */
 
@@ -338,18 +338,6 @@ body{
     color: #000000;
 }
 
-.malebutton{
-    position: absolute;
-    top: 277px;
-    left: 807px;
-}
-
-.femalebutton{
-    position: absolute;
-    top: 277px;
-    left: 862px;
-}
-
 .rgbt{
     box-sizing: border-box;
 
@@ -357,7 +345,7 @@ body{
     width: 330px;
     height: 61px;
     left: 604px;
-    top: 880px;
+    top: 680px;
 
     /* M_2_2 */
 
