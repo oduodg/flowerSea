@@ -1,12 +1,11 @@
 from customer.models import UserInfo, OrderTable, PickUpLocation, Cart
 from seller.models import Shop, MainFlower, SubFlower, BunchOfFlowers
-
 from django.contrib.auth.models import AbstractUser, User
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import authenticate
-
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
+from django.shortcuts import get_object_or_404
 
 ##################UserInfo 구현###############
 
@@ -64,74 +63,6 @@ class MyAddressSerializer(serializers.ModelSerializer):
         fields = ('address')
 ##############################################
 
-############### Ordertable 구현 ################
-
-class Ordertableserializer(serializers.ModelSerializer):
-
-        class Meta:
-            model = OrderTable
-            fields = ('address', 'requirement')
-            # fields = ('user', 'cart', 'orderDate', 'address', 'requirement', 'totalPrice', 'status')
-
-class OrderPostSerializer(serializers.ModelSerializer):
-
-        class Meta:
-            model = OrderTable
-            fields = ('user', 'cart', 'orderDate', 'address', 'requirement', 'totalPrice', 'status')
-class AllOrdertableserializer(serializers.ModelSerializer):
-
-        class Meta:
-            model = OrderTable
-            # fields = ('address', 'requirement')
-            fields = ('orderDate', 'address', 'requirement', 'totalPrice', 'status')
-
-class OrderPutSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = OrderTable
-        fields = ['status']
-##############################################
-
-###################CART 구현##################
-class CartSerializer(serializers.ModelSerializer):      
-    class Meta:
-        model = Cart
-        fields = ('mainFlower1_ID', 'mainFlower1_amount', 
-                  'mainFlower2_ID', 'mainFlower2_amount',
-                  'mainFlower3_ID', 'mainFlower3_amount',
-                  'subFlower1_ID', 'subFlower1_amount',
-                  'subFlower2_ID', 'subFlower2_amount',
-                  'subFlower3_ID', 'subFlower3_amount',
-                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
-                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount',
-                  'totalPrice'
-                  )
-
-class CartPostSerializer(serializers.ModelSerializer):      
-    class Meta:
-        model = Cart
-        fields = ('user',
-                  'mainFlower1_ID', 'mainFlower1_amount', 
-                  'mainFlower2_ID', 'mainFlower2_amount',
-                  'mainFlower3_ID', 'mainFlower3_amount',
-                  'subFlower1_ID', 'subFlower1_amount',
-                  'subFlower2_ID', 'subFlower2_amount',
-                  'subFlower3_ID', 'subFlower3_amount',
-                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
-                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount',
-                  'totalPrice'
-                  )
-#############################################
-
-##############PickUpLocation 구현##############
-
-class PickUpLocationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PickUpLocation
-        fields = ('depart', 'dest')
-
-##############################################
-
 ############### Mainflower 구현 ###############
 class MainFlowerSerializer(serializers.ModelSerializer):
 
@@ -154,9 +85,74 @@ class BunchOfFlowersSerializer(serializers.ModelSerializer):
         model = BunchOfFlowers
         fields = ('idx', 'flowerphoto', 'color', 'price')
 ##############################################
+
+###################CART 구현##################
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = ('mainFlower1_ID', 'mainFlower1_amount', 
+                  'mainFlower2_ID', 'mainFlower2_amount',
+                  'mainFlower3_ID', 'mainFlower3_amount',
+                  'subFlower1_ID', 'subFlower1_amount',
+                  'subFlower2_ID', 'subFlower2_amount',
+                  'subFlower3_ID', 'subFlower3_amount',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount',
+                  'totalPrice'
+                  )
+
+class CartPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = ('user',
+                  'mainFlower1_ID', 'mainFlower1_amount',
+                  'mainFlower2_ID', 'mainFlower2_amount',
+                  'mainFlower3_ID', 'mainFlower3_amount',
+                  'subFlower1_ID', 'subFlower1_amount',
+                  'subFlower2_ID', 'subFlower2_amount',
+                  'subFlower3_ID', 'subFlower3_amount',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount',
+                  'totalPrice'
+                  )
+
+#############################################
+
+############### Ordertable 구현 ################
+
+class Ordertableserializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = OrderTable
+            fields = ('address', 'requirement')
+            # fields = ('user', 'cart', 'orderDate', 'address', 'requirement', 'totalPrice', 'status')
+
+class OrderPostSerializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = OrderTable
+            fields = ('user', 'cart', 'orderDate', 'address', 'requirement', 'totalPrice')
+            
+class AllOrdertableserializer(serializers.ModelSerializer):
+        cart = CartSerializer(many=False, read_only=True)
+        class Meta:
+            model = OrderTable
+            # fields = ('address', 'requirement')
+            fields = ('orderDate', 'address', 'requirement', 'totalPrice', 'cart')
+##############################################
+
+##############PickUpLocation 구현##############
+
+class PickUpLocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PickUpLocation
+        fields = ('depart', 'dest')
+
+##############################################
+
+
 ############### flowerHouse 구현 ################
 class FlowerShopSerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = Shop
         fields = ('shopName', 'location', 'phoneNum', 'openHours', 'x', 'y')

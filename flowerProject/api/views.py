@@ -9,7 +9,7 @@ from rest_framework import generics, status, viewsets, permissions
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import PickUpLocationSerializer, RegisterSerializer, LoginSerializer, MyPageSerializer, MyAddressSerializer, OrderPostSerializer, AllOrdertableserializer, OrderPutSerializer, CartSerializer, CartPostSerializer, MainFlowerSerializer, SubFlowerSerializer, BunchOfFlowersSerializer, FlowerShopSerializer
+from .serializers import PickUpLocationSerializer, RegisterSerializer, LoginSerializer, MyPageSerializer, MyAddressSerializer, OrderPostSerializer, AllOrdertableserializer, CartSerializer, CartPostSerializer, MainFlowerSerializer, SubFlowerSerializer, BunchOfFlowersSerializer, FlowerShopSerializer
 
 ##################UserInfo 구현###############
 
@@ -24,7 +24,9 @@ class LoginView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         token = serializer.validated_data
-        return Response({"token": token.key}, status=status.HTTP_200_OK)
+        user = UserInfo.objects.get(username=request.data['username'])
+        name = user.name
+        return Response({"token": token.key, "name": name}, status=status.HTTP_200_OK)
 
 class MyPageAPIView(APIView):
     def get(self, request):
@@ -189,29 +191,12 @@ class OrderTableAPIView(APIView):
         order = orders.last()
         serializer = OrderPostSerializer(order, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
-    def put(self, request):
-        # if request.user.is_authenticated:
-            user=get_object_or_404(UserInfo, username = "jimin")
-            orders = OrderTable.objects.filter(user=user)
-            order = orders.last()
-            # request의 user가 ordertable 객체를 가지고 있다면 == request의 user가 주문을 했다면
-            # if Ordertable.objects.filter(user=request.user).exists():
-            
-            serializer = OrderPutSerializer(order, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
         
-
 class AllOrderTableAPIView(APIView):
     def get(self, request):
         user=get_object_or_404(UserInfo, username = "jimin")
-        order = OrderTable.objects.filter(user=user).order_by('-idx')
-        serializer = AllOrdertableserializer(order, many=True)
+        orders = OrderTable.objects.filter(user=user).order_by('-idx')
+        serializer = AllOrdertableserializer(orders, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 ################################################

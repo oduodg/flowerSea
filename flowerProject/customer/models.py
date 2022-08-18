@@ -44,17 +44,17 @@ class OrderTable(models.Model):
     address = models.CharField(max_length=300, null=True)
     requirement = models.TextField(null=True)
     totalPrice = models.IntegerField(null=True)
-    CATEGORY_CHOICES = [
-        ('0', '결제 안됨'),
-        ('1', '주문 수락'),
-        ('2', '배송중'),
-        ('3', '배송 완료')
-    ]
-    status = models.CharField(#개화정도
-        max_length=10,
-        choices=CATEGORY_CHOICES,
-        default='0'
-    ) 
+    # CATEGORY_CHOICES = [
+    #     ('0', '결제 안됨'),
+    #     ('1', '주문 수락'),
+    #     ('2', '배송중'),
+    #     ('3', '배송 완료')
+    # ]
+    # status = models.CharField(
+    #     max_length=10,
+    #     choices=CATEGORY_CHOICES,
+    #     default='0'
+    # ) 
     
 class PickUpLocation(models.Model):
     idx = models.AutoField(primary_key=True)
