@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import PickUpLocationSerializer, RegisterSerializer, LoginSerializer, MyPageSerializer, MyAddressSerializer, OrderPostSerializer, AllOrdertableserializer, CartSerializer, CartPostSerializer, MainFlowerSerializer, SubFlowerSerializer, BunchOfFlowersSerializer, FlowerShopSerializer
-
+from geopy.geocoders import Nominatim
 ##################UserInfo 구현###############
 
 class RegisterView(generics.CreateAPIView): # 회원가입
@@ -203,6 +203,12 @@ class AllOrderTableAPIView(APIView):
 
 ###############PickUpLocation 구현#############
 
+def geocoding(address):
+    geolocoder = Nominatim(user_agent = 'South Korea', timeout=None)
+    geo = geolocoder.geocode(address)
+    crd = {"lat": str(geo.latitude), "lng": str(geo.longitude)}
+    return crd
+
 class PickUpLocationAPIView(APIView):
 
     def post(self, request): 
@@ -220,8 +226,13 @@ class PickUpLocationAPIView(APIView):
             user=get_object_or_404(UserInfo, username = "jimin")
             pickuplocations = PickUpLocation.objects.filter(user=user)
             pickuplocation = pickuplocations.last()
-            serializer = PickUpLocationSerializer(pickuplocation, many=False)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            if pickuplocation:
+                crdDepart = geocoding(pickuplocation.depart)
+                crdDest = geocoding(pickuplocation.dest)
+                # serializer = PickUpLocationSerializer(pickuplocation, many=False)
+                return Response({"departX": crdDepart['lng'], "departY": crdDepart['lat'], "destX": crdDest['lng'], "destY": crdDest['lat']}, status=status.HTTP_200_OK)
+            else:
+                return Response("no pickuplocation data")
         # else:
         #     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
