@@ -58,19 +58,19 @@ export default function Login() {
 			}}
 		>
 			<form 
-				class="p-10 bg-white rounded-xl space-y-5" 
+				classNameName="p-10 bg-white rounded-xl space-y-5" 
 				action=""
 				style={{ display: 'flex', flexDirection: 'column'}}
 				onSubmit={onSubmit}
 			>
-				<h1 class="login">로그인</h1>
+				<h1 className="login">로그인</h1>
 				<img className="loginlogo" alt="symbol_temporary" src="/images/symbol.png" />
-				<div class="loginbd">
+				<div className="loginbd">
 				</div>
-				<div class="ID">
-					<label class="" htmlFor='id'>아이디</label>
+				<div className="ID">
+					<label className="" htmlFor='id'>아이디</label>
 					<input 
-						class="IDbox" 
+						className="IDbox" 
 						type='text' 
 						id = 'id'
 						name='id' 
@@ -79,10 +79,10 @@ export default function Login() {
 						placeholder="아이디를 입력해주세요!"
 					/>
 				</div>
-				<div class="PW">
-					<label class="" htmlFor='pw'>비밀번호</label>
+				<div className="PW">
+					<label className="" htmlFor='pw'>비밀번호</label>
 					<input 
-						class="PWbox" 
+						className="PWbox" 
 						type='password' 
 						id='pw'
 						name='pw' 
@@ -91,16 +91,16 @@ export default function Login() {
 						placeholder ="비밀번호를 입력해주세요!" 
 					/>
 				</div>
-				<div class="lgbt">
+				<div className="lgbt">
 					<button 
-						class="button"
+						className="button"
 						type="submit"
 						onClick={onSubmit}
 					>로그인하기</button>
 				</div>
-				<div class="bt">
+				<div className="bt">
 					<Link to="/register">
-					<button class="GoRegister"><u>회원가입하기</u></button>
+					<button className="GoRegister"><u>회원가입하기</u></button>
 					</Link>
 				</div>
 			</form>
