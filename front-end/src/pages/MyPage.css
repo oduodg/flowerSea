@@ -32,20 +32,6 @@ body{
     color: #000000;
 }
 
-.registerbd{
-    /* Line 1 */
-
-    position: absolute;
-    width: 700px;
-    height: 0px;
-    left: 400px;
-    top: 170px;
-
-    /* B_5 */
-
-    border: 0.5px solid #CCCCCC;
-    transform: rotate(0.36deg);
-}
 
 .rgName{
     position: absolute;
@@ -125,90 +111,12 @@ body{
     border-color: rgb(154, 150, 150);
 }
 
-.rgPassword{
-    position: absolute;
-    width: 357px;
-    height: 32px;
-    left: 400px;
-    top: 420px;
-
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 15px;
-    line-height: 38px;
-
-    /* B_8 */
-
-    color: #000000;
-}
-
-.PWwrite{
-    /* Rectangle 53 */
-
-    box-sizing: border-box;
-
-    position: absolute; 
-    width: 310px;
-    height: 40px;
-    left: 400px;
-    top: 470px;
-
-    /* B_1 */
-
-    background: #FFFFFF;
-    /* B_7 */
-
-    border: none;
-    border-bottom: 0.5px solid;
-    border-color: rgb(154, 150, 150);
-}
-
-.rgPasswordCheck{
-    position: absolute;
-    width: 357px;
-    height: 32px;
-    left: 790px;
-    top: 420px;
-
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 15px;
-    line-height: 38px;
-
-    /* B_8 */
-
-    color: #000000;
-}
-
-.PwCheck{
-    /* Rectangle 53 */
-
-    box-sizing: border-box;
-
-    position: absolute; 
-    width: 310px;
-    height: 40px;
-    left: 790px;
-    top: 470px;
-
-    /* B_1 */
-
-    background: #FFFFFF;
-    /* B_7 */
-
-    border: none;
-    border-bottom: 0.5px solid;
-    border-color: rgb(154, 150, 150);
-}
-
 .rgAddress{
     position: absolute;
     width: 357px;
     height: 32px;
     left: 400px;
-    top: 520px;
+    top: 420px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -230,7 +138,7 @@ body{
     width: 700px;
     height: 40px;
     left: 400px;
-    top: 570px;
+    top: 470px;
 
     /* B_1 */
 
@@ -247,7 +155,7 @@ body{
     width: 357px;
     height: 32px;
     left: 400px;
-    top: 620px;
+    top: 520px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -269,7 +177,7 @@ body{
     width: 310px;
     height: 40px;
     left: 400px;
-    top: 670px;
+    top: 570px;
 
     /* B_1 */
 
@@ -279,75 +187,6 @@ body{
     border: none;
     border-bottom: 0.5px solid;
     border-color: rgb(154, 150, 150);
-}
-
-.rgEmail{
-    position: absolute;
-    width: 357px;
-    height: 32px;
-    left: 400px;
-    top: 720px;
-
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 15px;
-    line-height: 38px;
-
-    /* B_8 */
-
-    color: #000000;
-}
-
-.EmailWrite{
-    /* Rectangle 53 */
-
-    box-sizing: border-box;
-
-    position: absolute; 
-    width: 310px;
-    height: 40px;
-    left: 400px;
-    top: 770px;
-
-    /* B_1 */
-
-    background: #FFFFFF;
-    /* B_7 */
-
-    border: none;
-    border-bottom: 0.5px solid;
-    border-color: rgb(154, 150, 150);
-}
-
-.gender{
-    position: absolute;
-    width: 357px;
-    height: 32px;
-    left: 790px;
-    top: 220px;
-
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 15px;
-    line-height: 38px;
-
-    /* B_8 */
-
-    color: #000000;
-}
-
-.malebutton{
-    position: absolute;
-    top: 277px;
-    left: 807px;
-}
-
-.femalebutton{
-    position: absolute;
-    top: 277px;
-    left: 862px;
 }
 
 .rgbt{
@@ -357,7 +196,7 @@ body{
     width: 330px;
     height: 61px;
     left: 604px;
-    top: 880px;
+    top: 680px;
 
     /* M_2_2 */
 
@@ -366,12 +205,13 @@ body{
 
 
 }
+
 .rgbutton{
     position: flex;
     width: 330px;
     height: 61px;
     left: 604px;
-    top: 880px;
+    top: 680px;
 
     margin-bottom: 200px;
 
