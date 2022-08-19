@@ -11,6 +11,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import PickUpLocationSerializer, RegisterSerializer, LoginSerializer, MyPageSerializer, MyAddressSerializer, OrderPostSerializer, AllOrdertableserializer, CartSerializer, CartPostSerializer, MainFlowerSerializer, SubFlowerSerializer, BunchOfFlowersSerializer, FlowerShopSerializer
 from geopy.geocoders import Nominatim
+import json
 ##################UserInfo 구현###############
 
 class RegisterView(generics.CreateAPIView): # 회원가입
@@ -31,7 +32,7 @@ class LoginView(generics.GenericAPIView):
 class MyPageAPIView(APIView):
     def get(self, request):
         if request.user:
-            myinfo = UserInfo.objects.filter(username = request.user.username)
+            myinfo = UserInfo.objects.get(username = request.user.username)
             serializer = MyPageSerializer(myinfo, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
@@ -39,7 +40,7 @@ class MyPageAPIView(APIView):
     
     def put(self, request):
         if request.user:
-            myinfo = UserInfo.objects.filter(username = request.user.username)
+            myinfo = UserInfo.objects.get(username = request.user.username)
             serializer = MyPageSerializer(myinfo, data=request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -51,7 +52,7 @@ class MyPageAPIView(APIView):
 class UserDeleteAPIView(APIView):
     def delete(self, request):
         if request.user:
-            myinfo = UserInfo.objects.filter(username = request.user.username)
+            myinfo = UserInfo.objects.get(username = request.user.username)
             myinfo.delete()
             return Response("UserInfo successfully deleted!")
         else:
@@ -60,7 +61,7 @@ class UserDeleteAPIView(APIView):
 class UserAddressAPIView(APIView):
     def get(self, request):
         if request.user:
-            myinfo = UserInfo.objects.filter(username = request.user.username)
+            myinfo = UserInfo.objects.get(username = request.user.username)
             serializer = MyAddressSerializer(myinfo, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
@@ -101,64 +102,66 @@ def BunchOfFlowersAPIView(request, shop):
 
 class CartAPIView(APIView):
     def get(self, request): 
-        # if request.user:
-        user=get_object_or_404(UserInfo, username = "jimin")
-        carts = Cart.objects.filter(user=user)
-        cart = carts.last()
-        serializer = CartSerializer(cart, many=False)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-        # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
-    
-    def post(self, request):
-        serializer = CartPostSerializer(data=request.data)
-        user=get_object_or_404(UserInfo, username = "jimin")
-        price = 0
-
-        if serializer.is_valid():
-            serializer.save(user=user)
-            if serializer.data['mainFlower1_ID']:
-                mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower1_ID'])
-                price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower1_amount'])
-            if serializer.data['mainFlower2_ID']:
-                mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower2_ID'])
-                price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower2_amount'])
-            if serializer.data['mainFlower3_ID']:
-                mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower3_ID'])
-                price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower3_amount'])
-            if serializer.data['subFlower1_ID']:
-                subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower1_ID'])
-                price += subflower.oneFlowerPrice * int(serializer.data['subFlower1_amount'])
-            if serializer.data['subFlower2_ID']:
-                subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower2_ID'])
-                price += subflower.oneFlowerPrice * int(serializer.data['subFlower2_amount'])
-            if serializer.data['subFlower3_ID']:
-                subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower3_ID'])
-                price += subflower.oneFlowerPrice * int(serializer.data['subFlower3_amount'])
-            if serializer.data['bunchOfFlowers1_ID']:
-                bunchofflowers = get_object_or_404(BunchOfFlowers, idx=serializer.data['bunchOfFlowers1_ID'])
-                price += bunchofflowers.price * int(serializer.data['bunchOfFlowers1_amount'])
-            if serializer.data['bunchOfFlowers2_ID']:
-                bunchofflowers = get_object_or_404(BunchOfFlowers, idx=serializer.data['bunchOfFlowers2_ID'])
-                price += bunchofflowers.price * int(serializer.data['bunchOfFlowers2_amount'])
+        if request.user:
+            # user=get_object_or_404(UserInfo, username = "jimin")    
+            user = UserInfo.objects.get(username = request.user.username)
             carts = Cart.objects.filter(user=user)
             cart = carts.last()
-            cart.totalPrice = price
-            cart.save()
             serializer = CartSerializer(cart, many=False)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print(serializer.errors)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+    
+    def post(self, request):
+        if request.user:
+            user = UserInfo.objects.get(username = request.user.username)
+            serializer = CartPostSerializer(data=request.data)
+            # user=get_object_or_404(UserInfo, username = "jimin")
+            price = 0
+            if serializer.is_valid():
+                serializer.save(user=user)
+                if serializer.data['mainFlower1_ID']:
+                    mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower1_ID'])
+                    price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower1_amount'])
+                if serializer.data['mainFlower2_ID']:
+                    mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower2_ID'])
+                    price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower2_amount'])
+                if serializer.data['mainFlower3_ID']:
+                    mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower3_ID'])
+                    price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower3_amount'])
+                if serializer.data['subFlower1_ID']:
+                    subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower1_ID'])
+                    price += subflower.oneFlowerPrice * int(serializer.data['subFlower1_amount'])
+                if serializer.data['subFlower2_ID']:
+                    subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower2_ID'])
+                    price += subflower.oneFlowerPrice * int(serializer.data['subFlower2_amount'])
+                if serializer.data['subFlower3_ID']:
+                    subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower3_ID'])
+                    price += subflower.oneFlowerPrice * int(serializer.data['subFlower3_amount'])
+                if serializer.data['bunchOfFlowers1_ID']:
+                    bunchofflowers = get_object_or_404(BunchOfFlowers, idx=serializer.data['bunchOfFlowers1_ID'])
+                    price += bunchofflowers.price * int(serializer.data['bunchOfFlowers1_amount'])
+                if serializer.data['bunchOfFlowers2_ID']:
+                    bunchofflowers = get_object_or_404(BunchOfFlowers, idx=serializer.data['bunchOfFlowers2_ID'])
+                    price += bunchofflowers.price * int(serializer.data['bunchOfFlowers2_amount'])
+                carts = Cart.objects.filter(user=user)
+                cart = carts.last()
+                cart.totalPrice = price
+                cart.save()
+                serializer = CartSerializer(cart, many=False)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response('안돼~', status=status.HTTP_401_UNAUTHORIZED)
     
 class CartAllAPIView(APIView):      #유저의 모든 주문내역 불러오기
     def get(self, request):    
-        # if request.user:
-            user=get_object_or_404(UserInfo, username = "jimin")
+        if request.user:
+            user = UserInfo.objects.get(username = request.user.username)
+            # user=get_object_or_404(UserInfo, username = "jimin")
             cart = Cart.objects.filter(user=user).order_by('-idx')
             serializer = CartSerializer(cart, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
         
 #############################################
 
@@ -166,10 +169,11 @@ class CartAllAPIView(APIView):      #유저의 모든 주문내역 불러오기
 
 class OrderTableAPIView(APIView):
     def post(self, request):
-        # if request.user.is_authenticated:
+        if request.user:
             
             serializer = OrderPostSerializer(data=request.data)
-            user=get_object_or_404(UserInfo, username = "jimin")
+            user = UserInfo.objects.get(username = request.user.username)
+            # user=get_object_or_404(UserInfo, username = "jimin")
 
             # request의 user가 cart 객체를 가지고 있다면 == request의 user가 장바구니를 만들어 놓았다면
             # if Cart.objects.filter(user=request.user).exists():
@@ -182,22 +186,57 @@ class OrderTableAPIView(APIView):
                 serializer.save(user=cart.user,cart=cart, totalPrice=cart.totalPrice)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
         
     def get(self, request):
-        user=get_object_or_404(UserInfo, username = "jimin")
-        orders = OrderTable.objects.filter(user=user)
-        order = orders.last()
-        serializer = OrderPostSerializer(order, many=False)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if request.user:
+            user = UserInfo.objects.get(username = request.user.username)
+            # user=get_object_or_404(UserInfo, username = "jimin")
+            orders = OrderTable.objects.filter(user=user)
+            order = orders.last()
+            serializer = OrderPostSerializer(order, many=False)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
         
 class AllOrderTableAPIView(APIView):
     def get(self, request):
-        user=get_object_or_404(UserInfo, username = "jimin")
-        orders = OrderTable.objects.filter(user=user).order_by('-idx')
-        serializer = AllOrdertableserializer(orders, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if request.user:
+            user = UserInfo.objects.get(username = request.user.username)
+            # user=get_object_or_404(UserInfo, username = "jimin")
+        # orderdict = dict()
+        # ordersInstance = OrderTable.objects.all().filter(user=user)
+        # for orderInstance in ordersInstance:
+        #     if orderInstance.cart.mainFlower1_ID:
+        #         mainflower = get_object_or_404(MainFlower, flowerName = orderInstance.cart.mainFlower2_ID)
+        #         orderdict["mainflower1"] = mainflower.flowerName
+            # if orderInstance.cart.mainFlower2_ID:
+            #     mainflower = get_object_or_404(MainFlower, flowerName = orderInstance.cart.mainFlower2_ID)
+            #     orderdict[orderInstance.orderDate + "mainflower2"] = mainflower.flowerName
+            # if orderInstance.cart.mainFlower3_ID:
+            #     mainflower = get_object_or_404(MainFlower, flowerName = orderInstance.cart.mainFlower3_ID)
+            #     orderdict[orderInstance.orderDate + "mainflower3"] = mainflower.flowerName
+            # if orderInstance.cart.subFlower1_ID:
+            #     subflower = get_object_or_404(SubFlower, flowerName = orderInstance.cart.subFlower1_ID)
+            #     orderdict[orderInstance.orderDate + "subflower1"] = subflower.flowerName
+            # if orderInstance.cart.subFlower2_ID:
+            #     subflower = get_object_or_404(SubFlower, flowerName = orderInstance.cart.subFlower2_ID)
+            #     orderdict[orderInstance.orderDate + "subflower2"] = subflower.flowerName
+            # if orderInstance.cart.subFlower3_ID:
+            #     subflower = get_object_or_404(SubFlower, flowerName = orderInstance.cart.subFlower3_ID)
+            #     orderdict[orderInstance.orderDate + "subflower3"] = subflower.flowerName
+            # if orderInstance.cart.bunchOfFlowers1_ID:
+            #     bunchofflowers = get_object_or_404(BunchOfFlowers, flowerName = orderInstance.cart.bunchOfFlowers1_ID)
+            #     orderdict[orderInstance.orderDate + "bunchofflowers1"] = bunchofflowers.color
+            # if orderInstance.cart.bunchOfFlowers2_ID:
+            #     bunchofflowers = get_object_or_404(BunchOfFlowers, flowerName = orderInstance.cart.bunchOfFlowers2_ID)
+            #     orderdict[orderInstance.orderDate + "bunchofflowers2"] = bunchofflowers.color
+            orders = OrderTable.objects.filter(user=user).order_by('-idx')
+            serializer = AllOrdertableserializer(orders, many=True)
+            return Response(serializer.data,status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 ################################################
 
@@ -212,18 +251,21 @@ def geocoding(address):
 class PickUpLocationAPIView(APIView):
 
     def post(self, request): 
-        #if request.user:
+        if request.user:
             serializer = PickUpLocationSerializer(data=request.data)
-            user=get_object_or_404(UserInfo, username = "jimin")
+            user = UserInfo.objects.get(username = request.user.username)
+            # user=get_object_or_404(UserInfo, username = "jimin")
+            
             if serializer.is_valid():
                 serializer.save(user=user)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-       # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     def get(self, request):
-        # if request.user.is_authenticated:
-            user=get_object_or_404(UserInfo, username = "jimin")
+        if request.user:
+            user = UserInfo.objects.get(username = request.user.username)
+            # user=get_object_or_404(UserInfo, username = "jimin")
             pickuplocations = PickUpLocation.objects.filter(user=user)
             pickuplocation = pickuplocations.last()
             if pickuplocation:
@@ -233,8 +275,8 @@ class PickUpLocationAPIView(APIView):
                 return Response({"departX": crdDepart['lng'], "departY": crdDepart['lat'], "destX": crdDest['lng'], "destY": crdDest['lat']}, status=status.HTTP_200_OK)
             else:
                 return Response("no pickuplocation data")
-        # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 ##############################################
 ###############flowerShop 구현#############
