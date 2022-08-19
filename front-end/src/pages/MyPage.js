@@ -59,20 +59,20 @@ export default function MyPage() {
       }}
   >
       <form 
-          class="p-10 bg-white rounded-xl space-y-5" 
+          classname="p-10 bg-white rounded-xl space-y-5" 
           action=""
           style={{ display: 'flex', flexDirection: 'column'}}
           onSubmit={onSubmitHandler}
       >
-        <h1 class="register">마이페이지 - 내정보
+        <h1 classname="register">마이페이지 - 내정보
           <span style={{color:'#f34336', fontSize:10, paddingLeft:10}}> </span>
         </h1>
-        <div class="registerbd"></div>
-        <h3 class="rgName">이름
+        <div classname="registerbd"></div>
+        <h3 classname="rgName">이름
         </h3>
         <div>
             <input 
-              class="NameWrite" 
+              classname="NameWrite" 
               type='text' 
               name='Name' 
               vlaue={Name} 
@@ -80,11 +80,11 @@ export default function MyPage() {
               placeholder = ""
               />
         </div>
-        <h3 class="rgID">아이디
+        <h3 classname="rgID">아이디
         </h3>
         <div>
             <input 
-              class="idwrite" 
+              classname="idwrite" 
               type='text' 
               name='Id' 
               value={Id} 
@@ -94,11 +94,11 @@ export default function MyPage() {
         </div>
       
       
-        <h3 class="rgAddress">주소
+        <h3 classname="rgAddress">주소
         </h3>
         <div>
             <input 
-              class="AddressWrite" 
+              classname="AddressWrite" 
               type='text' 
               name='Address' 
               value={Address} 
@@ -106,11 +106,11 @@ export default function MyPage() {
               placeholder = ""
               />
         </div>
-        <h3 class="rgPhoneNum">전화번호
+        <h3 classname="rgPhoneNum">전화번호
         </h3>
         <div>
             <input 
-              class="PhoneNumWrite" 
+              classname="PhoneNumWrite" 
               type='text' 
               name='PhoneNum' 
               value={PhoneNum} 
@@ -119,16 +119,16 @@ export default function MyPage() {
               />
         </div>
         
-        <div class="sidemenu">마이페이지</div>
+        <div clasname="sidemenu">마이페이지</div>
         
         
-        <div class="MyInfo">
+        <div classname="MyInfo">
           <Link to="/mypage">
-          <button class="GoMyPage">내 정보</button>
+          <button classname="GoMyPage">내 정보</button>
           </Link>
         </div>
 
-        <div class="OrderTable">
+        <div classname="OrderTable">
           <Link to="/ordertable">
           <button class="GoOrderTable">주문 목록</button>
           </Link>

@@ -96,8 +96,6 @@ export default function OrderTable() {
                 placeholder = ""
                 />
           </div>
-          <h3 class="rgPassword">비밀번호
-          </h3>
           <div>
               <input 
                 class="PWwrite" 
@@ -133,17 +131,7 @@ export default function OrderTable() {
                 placeholder = ""
                 />
           </div>
-          <h3 class="rgEmail">이메일</h3>
-          <div>
-              <input 
-                class="EmailWrite" 
-                type='email' 
-                name='Email' 
-                value={Email} 
-                onChange={onEmailHandler} 
-                placeholder = ""
-                />
-          </div>
+
   
           <div class="sidemenu">마이페이지</div>
           
