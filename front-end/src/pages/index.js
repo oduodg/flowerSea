@@ -4,3 +4,4 @@ export { default as Register } from './Register';
 export { default as Logout } from './Logout';
 export { default as Cart } from './Cart';
 export { default as MyPage } from './MyPage';
+export { default as OrderTable } from './OrderTable';
