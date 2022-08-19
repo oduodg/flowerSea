@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link, useLocation } from "react-router-dom";
-import { CheckToken } from '../auth/CheckToken';
 
 export default function Profile() {
 	const location = useLocation();
-	const { isAuth } = CheckToken(location.key);
-	
-	if (isAuth === 'Success') {
 
+	const userName = localStorage.getItem("userName");
+	
+	if(userName) {
 		return (
 			<div className="flex justify-center float-right">
 				<Link to="/mypage">
-					<div className="text-[#8DA6FF] mt-2.5 mr-4 h-9">김사자님</div>
+					<div className="text-[#8DA6FF] mt-2.5 mr-4 h-9">{userName}님</div>
 				</Link>
 				<Link to="/mypage">
 					<img className="pt-2 mr-4 h-9" alt="profile" src="/images/icon_profile.png" />

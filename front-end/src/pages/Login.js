@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { setRefreshToken } from '../storage/Cookie';
-import { SET_TOKEN } from '../store/Auth';
 
 const Login = () => {
-
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
 
 	const [id, setId] = useState('');
 	const [pw, setPw] = useState('');
@@ -34,9 +29,8 @@ const Login = () => {
 				return;
 			}
 			const res = await axios.post(domain + "api/userinfo/login/", userData);
-			console.log(res.data);
-			setRefreshToken(res.data.token); // 쿠키에 token 저장
-			dispatch(SET_TOKEN(res.data.token)); // store에 token 저장
+			localStorage.setItem("userToken", res.data.token);
+			localStorage.setItem("userName", res.data.name);
 			return navigate("/");
 		} catch (err) {
 			// console.log(err);
