@@ -1,71 +1,74 @@
-import React, {useState} from 'react'
-import './Login.css';
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { setRefreshToken } from '../storage/Cookie';
+import { SET_TOKEN } from '../store/Auth';
 
-export default function Login() {
-    const [Id, setId] = useState("")
-    const [Password, setPassword] = useState("")
+const Login = () => {
 
-    const onIdHandler = (event) => {
-        setId(event.currentTarget.value)
-    }
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
-    const onPasswordHandler = (event) => {
-        setPassword(event.currentTarget.value)
-    }
+	const [id, setId] = useState('');
+	const [pw, setPw] = useState('');
 
-    const onSubmitHandler = (event) => {
-        event.preventDefault();
-    }
+	const handleId = (e) => {
+		setId(e.target.value);
+	};
 
-return (
-    <div style={{
-        display: 'flex', justifyContent: 'center', alignItems: 'center',
-        width: '100%', height: '100vh'
-        }}
-    >
-        <form 
-            class="p-10 bg-white rounded-xl space-y-5" 
-            action=""
-            style={{ display: 'flex', flexDirection: 'column'}}
-            onSubmit={onSubmitHandler}
-        >
-            <h1 class="login">로그인</h1>
-            <img className="loginlogo" alt="symbol_temporary" src="/images/symbol_temporary.png" />
-            <div class="loginbd">
-            </div>
-            <div class="ID">
-                <label class="" htmlFor='id'>아이디</label>
-                <input 
-                    class="IDbox" 
-                    type='text' 
-                    name='id' 
-                    vlaue={Id} 
-                    onChange={onIdHandler} 
-                    placeholder="아이디를 입력해주세요!"
-                />
-            </div>
-            <div class="PW">
-                <label class="" htmlFor='pw'>비밀번호</label>
-                <input 
-                    class="PWbox" 
-                    type='text' 
-                    name='pw' 
-                    vlaue={Password} 
-                    onChange={onPasswordHandler}
-                    placeholder ="비밀번호를 입력해주세요!" 
-                />
-            </div>
-            <div class="lgbt">
-                <button class="button">로그인하기</button>
-            </div>
-            <div class="bt">
-                <Link to="/register">
-                <button class="GoRegister"><u>회원가입하기</u></button>
-                </Link>
-            </div>
-        </form>
-    </div>
+	const handlePw = (e) => {
+		setPw(e.target.value)
+	};
 
-    )
-}
+	const domain = "http://192.168.35.160:8080/";
+	const userData = {
+		username: id,
+		password: pw
+	}
+
+	const onSubmit = async () => {
+		try {
+			if (id === "" || pw === "") {
+				alert("아이디와 비밀번호를 입력해주세요.");
+				return;
+			}
+			const res = await axios.post(domain + "api/userinfo/login/", userData);
+			console.log(res.data);
+			setRefreshToken(res.data.token); // 쿠키에 token 저장
+			dispatch(SET_TOKEN(res.data.token)); // store에 token 저장
+			return navigate("/");
+		} catch (err) {
+			// console.log(err);
+			if (err.response.status === 400) {
+				alert("아이디와 비밀번호를 확인해주세요.");
+			} else {
+				alert("서버 에러입니다.");
+			}
+		}
+	}
+
+	return (
+		<div className='text-center'>
+			<p className='pt-10 text-xl'>로그인</p>
+
+			<div className='pt-10'>
+				<label className='pr-2' htmlFor='id'>아이디</label>
+				<input className='border-2 rounded-lg' type='text' id='id' name='id' value={id} onChange={handleId} />
+			</div>
+
+			<div className='pt-10'>
+				<label className='pr-2' htmlFor='pw'>비밀번호</label>
+				<input className='border-2 rounded-lg' type='password' id='pw' name='pw' value={pw} onChange={handlePw} />
+			</div>
+
+			<div className='pt-10'>
+				<button className='px-20 text-blue-400 border-2 border-blue-400 rounded-lg' type='submit' onClick={onSubmit}>로그인하기</button>
+			</div>
+			<Link to='/register'>
+				<button type='button'>회원가입하기</button>
+			</Link>
+		</div>
+	)
+};
+export default Login;
