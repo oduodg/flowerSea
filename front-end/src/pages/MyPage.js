@@ -59,20 +59,20 @@ export default function MyPage() {
     }}
     >
       <form
-        class="p-10 bg-white rounded-xl space-y-5"
+        className="p-10 space-y-5 bg-white rounded-xl"
         action=""
         style={{ display: 'flex', flexDirection: 'column' }}
         onSubmit={onSubmitHandler}
       >
-        <h1 class="register">마이페이지 - 내정보
+        <h1 className="register">마이페이지 - 내정보
           <span style={{ color: '#f34336', fontSize: 10, paddingLeft: 10 }}> </span>
         </h1>
-        <div class="registerbd"></div>
-        <h3 class="rgName">이름
+        <div className="registerbd"></div>
+        <h3 className="rgName">이름
         </h3>
         <div>
           <input
-            class="NameWrite"
+            className="NameWrite"
             type='text'
             name='Name'
             vlaue={Name}
@@ -80,11 +80,11 @@ export default function MyPage() {
             placeholder=""
           />
         </div>
-        <h3 class="rgID">아이디
+        <h3 className="rgID">아이디
         </h3>
         <div>
           <input
-            class="idwrite"
+            className="idwrite"
             type='text'
             name='Id'
             value={Id}
@@ -94,11 +94,11 @@ export default function MyPage() {
         </div>
 
 
-        <h3 class="rgAddress">주소
+        <h3 className="rgAddress">주소
         </h3>
         <div>
           <input
-            class="AddressWrite"
+            className="AddressWrite"
             type='text'
             name='Address'
             value={Address}
@@ -106,11 +106,11 @@ export default function MyPage() {
             placeholder=""
           />
         </div>
-        <h3 class="rgPhoneNum">전화번호
+        <h3 className="rgPhoneNum">전화번호
         </h3>
         <div>
           <input
-            class="PhoneNumWrite"
+            className="PhoneNumWrite"
             type='text'
             name='PhoneNum'
             value={PhoneNum}
@@ -119,23 +119,23 @@ export default function MyPage() {
           />
         </div>
 
-        <div class="sidemenu">마이페이지</div>
+        <div className="sidemenu">마이페이지</div>
 
 
-        <div class="MyInfo">
+        <div className="MyInfo">
           <Link to="/mypage">
-            <button class="GoMyPage">내 정보</button>
+            <button className="GoMyPage">내 정보</button>
           </Link>
         </div>
 
-        <div class="OrderTable">
+        <div className="OrderTable">
           <Link to="/ordertable">
-            <button class="GoOrderTable">주문 목록</button>
+            <button className="GoOrderTable">주문 목록</button>
           </Link>
         </div>
 
-        <div class="rgbt">
-          <button class="rgbutton">수정하기</button>
+        <div className="rgbt">
+          <button className="rgbutton">수정하기</button>
         </div>
       </form>
     </div>
