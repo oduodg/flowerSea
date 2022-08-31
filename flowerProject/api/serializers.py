@@ -105,14 +105,28 @@ class CartPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
         fields = ('user',
-                  'mainFlower1_ID', 'mainFlower1_amount',
-                  'mainFlower2_ID', 'mainFlower2_amount',
-                  'mainFlower3_ID', 'mainFlower3_amount',
-                  'subFlower1_ID', 'subFlower1_amount',
-                  'subFlower2_ID', 'subFlower2_amount',
-                  'subFlower3_ID', 'subFlower3_amount',
-                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
-                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount',
+                  'mainFlower1_ID', 'mainFlower1_name', 'mainFlower1_amount',
+                  'mainFlower2_ID', 'mainFlower2_name', 'mainFlower2_amount',
+                  'mainFlower3_ID', 'mainFlower3_name', 'mainFlower3_amount',
+                  'subFlower1_ID', 'subFlower1_name', 'subFlower1_amount',
+                  'subFlower2_ID', 'subFlower2_name', 'subFlower2_amount',
+                  'subFlower3_ID', 'subFlower3_name', 'subFlower3_amount',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_color', 'bunchOfFlowers1_amount',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_color', 'bunchOfFlowers2_amount',
+                  'totalPrice'
+                  )
+
+class CartAllSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = ('mainFlower1_ID', 'mainFlower1_name', 'mainFlower1_amount',
+                  'mainFlower2_ID', 'mainFlower2_name', 'mainFlower2_amount',
+                  'mainFlower3_ID', 'mainFlower3_name', 'mainFlower3_amount',
+                  'subFlower1_ID', 'subFlower1_name', 'subFlower1_amount',
+                  'subFlower2_ID', 'subFlower2_name', 'subFlower2_amount',
+                  'subFlower3_ID', 'subFlower3_name', 'subFlower3_amount',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_color', 'bunchOfFlowers1_amount',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_color', 'bunchOfFlowers2_amount',
                   'totalPrice'
                   )
 
@@ -132,12 +146,11 @@ class OrderPostSerializer(serializers.ModelSerializer):
         class Meta:
             model = OrderTable
             fields = ('user', 'cart', 'orderDate', 'address', 'requirement', 'totalPrice')
-            
+
 class AllOrdertableserializer(serializers.ModelSerializer):
-        cart = CartSerializer(many=False, read_only=True)
+        cart = CartAllSerializer(many=False, read_only=True)
         class Meta:
             model = OrderTable
-            # fields = ('address', 'requirement')
             fields = ('orderDate', 'address', 'requirement', 'totalPrice', 'cart')
 ##############################################
 

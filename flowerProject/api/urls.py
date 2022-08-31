@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from .views import *
 from .views import PickUpLocationAPIView, LoginView, MyPageAPIView, RegisterView, UserAddressAPIView, UserDeleteAPIView
-from .views import LoginView, MyPageAPIView, RegisterView, UserAddressAPIView, UserDeleteAPIView, CartAllAPIView, CartAPIView, FlowerShopAPIView, MainflowerAPIView, SubflowerAPIView, BunchOfFlowersAPIView
+from .views import LoginView, MyPageAPIView, RegisterView, UserAddressAPIView, UserDeleteAPIView, CartAPIView, FlowerShopAPIView, MainflowerAPIView, SubflowerAPIView, BunchOfFlowersAPIView
 
 urlpatterns = [
     #Userinfo
@@ -16,7 +16,7 @@ urlpatterns = [
     path('flowershop/', FlowerShopAPIView.as_view()),
     
     #Cart
-    path('cart/all/', CartAllAPIView.as_view()),
+    # path('cart/all/', CartAllAPIView.as_view()),
     path('cart/', CartAPIView.as_view()),
     
     #Ordertable
