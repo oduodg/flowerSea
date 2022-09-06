@@ -14,98 +14,80 @@ body{
     overflow: scroll;
 }    
 
-.register{
+.payed{
     position: absolute;
     width: 357px;
     height: 32px;
-    left: 400px;
-    top: 140px;
+    left: 720px;
+    top: 200px;
 
     font-family: 'Pretendard';
     font-style: normal;
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 38px;
-
-    /* B_8 */
-
-    color: #000000;
-}
-
-
-.registerbd{
-
-    box-sizing: border-box;
-
-    position: absolute; 
-    width: 310px;
-    height: 1px;
-    left: 400px;
-    top: 180px;
-
-    /* B_1 */
-
-    background: #FFFFFF;
-    /* B_7 */
-
-    border: none;
-    border-bottom: 0.5px solid;
-    border-color: rgb(154, 150, 150);
-
-}
-
-.sidemenu{
-    position: absolute;
-    width: 357px;
-    height: 32px;
-    left: 100px;
-    top: 100px;
-
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight:bold !important; 
+    font-weight: 200;
     font-size: 20px;
     line-height: 38px;
 
     /* B_8 */
 
     color: #000000;
+
 }
 
-
-.MyInfo{
+.again{
     position: absolute;
     width: 357px;
     height: 32px;
-    left: 100px;
-    top: 130px;
+    left: 590px;
+    top: 250px;
 
     font-family: 'Pretendard';
     font-style: normal;
-    font-weight: 200px; 
-    font-size: 15px;
+    font-weight: 200;
+    font-size: 20px;
     line-height: 38px;
 
     /* B_8 */
 
     color: #000000;
+
 }
 
-.OrderTable{
+
+
+.pybt{
+    box-sizing: border-box;
+
     position: absolute;
-    width: 357px;
-    height: 32px;
-    left: 100px;
-    top: 160px;
+    width: 330px;
+    height: 61px;
+    left: 604px;
+    top: 350px;
+
+    /* M_2_2 */
+
+    border: 2px solid #8DA6FF;
+    border-radius: 11px;
+
+
+}
+.pybutton{
+    position: flex;
+    width: 330px;
+    height: 61px;
+    left: 604px;
+    top: 880px;
+
+    margin-bottom: 200px;
 
     font-family: 'Pretendard';
     font-style: normal;
-    font-weight: 200px; 
-    font-size: 15px;
-    line-height: 38px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
 
-    /* B_8 */
+    /* M_2_2 */
 
-    color: #000000;
+    color: #8DA6FF;
+
 }
-

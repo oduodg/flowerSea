@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './Login.css'
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Login = () => {
 		setPw(e.target.value)
 	};
 
-	const domain = "http://192.168.35.160:8080/";
+	const domain = "http://127.0.0.1:8000/";
 	const userData = {
 		username: id,
 		password: pw
@@ -43,25 +44,37 @@ const Login = () => {
 	}
 
 	return (
-		<div className='text-center'>
-			<p className='pt-10 text-xl'>로그인</p>
+		<div style={{
+            display: 'flex', justifyContent: 'center', alignItems: 'center',
+            width: '100%', height: '100vh'
+            }}
+        >
+            <form 
+            className="p-10 bg-white rounded-xl space-y-5" 
+            action=""
+            style={{ display: 'flex', flexDirection: 'column'}}
+            //onSubmit={onSubmitHandler}
+        >
+                <h1 className="login">로그인</h1>
+                <img className="loginlogo" alt="symbol_temporary" src="/images/symbol.png" />
+                <div className="loginbd"></div>
+                <div className="ID">
+                    <label className="" htmlFor='id'>아이디</label>
+                    <input className="IDbox" type='text' id='id' name='id' value={id} onChange={handleId} placeholder="아이디를 입력해주세요!"/>
+                </div>
 
-			<div className='pt-10'>
-				<label className='pr-2' htmlFor='id'>아이디</label>
-				<input className='border-2 rounded-lg' type='text' id='id' name='id' value={id} onChange={handleId} />
-			</div>
+                <div className='PW'>
+                    <label className="" htmlFor='pw'>비밀번호</label>
+                    <input className="PWbox" type='password' id='pw' name='pw' value={pw} onChange={handlePw} placeholder ="비밀번호를 입력해주세요!"/>
+                </div>
 
-			<div className='pt-10'>
-				<label className='pr-2' htmlFor='pw'>비밀번호</label>
-				<input className='border-2 rounded-lg' type='password' id='pw' name='pw' value={pw} onChange={handlePw} />
-			</div>
-
-			<div className='pt-10'>
-				<button className='px-20 text-blue-400 border-2 border-blue-400 rounded-lg' type='submit' onClick={onSubmit}>로그인하기</button>
-			</div>
-			<Link to='/register'>
-				<button type='button'>회원가입하기</button>
-			</Link>
+                <div className="lgbt">
+                    <button className="button" type='submit' onClick={onSubmit}>로그인하기</button>
+                </div>
+                <Link to='/register'>
+                    <button className="GoRegister">회원가입하기</button>
+                </Link>
+            </form>
 		</div>
 	)
 };

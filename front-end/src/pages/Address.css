@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic",
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+body{
+    overflow: scroll;
+}
+
+.addrinput{
+    position: absolute;
+    width: 357px;
+    height: 32px;
+    left: 50%; 
+    margin-left: -239px;
+    top: 225px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 38px;
+
+    /* B_8 */
+
+    color: #000000;
+}
+.addrbd{
+    /* Line 1 */
+
+    position: absolute;
+    width: 478px;
+    height: 0px;
+    left: 50%; 
+    margin-left: -239px;
+    top: 253px;
+
+    /* B_5 */
+
+    border: 1px solid #CCCCCC;
+    transform: rotate(0.36deg);
+}
+.addrlogo{
+    /* Vector */
+
+    /* position: absolute; */
+    left: 0%;
+    right: 4.44%;
+    top: 0.42%;
+    bottom: 3.61%;
+
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    left: 895px;
+    top: 180px;
+    /* background: #000000; */
+}
+
+.Depart{
+    position: absolute;
+    width: 357px;
+    height: 32px;
+    left: 50%; 
+    margin-left: -239px;
+    top: 300px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 38px;
+
+    /* B_8 */
+
+    color: #000000;
+}
+
+.DepartWrite{
+    /* Rectangle 53 */
+
+    box-sizing: border-box;
+
+    position: absolute; 
+    width: 478px;
+    height: 40px;
+    left: 50%; 
+    margin-left: -239px;
+    top: 350px;
+
+    /* B_1 */
+
+    background: #FFFFFF;
+    /* B_7 */
+
+    border: none;
+    border-bottom: 0.5px solid;
+    border-color: rgb(154, 150, 150);
+}
+
+.Dest{
+    position: absolute;
+    width: 357px;
+    height: 32px;
+    left: 50%; 
+    margin-left: -239px;
+    top: 390px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 38px;
+
+    /* B_8 */
+
+    color: #000000;
+}
+
+.DestWrite{
+    /* Rectangle 53 */
+
+    box-sizing: border-box;
+
+    position: absolute; 
+    width: 478px;
+    height: 40px;
+    left: 50%; 
+    margin-left: -239px;
+    top: 440px;
+
+    /* B_1 */
+
+    background: #FFFFFF;
+    /* B_7 */
+
+    border: none;
+    border-bottom: 0.5px solid;
+    border-color: rgb(154, 150, 150);
+}
+
+.bt{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 330px;
+    height: 61px;
+    left: 50%; 
+    margin-left: -169px;
+    top: 550px;
+
+    /* M_2_2 */
+
+
+    border: 2px solid #8DA6FF;
+    border-radius: 11px;
+}
+
+.button{
+    position: flex;
+    width: 330px;
+    height: 61px;
+    left: 604px;
+    top: 655px;
+    margin-bottom: 200px;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+
+    /* M_2_2 */
+
+    color: #8DA6FF;
+
+}
