@@ -1,4 +1,6 @@
 import axios from "axios";
+import "./kakao_map_script.css";
+
 
 const { kakao } = window;
 
@@ -12,7 +14,7 @@ export default function KakaoMapScript() {
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
 	// 꽃집 위치 받아오기
-	const domain = "http://192.168.35.160:8080/";
+	const domain = "http://127.0.0.1:8000/";
 
 	const getData = async () => {
 		try {
@@ -39,7 +41,7 @@ export default function KakaoMapScript() {
 
 				// 마커에 표시할 인포윈도우를 생성합니다 
 				var infowindow = new kakao.maps.InfoWindow({
-					content: flowerShop[i].shopName // 인포윈도우에 표시할 내용
+					content: `<span class="info-title">${flowerShop[i].shopName}</span>` // 인포윈도우에 표시할 내용
 				});
 
 				// 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
@@ -56,10 +58,24 @@ export default function KakaoMapScript() {
 					});
 				})(marker, infowindow);
 			}
+
 		} catch (err) {
 			console.log("error");
 		}
 	};
 
 	getData();
+	var infoTitle = document.querySelectorAll('.info-title');
+	infoTitle.forEach(function(e) {
+	    var w = e.offsetWidth + 10;
+	    var ml = w/2;
+	    e.parentElement.style.top = "82px";
+	    e.parentElement.style.left = "50%";
+	    e.parentElement.style.marginLeft = -ml+"px";
+	    e.parentElement.style.width = w+"px";
+	    e.parentElement.previousSibling.style.display = "none";
+	    e.parentElement.parentElement.style.border = "0px";
+	    e.parentElement.parentElement.style.background = "unset";
+	});
+
 };
