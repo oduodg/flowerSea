@@ -49,32 +49,25 @@ const Login = () => {
             width: '100%', height: '100vh'
             }}
         >
-            <form 
-            className="p-10 bg-white rounded-xl space-y-5" 
-            action=""
-            style={{ display: 'flex', flexDirection: 'column'}}
-            //onSubmit={onSubmitHandler}
-        >
-                <h1 className="login">로그인</h1>
-                <img className="loginlogo" alt="symbol_temporary" src="/images/symbol.png" />
-                <div className="loginbd"></div>
-                <div className="ID">
-                    <label className="" htmlFor='id'>아이디</label>
-                    <input className="IDbox" type='text' id='id' name='id' value={id} onChange={handleId} placeholder="아이디를 입력해주세요!"/>
-                </div>
+			<h1 className="login">로그인</h1>
+			<img className="loginlogo" alt="symbol_temporary" src="/images/symbol.png" />
+			<div className="loginbd"></div>
+			<div className="ID">
+				<label className="" >아이디</label>
+				<input className="IDbox" type='text' id='id' name='id' value={id} onChange={handleId} placeholder="아이디를 입력해주세요!"/>
+			</div>
 
-                <div className='PW'>
-                    <label className="" htmlFor='pw'>비밀번호</label>
-                    <input className="PWbox" type='password' id='pw' name='pw' value={pw} onChange={handlePw} placeholder ="비밀번호를 입력해주세요!"/>
-                </div>
+			<div className='PW'>
+				<label className="" >비밀번호</label>
+				<input className="PWbox" type='password' id='pw' name='pw' value={pw} onChange={handlePw} placeholder ="비밀번호를 입력해주세요!"/>
+			</div>
 
-                <div className="lgbt">
-                    <button className="button" type='submit' onClick={onSubmit}>로그인하기</button>
-                </div>
-                <Link to='/register'>
-                    <button className="GoRegister">회원가입하기</button>
-                </Link>
-            </form>
+			<div className="lgbt">
+				<button className="button" type='submit' onClick={onSubmit}>로그인하기</button>
+			</div>
+			<Link to='/register'>
+				<button className="GoRegister">회원가입하기</button>
+			</Link>
 		</div>
 	)
 };

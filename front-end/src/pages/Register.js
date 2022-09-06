@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import './Register.css';
+import axios from 'axios';
 
 export default function Register() {
 
@@ -45,11 +46,43 @@ export default function Register() {
     event.preventDefault();
   }
 
+  const domain = "http://127.0.0.1:8000/";
+  const navigate = useNavigate();
 
   const HandleClickRadioButton = (e) => {
     console.log(e.target.value)
     setX(e.target.value)
   }
+
+  const userData = {
+		username: Id,
+		password: Password,
+    password2: PasswordCheck,
+    name: Name,
+    phoneNum: PhoneNum,
+    address: Address,
+    email: Email
+	}
+
+  const onSubmit = async () => {
+		try {
+			if (Name === "" || Password === "" || PasswordCheck === "" || Id === "" || Address === "" || PhoneNum === "" || Email === "") {
+				alert("모든 항목에 입력해주세요.");
+				return;
+			}
+			const res = await axios.post(domain + "api/userinfo/signup/", userData);
+		  //localStorage.setItem("userToken", res.data.token);
+			//localStorage.setItem("userName", res.data.name);
+			return navigate("/login");
+		} catch (err) {
+			// console.log(err);
+			if (err.response.status === 400) {
+				alert("회원가입 안시켜줘~ ㅅㄱ~");
+			} else {
+				alert("서버 에러입니다.");
+			}
+		}
+	}
 
   return (
     <div style={{
@@ -105,7 +138,7 @@ export default function Register() {
         <div>
             <input 
               className="idwrite -ml-3" 
-              type='id' 
+              type='text' 
               name='Id' 
               value={Id} 
               onChange={onIdHandler} 
@@ -118,7 +151,7 @@ export default function Register() {
         <div>
             <input 
               className="PWwrite -ml-3" 
-              type='text' 
+              type='password' 
               name='Password' 
               value={Password} 
               onChange={onPasswordHandler} 
@@ -131,7 +164,7 @@ export default function Register() {
         <div>
             <input 
               className="PwCheck -ml-3" 
-              type='text' 
+              type='password' 
               name='PasswordCheck' 
               value={PasswordCheck} 
               onChange={onPasswordCheckHandler} 
@@ -183,9 +216,7 @@ export default function Register() {
         </div>
         <div className='qwer3'>
           <div className="rgbt">
-            <Link to='/'>
-             <button className="rgbutton">회원가입하기</button>
-            </Link>
+             <button className="rgbutton" type='submit' onClick={onSubmit}>회원가입하기</button>
           </div>
         </div>
       </form>

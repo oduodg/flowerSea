@@ -128,15 +128,15 @@ body{
 .rgPassword{
     position: absolute;
     width: 357px;
-    height: 34px;
-    left: 530px;
-    top: 524px;
+    height: 32px;
+    left: 400px;
+    top: 420px;
 
     font-family: 'Pretendard';
     font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 38px;
 
     /* B_7 */
 
@@ -206,19 +206,19 @@ body{
 .qwer{
     position: absolute;
     top: 4.5rem;
-    right: 1452px;
+    right: 1524px;
 }
 
 .qwer2{
     position: absolute;
     top: -2rem;
-    right: 1452px;
+    right: 1524px;
 }
 
 .qwer3{
     position: absolute;
     top: 10rem;
-    right: 1448px;
+    right: 1520px;
 }
 
 .rgAddress{
