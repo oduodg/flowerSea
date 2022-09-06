@@ -99,21 +99,21 @@ def BunchOfFlowersAPIView(request, shop):
 
 class CartAPIView(APIView):
     def get(self, request): 
-        # if request.user:
-            user=get_object_or_404(UserInfo, username = "jimin")    
-            # user = UserInfo.objects.get(username = request.user.username)
+        if request.user:
+            # user=get_object_or_404(UserInfo, username = "jimin")    
+            user = UserInfo.objects.get(username = request.user.username)
             carts = Cart.objects.filter(user=user)
             cart = carts.last()
             serializer = CartSerializer(cart, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
     
     def post(self, request):
-        # if request.user:
-        #     user = UserInfo.objects.get(username = request.user.username)
+        if request.user:
+            user = UserInfo.objects.get(username = request.user.username)
             serializer = CartPostSerializer(data=request.data)
-            user=get_object_or_404(UserInfo, username = "jimin")
+            # user=get_object_or_404(UserInfo, username = "jimin")
             price = 0
             if serializer.is_valid():
                 serializer.save(user=user)
@@ -155,7 +155,7 @@ class CartAPIView(APIView):
                 cart.save()
                 serializer = CartSerializer(cart, many=False)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-        # return Response('안돼~', status=status.HTTP_401_UNAUTHORIZED)
+        return Response('안돼~', status=status.HTTP_401_UNAUTHORIZED)
     
 # class CartAllAPIView(APIView):      #유저의 모든 주문내역 불러오기
 #     def get(self, request):   
@@ -174,11 +174,11 @@ class CartAPIView(APIView):
 
 class OrderTableAPIView(APIView):
     def post(self, request):
-        # if request.user:
+        if request.user:
             
             serializer = OrderPostSerializer(data=request.data)
-            # user = UserInfo.objects.get(username = request.user.username)
-            user=get_object_or_404(UserInfo, username = "jimin")
+            user = UserInfo.objects.get(username = request.user.username)
+            # user=get_object_or_404(UserInfo, username = "jimin")
 
             # request의 user가 cart 객체를 가지고 있다면 == request의 user가 장바구니를 만들어 놓았다면
             # if Cart.objects.filter(user=request.user).exists():
@@ -191,28 +191,30 @@ class OrderTableAPIView(APIView):
                 serializer.save(user=cart.user,cart=cart, totalPrice=cart.totalPrice)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
         
     def get(self, request):
-        # if request.user:
-            # user = UserInfo.objects.get(username = request.user.username)
-            user=get_object_or_404(UserInfo, username = "jimin")
+        if request.user:
+            user = UserInfo.objects.get(username = request.user.username)
+            # user=get_object_or_404(UserInfo, username = "jimin")
             orders = OrderTable.objects.filter(user=user)
             order = orders.last()
             serializer = OrderPostSerializer(order, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
         
 class AllOrderTableAPIView(APIView):
     def get(self, request):
-            user=get_object_or_404(UserInfo, username = "jimin")
+        if request.user:
+            user = UserInfo.objects.get(username = request.user.username)
+            # user=get_object_or_404(UserInfo, username = "jimin")
             orders = OrderTable.objects.filter(user=user).order_by('-idx')
             serializer = AllOrdertableserializer(orders, many=True)
             return Response(serializer.data,status=status.HTTP_200_OK)
-        # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 ################################################
 
