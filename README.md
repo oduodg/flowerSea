@@ -35,4 +35,11 @@ https://flowersea.com 에 방문하여 꽃바다 서비스를 이용해보세요
 </div>
 
 
+## Marketing 
+---
+<div align="center">
+<img width="482" alt="스크린샷 2022-09-06 오후 5 16 02" src="https://user-images.githubusercontent.com/98939393/188583286-57193faf-438f-498b-8488-c80db74eb8f6.png">
+</div>
+
+
 
