@@ -8,6 +8,7 @@ class UserInfo(AbstractUser):
     name = models.CharField(max_length=100, null=False)
     phoneNum = models.CharField(max_length=15, null=False)
     address = models.CharField(max_length=300, null=False)
+    email = models.EmailField(max_length = 254)
     # ID = models.CharField(max_length=30, null=False)
     # PW = models.CharField(max_length=30, null=False)
     

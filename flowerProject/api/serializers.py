@@ -19,7 +19,7 @@ class RegisterSerializer(serializers.ModelSerializer): # 회원가입 구현
     
     class Meta:
         model = UserInfo
-        fields = ('username', 'password', 'password2', 'name', 'phoneNum', 'address')
+        fields = ('username', 'password', 'password2', 'name', 'phoneNum', 'address', 'email')
         
     def validate(self, data):
         if data['password'] != data['password2']:
@@ -32,7 +32,8 @@ class RegisterSerializer(serializers.ModelSerializer): # 회원가입 구현
             username = validated_data['username'],
             name = validated_data['name'],
             phoneNum = validated_data['phoneNum'],
-            address = validated_data['address']
+            address = validated_data['address'],
+            email = validated_data['email']
         )
         
         user.set_password(validated_data['password'])
@@ -55,7 +56,7 @@ class LoginSerializer(serializers.Serializer): # 로그인 구현
 class MyPageSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserInfo
-        fields = ('name', 'phoneNum', 'address')
+        fields = ('name', 'phoneNum', 'address', 'email')
         
 class MyAddressSerializer(serializers.ModelSerializer):
     class Meta:
