@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import "./sidebar.css";
 import Sidebar_top from './sidebar_top';
 
-export default function Sidebar() {
+
+export default function Sidebar({shop, setShop}) {
 	const onClickDeliverBtn = () => {
 		alert("배달 서비스는 준비중입니다 :)")
 	}
@@ -22,6 +23,7 @@ export default function Sidebar() {
 				<div className='line'></div>
 				<div className='ml-20 text-sm font-bold mt-28'>당신의 주변, 이렇게 많은 꽃집이 있답니다!</div>
 				<div className='mt-5 line'></div>
+				<div className='mt-5'>{shop}</div>
 			</div>
 		</>
 	)

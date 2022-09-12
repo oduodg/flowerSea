@@ -1,32 +1,35 @@
+import React , { useState } from "react";
+// import MapContainer from "./map_container";
 import axios from "axios";
-import "./kakao_map_script.css";
-
 
 const { kakao } = window;
 
-export default function KakaoMapScript() {
+export default function KakaoMapScript(props) {
+	var name = "";
 	const mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center: new kakao.maps.LatLng(37.5518, 126.925), // 지도의 중심좌표(홍익대학교)
-			level: 3 // 지도의 확대 레벨
+			level: 4 // 지도의 확대 레벨
 		};
 
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
+	// var shoplist = [];
 	// 꽃집 위치 받아오기
-	const domain = "http://127.0.0.1:8000/";
-
+	const domain = "http://3.38.97.195/";
+	
 	const getData = async () => {
 		try {
+			// setName("string");
+			console.log("try 안");
 			const res = await axios.get(domain + "api/flowershop/");
 			let flowerShop = res.data;
 			//console.log(flowerShop);
 
 			// 마커 이미지의 이미지 주소입니다
-			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+			var imageSrc = "/images/marker.png";
 			for (let i = 0; i < flowerShop.length; i++) {
 				// 마커 이미지의 이미지 크기 입니다
-				var imageSize = new kakao.maps.Size(24, 35);
+				var imageSize = new kakao.maps.Size(35, 45);
 
 				// 마커 이미지를 생성합니다    
 				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -41,7 +44,7 @@ export default function KakaoMapScript() {
 
 				// 마커에 표시할 인포윈도우를 생성합니다 
 				var infowindow = new kakao.maps.InfoWindow({
-					content: `<span class="info-title">${flowerShop[i].shopName}</span>` // 인포윈도우에 표시할 내용
+					content: flowerShop[i].shopName // 인포윈도우에 표시할 내용
 				});
 
 				// 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
@@ -56,26 +59,18 @@ export default function KakaoMapScript() {
 					kakao.maps.event.addListener(marker, 'mouseout', function () {
 						infowindow.close();
 					});
+					kakao.maps.event.addListener(marker, 'click', function() {
+						// 마커 위에 인포윈도우를 표시합니다
+						props.setName(infowindow.cc);
+						props.name = infowindow.cc;
+						console.log(props.name);
+				  });
 				})(marker, infowindow);
 			}
-
 		} catch (err) {
 			console.log("error");
 		}
 	};
 
 	getData();
-	var infoTitle = document.querySelectorAll('.info-title');
-	infoTitle.forEach(function(e) {
-	    var w = e.offsetWidth + 10;
-	    var ml = w/2;
-	    e.parentElement.style.top = "82px";
-	    e.parentElement.style.left = "50%";
-	    e.parentElement.style.marginLeft = -ml+"px";
-	    e.parentElement.style.width = w+"px";
-	    e.parentElement.previousSibling.style.display = "none";
-	    e.parentElement.parentElement.style.border = "0px";
-	    e.parentElement.parentElement.style.background = "unset";
-	});
-
-};
+}

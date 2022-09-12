@@ -12,7 +12,7 @@ export default function Address() {
       }
 
       const onAddressDestHandler = (event) => {
-        setAddressDepart(event.currentTarget.value)
+        setAddressDest(event.currentTarget.value)
       }
 
     return(

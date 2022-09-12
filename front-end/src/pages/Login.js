@@ -17,7 +17,8 @@ const Login = () => {
 		setPw(e.target.value)
 	};
 
-	const domain = "http://127.0.0.1:8000/";
+	// const domain = "http://127.0.0.1:8000/";
+	const domain = "http://3.38.97.195/"
 	const userData = {
 		username: id,
 		password: pw

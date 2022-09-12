@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function MyPage() {
-  const domain = "http://192.168.35.160:8080/";
+  const domain = "http://3.38.97.195/";
   const userInfo = async () => {
     try {
       const res = await axios.get(domain + "api/userinfo/", {

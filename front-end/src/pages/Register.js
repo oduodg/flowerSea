@@ -46,7 +46,8 @@ export default function Register() {
     event.preventDefault();
   }
 
-  const domain = "http://127.0.0.1:8000/";
+  // const domain = "http://127.0.0.1:8000/";
+  const domain = "http://3.38.97.195/"
   const navigate = useNavigate();
 
   const HandleClickRadioButton = (e) => {
