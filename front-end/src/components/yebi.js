@@ -1,7 +1,6 @@
 import axios from "axios";
 import "./kakao_map_script.css";
 
-
 const { kakao } = window;
 
 export default function KakaoMapScript() {
@@ -23,10 +22,10 @@ export default function KakaoMapScript() {
 			//console.log(flowerShop);
 
 			// 마커 이미지의 이미지 주소입니다
-			var imageSrc = process.env.PUBLIC_URL + `/images/flowermarker.png`;
+			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 			for (let i = 0; i < flowerShop.length; i++) {
 				// 마커 이미지의 이미지 크기 입니다
-				var imageSize = new kakao.maps.Size(45, 40);
+				var imageSize = new kakao.maps.Size(24, 35);
 
 				// 마커 이미지를 생성합니다
 				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -49,20 +48,6 @@ export default function KakaoMapScript() {
 					
 				});
 				
-
-
-				// 마커에 마우스오버 이벤트를 등록합니다
-				kakao.maps.event.addListener(marker, 'mouseover', function() {
-					// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-					customOverlay.open(map, marker);
-				});
-
-				// 마커에 마우스아웃 이벤트를 등록합니다
-				kakao.maps.event.addListener(marker, 'mouseout', function() {
-					customOverlay.close();
-				});
-
-			
 
 				(function (marker, customOverlay) {
 					kakao.maps.event.addListener(marker, 'mouseover', function () {

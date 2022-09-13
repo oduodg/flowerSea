@@ -30,43 +30,38 @@ export default function MyPage() {
 
       <h3 className="rgName">이름
       </h3>
-      <div>
-        <input
+      <div
           className="NameWrite"
           type='text'
           name='Name'
           placeholder=""
-        />
+        >  
       </div>
       <h3 className="rgID">아이디
       </h3>
-      <div>
-        <input
-          className="idwrite"
+      <div          className="idwrite"
           type='text'
           name='Id'
           placeholder=""
-        />
+        >
       </div>
       <h3 className="rgAddress">주소
       </h3>
-      <div>
-        <input
+      <div
           className="AddressWrite"
           type='text'
           name='Address'
           placeholder=""
-        />
+        >
       </div>
       <h3 className="rgPhoneNum">전화번호
       </h3>
-      <div>
-        <input
+      <div
           className="PhoneNumWrite"
           type='text'
           name='PhoneNum'
           placeholder=""
-        />
+        >
       </div>
       <div className="sidemenu">마이페이지</div>
       <div className="MyInfo">
@@ -80,7 +75,9 @@ export default function MyPage() {
         </Link>
       </div>
       <div className="rgbt">
-        <button className="rgbutton">수정하기</button>
+        <Link to="/cart">
+          <button className="rgbutton">장바구니로 가기</button>
+        </Link>
       </div>
     </div>
   )

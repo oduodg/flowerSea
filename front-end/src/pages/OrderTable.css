@@ -16,16 +16,16 @@ body{
 
 .register{
     position: absolute;
-    width: 357px;
-    height: 32px;
-    left: 400px;
-    top: 140px;
+    width: 288;
+    height: 36px;
+    left: 429px;
+    top: 150px;
 
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 600;
-    font-size: 28px;
-    line-height: 38px;
+    font-size: 32px;
+    line-height: 38.4px;
 
     /* B_8 */
 
@@ -38,19 +38,13 @@ body{
     box-sizing: border-box;
 
     position: absolute; 
-    width: 310px;
-    height: 1px;
-    left: 400px;
-    top: 180px;
+    width: 800px;
+    height: 0px;
+    left: 429px;
+    top: 198px;
 
-    /* B_1 */
-
-    background: #FFFFFF;
-    /* B_7 */
-
-    border: none;
-    border-bottom: 0.5px solid;
-    border-color: rgb(154, 150, 150);
+    /* B_5 */
+    border: 1px solid #CCCCCC;
 
 }
 
@@ -109,3 +103,483 @@ body{
     color: #000000;
 }
 
+.date{
+    position: absolute;
+    width: 143;
+    height: 27px;
+    left: 430px;
+    top: 260px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600px; 
+    font-size: 24px;
+    line-height: 28.8px;
+
+    /* B_8 */
+
+    color: #000000;
+}
+
+.datebd{
+    /* Line 2 */
+
+    position: absolute;
+    width: 800px;
+    height: 0px;
+    left: 429px;
+    top: 292px;
+
+    /* B_5 */
+    border: 1px solid #CCCCCC;
+    transform: rotate(0.05deg);
+}
+
+
+
+.box1{
+    position: absolute;
+    width: 800px;
+    height: 144px;
+    left: 429px;
+    top: 372px;
+
+    /* B_1 */
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+
+}
+
+.fhouse{
+    position: absolute;
+    width: 177px;
+    height: 28px;
+    left: 429px;
+    top: 315px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    
+    /* B_8 */
+    color: #000000;
+            
+}
+
+.info-name{
+    position: absolute;
+    width: 84px;
+    height: 23px;
+    left: 591px;
+    top: 397px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    
+    /* B_8 */
+    color: #000000;
+    
+
+}
+
+.flower-name{
+    position: absolute;
+    width: 84px;
+    height: 23px;
+    left: 591px;
+    top: 431px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+    /* B_8 */
+    color: #000000;
+}
+
+.price-cnt{
+    position: absolute;
+    width: 108px;
+    height: 15px;
+    left: 591px;
+    top: 466px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    
+    /* B_8 */
+    color: #000000;
+        
+}
+
+.sepbd{
+    position: absolute;
+    width: 121px;
+    height: 0px;
+    left: 762px;
+    top: 446px;
+    
+    /* B_5 */
+    border: 1px solid #CCCCCC;
+    transform: rotate(-90deg);
+    
+}
+
+
+.info-option{
+    position: absolute;
+    width: 84px;
+    height: 23px;
+    left: 864px;
+    top: 400px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    
+    /* B_8 */
+    color: #000000;
+    
+}
+
+.info-bd{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 48px;
+    height: 25px;
+    left: 860px;
+    top: 433px;
+    
+    /* B_1 */
+    background: #FFFFFF;
+    /* B_8 */
+    border: 1px solid #000000;
+    border-radius: 20px;    
+}
+
+.info-product{
+    position: absolute;
+    width: 42px;
+    height: 23px;
+    left: 917px;
+    top: 434px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+    /* B_8 */
+    color: #000000;
+}
+
+.info-pick{
+    position: absolute;
+    width: 24px;
+    height: 17px;
+    left: 872px;
+    top: 437px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    
+    /* B_8 */
+    color: #000000;
+}
+
+
+
+.info-price-cnt{
+    position: absolute;
+    width: 92px;
+    height: 16px;
+    left: 1086px;
+    top: 437px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    
+    /* B_7 */
+    color: #8E8E92;    
+}
+
+.info-price-cnt-bd{
+    position: absolute;
+    width: 145px;
+    height: 0px;
+    left: 1033px;
+    top: 466px;
+    
+    /* B_5 */
+    border: 1px solid #CCCCCC;    
+}
+
+.total-price{
+    position: absolute;
+    width: 133px;
+    height: 29px;
+    left: 1057px;
+    top: 473px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+    
+    /* M_2_2 */
+    color: #8DA6FF;    
+}
+
+.box2{
+    position: absolute;
+    width: 800px;
+    height: 144px;
+    left: 429px;
+    top: 522px;
+
+    /* B_1 */
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+
+}
+
+
+.info-name2{
+    position: absolute;
+    width: 84px;
+    height: 23px;
+    left: 591px;
+    top: 547px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    
+    /* B_8 */
+    color: #000000;
+    
+
+}
+
+.flower-name2{
+    position: absolute;
+    width: 84px;
+    height: 23px;
+    left: 591px;
+    top: 581px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+    /* B_8 */
+    color: #000000;
+}
+
+.price-cnt2{
+    position: absolute;
+    width: 108px;
+    height: 15px;
+    left: 591px;
+    top: 616px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    
+    /* B_8 */
+    color: #000000;
+        
+}
+
+.sepbd2{
+    position: absolute;
+    width: 121px;
+    height: 0px;
+    left: 762px;
+    top: 596px;
+    
+    /* B_5 */
+    border: 1px solid #CCCCCC;
+    transform: rotate(-90deg);
+    
+}
+
+
+.info-option2{
+    position: absolute;
+    width: 84px;
+    height: 23px;
+    left: 864px;
+    top: 550px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    
+    /* B_8 */
+    color: #000000;
+    
+}
+
+.info-bd2{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 48px;
+    height: 25px;
+    left: 860px;
+    top: 583px;
+    
+    /* B_1 */
+    background: #FFFFFF;
+    /* B_8 */
+    border: 1px solid #000000;
+    border-radius: 20px;    
+}
+
+.info-product2{
+    position: absolute;
+    width: 42px;
+    height: 23px;
+    left: 917px;
+    top: 584px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+    /* B_8 */
+    color: #000000;
+}
+
+.info-pick2{
+    position: absolute;
+    width: 24px;
+    height: 17px;
+    left: 872px;
+    top: 587px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    
+    /* B_8 */
+    color: #000000;
+}
+
+
+
+.info-price-cnt2{
+    position: absolute;
+    width: 92px;
+    height: 16px;
+    left: 1086px;
+    top: 587px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    
+    /* B_7 */
+    color: #8E8E92;    
+}
+
+.info-price-cnt-bd2{
+    position: absolute;
+    width: 145px;
+    height: 0px;
+    left: 1033px;
+    top: 616px;
+    
+    /* B_5 */
+    border: 1px solid #CCCCCC;    
+}
+
+.total-price2{
+    position: absolute;
+    width: 133px;
+    height: 29px;
+    left: 1057px;
+    top: 623px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+    
+    /* M_2_2 */
+    color: #8DA6FF;    
+}
+
+.finalbd{
+    position: absolute;
+    width: 800px;
+    height: 0px;
+    left: 429px;
+    top: 685px;
+    
+    /* B_5 */
+    border: 1px solid #CCCCCC;
+    transform: rotate(0.05deg);    
+}
+
+.finalcal{
+    position: absolute;
+    width: 165px;
+    height: 60px;
+    left: 1065px;
+    top: 699px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: right;
+    
+    /* B_8 */
+    color: #000000;    
+}
