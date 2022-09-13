@@ -17,3 +17,4 @@ export default function MapContainer({shop, setShop}) {
 		
 	);
 }
+
