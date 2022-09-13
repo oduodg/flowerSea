@@ -77,7 +77,7 @@ export default function Register() {
 		} catch (err) {
 			// console.log(err);
 			if (err.response.status === 400) {
-				alert("회원가입 안시켜줘~ ㅅㄱ~");
+				alert("시룬뎅~ 회원가입 안해줄건뎅~");
 			} else {
 				alert("서버 에러입니다.");
 			}
