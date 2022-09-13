@@ -1,7 +1,7 @@
 import React , { useState } from "react";
 // import MapContainer from "./map_container";
 import axios from "axios";
-
+import './kakao_map_script.css'
 const { kakao } = window;
 
 export default function KakaoMapScript(props) {
@@ -49,33 +49,41 @@ export default function KakaoMapScript(props) {
 					map: map,
 					position: new kakao.maps.LatLng(flowerShop[i].y, flowerShop[i].x), 
 					content: `<div class="info-title">${flowerShop[i].shopName}</div>`,
+					// value : flowerShop[i].shopName,
 					yAnchor: 2.5
 					
 				});
 				
 
 
-				// 마커에 마우스오버 이벤트를 등록합니다
-				kakao.maps.event.addListener(marker, 'mouseover', function() {
-					// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-					customOverlay.open(map, marker);
+				// // 마커에 마우스오버 이벤트를 등록합니다
+				// kakao.maps.event.addListener(marker, 'mouseover', function() {
+				// 	// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+				// 	customOverlay.open(map, marker);
 
-				});
+				// });
 
-				// 마커에 마우스아웃 이벤트를 등록합니다
-				kakao.maps.event.addListener(marker, 'mouseout', function() {
-					customOverlay.close();
-				});
+				// // 마커에 마우스아웃 이벤트를 등록합니다
+				// kakao.maps.event.addListener(marker, 'mouseout', function() {
+				// 	customOverlay.close();
+				// });
 
 			
 
 				(function (marker, customOverlay) {
-					kakao.maps.event.addListener(marker, 'mouseover', function () {
-						customOverlay.open(map, marker);
-					});
+					// kakao.maps.event.addListener(marker, 'mouseover', function () {
+					// 	customOverlay.open(map, marker);
+					// });
 
-					kakao.maps.event.addListener(marker, 'mouseout', function () {
-						customOverlay.close();
+					// kakao.maps.event.addListener(marker, 'mouseout', function () {
+					// 	customOverlay.close();
+					// });
+					kakao.maps.event.addListener(marker, 'click', function () {
+						console.log(marker.Gb);
+						props.setName(marker.Gb);
+						props.name=marker.Gb;
+						console.log(props.name);
+
 					});
 				})(marker, customOverlay);
 
