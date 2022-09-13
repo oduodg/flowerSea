@@ -1,8 +1,12 @@
 import React, {useState} from 'react'
 import './Address.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Address() {
+
+    const navigate = useNavigate();
+    const domain = "http://127.0.0.1:8000/";
 
     const [AddressDepart, setAddressDepart] = useState("")
     const [AddressDest, setAddressDest] = useState("")
@@ -11,9 +15,41 @@ export default function Address() {
         setAddressDepart(event.currentTarget.value)
       }
 
-      const onAddressDestHandler = (event) => {
+    const onAddressDestHandler = (event) => {
         setAddressDest(event.currentTarget.value)
       }
+
+    const userData = {
+		depart:AddressDepart,
+        dest:AddressDest
+	} 
+
+    const onSubmit = async () => {
+		try {
+            if (AddressDest === "" && AddressDepart !== "") {
+				alert("도착지를 입력해주세요!");
+				return;
+			}
+            else if (AddressDepart === "" && AddressDest !== "") {
+				alert("출발지를 입력해주세요!");
+				return;
+			}
+			else if (AddressDepart === "" || AddressDest === "") {
+				alert("주소를 입력해주세요!");
+				return;
+			}
+            
+			axios.post(domain + "api/pickuplocation/", userData);
+			return navigate("/");
+		} catch (err) {
+			// console.log(err);
+			if (err.response.status === 400) {
+				alert("다 적어주라니깐!!!!");
+			} else {
+				alert("서버 에러입니다.");
+			}
+		}
+	}
 
     return(
         <div style={{
@@ -52,13 +88,11 @@ export default function Address() {
                     />
                 </div>
                 <div className="bt">
-                    <Link to="/">
-                        <button 
-                            className="button"
-                            type='submit'
-                            // onClick={onSubmit}
-                        >🌸 꽃 선택하러 가기 🌸</button>
-                    </Link>
+                    <button 
+                        className="button"
+                        type='submit'
+                        onClick={onSubmit}
+                    >🌸 꽃 선택하러 가기 🌸</button>
                 </div>
             </form>
         </div>
