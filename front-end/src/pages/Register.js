@@ -46,7 +46,8 @@ export default function Register() {
     event.preventDefault();
   }
 
-  const domain = "http://127.0.0.1:8000/";
+  // const domain = "http://127.0.0.1:8000/";
+  const domain = "http://3.38.97.195/"
   const navigate = useNavigate();
 
   const HandleClickRadioButton = (e) => {
@@ -77,7 +78,7 @@ export default function Register() {
 		} catch (err) {
 			// console.log(err);
 			if (err.response.status === 400) {
-				alert("회원가입 안시켜줘~ ㅅㄱ~");
+				alert("시룬뎅~ 회원가입 안해줄건뎅~");
 			} else {
 				alert("서버 에러입니다.");
 			}

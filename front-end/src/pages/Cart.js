@@ -5,15 +5,15 @@ import axios from 'axios';
 
 
 export default function Cart() {
-  // const domain = "http://192.168.35.205:8000/";
+//   const domain = "http://3.38.97.195/";
   const domain = "http://127.0.0.1:8000/";
-
+  
   const [carts, setCarts] = useState(null);  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  
   const flo = [];
-
+  
   const [li1, setLinks1] = useState(null);
   const [li2, setLinks2] = useState(null);
   const [li3, setLinks3] = useState(null);
@@ -22,8 +22,9 @@ export default function Cart() {
   const [li6, setLinks6] = useState(null);
   const [li7, setLinks7] = useState(null);
   const [li8, setLinks8] = useState(null);
-
+  
   var list = [];
+  
   
   const fetchCarts = async () => {
     try {
@@ -587,7 +588,7 @@ export default function Cart() {
 				<div id="goorder" className="">
 					<div className="clear"></div>
 					<div className="buttongroup center-align">
-          <Link to='/Payed'>
+          <Link to='/Order'>
 						<button className="button w-40 px-8 py-4 border-2 border-blue-300 rounded-md"
             type='submit' onClick={onSubmit}>주문하기</button>
           </Link>

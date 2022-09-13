@@ -17,7 +17,8 @@ const Login = () => {
 		setPw(e.target.value)
 	};
 
-	const domain = "http://127.0.0.1:8000/";
+	// const domain = "http://127.0.0.1:8000/";
+	const domain = "http://3.38.97.195/"
 	const userData = {
 		username: id,
 		password: pw
@@ -65,6 +66,7 @@ const Login = () => {
 			<div className="lgbt">
 				<button className="button" type='submit' onClick={onSubmit}>로그인하기</button>
 			</div>
+			
 			<Link to='/register'>
 				<button className="GoRegister">회원가입하기</button>
 			</Link>
