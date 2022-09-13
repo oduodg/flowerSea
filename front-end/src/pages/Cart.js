@@ -2,7 +2,6 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import './Cart.css';
 import axios from 'axios';
-import Order from './Order';
 
 
 export default function Cart() {
@@ -236,7 +235,6 @@ export default function Cart() {
     fetchCarts();
      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  <Order carts={carts} setCarts = {setCarts}/>
 
   if (loading) return <div>로딩중..</div>; 
   if (error) return <div>에러가 발생했습니다</div>;

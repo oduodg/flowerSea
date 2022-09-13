@@ -66,6 +66,7 @@ const Login = () => {
 			<div className="lgbt">
 				<button className="button" type='submit' onClick={onSubmit}>로그인하기</button>
 			</div>
+			
 			<Link to='/register'>
 				<button className="GoRegister">회원가입하기</button>
 			</Link>

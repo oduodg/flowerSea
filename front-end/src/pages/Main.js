@@ -9,6 +9,7 @@ export default function Main() {
   //   console.log(x);
   // };
   console.log("shop is ", shop);
+  
   return (
     <>
       <Sidebar shop={shop} setShop = {setShop}/>
