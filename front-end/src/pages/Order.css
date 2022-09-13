@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
+
+.f{
+    font-family: 'Pretendard';
+}
+.lgbt{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 330px;
+    height: 61px;
+    left: 50%; 
+    margin-left: -169px;
+    top: 1100px;
+
+    /* M_2_2 */
+
+    border: 2px solid #8DA6FF;
+    border-radius: 11px;
+}
+.button{
+    position: flex;
+    width: 330px;
+    height: 61px;
+    left: 604px;
+    top: 700px;
+    margin-bottom: 200px;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+
+    /* M_2_2 */
+
+    color: #8DA6FF;
+
+}

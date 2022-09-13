@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Main, Login, Register, Cart, MyPage, Address, OrderTable, Payed } from './pages';
 import Header from './components/header';
+import Order from './pages/Order';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/address" element={<Address />} />
         <Route path="/ordertable" element={<OrderTable />} />
+        <Route path="/order" element={<Order />} />
         <Route path="/Payed" element={<Payed />} />
       </Routes>
     </BrowserRouter>
