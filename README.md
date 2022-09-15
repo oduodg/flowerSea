@@ -2,8 +2,10 @@
 <img width="157" alt="symbol" src="https://user-images.githubusercontent.com/98939393/188575821-40c140ed-090d-4db8-a620-876bad86d8e0.png">
 </div>
 
-
+<div align="center">
 ***꽃바다, 꽃을 받아, 꽃의 바다***
+</div>
+
 * LikeLions 10th Hongik U.
 * Project : 2022.04.10. ~ 2022.10.08 
 * Members : 김지후 송재우 유지영 이은 이지민 이태휘
