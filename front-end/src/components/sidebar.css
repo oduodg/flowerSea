@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
+
+.f{
+    font-family: 'Pretendard';
+}
+
 .loginbutton {
   width: 78px;
   height: 23px;

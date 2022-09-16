@@ -20,7 +20,7 @@ export default function KakaoMapScript(props) {
 	const getData = async () => {
 		try {
 			// setName("string");
-			console.log("try 안");
+			// console.log("try 안");
 			const res = await axios.get(domain + "api/flowershop/");
 			let flowerShop = res.data;
 			//console.log(flowerShop);
@@ -79,10 +79,10 @@ export default function KakaoMapScript(props) {
 					// 	customOverlay.close();
 					// });
 					kakao.maps.event.addListener(marker, 'click', function () {
-						console.log(marker.Gb);
+						// console.log(marker.Gb);
 						props.setName(marker.Gb);
 						props.name=marker.Gb;
-						console.log(props.name);
+						// console.log(props.name);
 
 					});
 				})(marker, customOverlay);

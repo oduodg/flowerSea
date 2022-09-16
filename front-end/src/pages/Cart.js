@@ -176,7 +176,8 @@ export default function Cart() {
         carts.totalPrice += carts.bunchOfFlowers2_price;
         setCarts(carts);
         return carts.bunchOfFlowers2_amount;
-      case "DECREMENT1": // mainflower
+      // x
+      case "DECREMENT1":
         carts.mainFlower1_amount--;
         carts.totalPrice -= carts.mainFlower1_price;
         setCarts(carts);
@@ -280,11 +281,8 @@ export default function Cart() {
                           e.preventDefault();
                           dispatch({ type: "DECREMENT1"});
                         }}
-                        // onClick={onDecrease}
+                
                           >-</button>
-                      {/* <div className="pt-2 mx-4 grow">{carts.mainFlower1_amount}</div> */}
-                      {/* <div className="pt-2 mx-4 grow">{main1}</div> */}
-                      {/* <div className="pt-2 mx-4 grow">{number}</div> */}
                       <div className="pt-2 mx-4 grow">{carts.mainFlower1_amount}</div>
                       <button className="grow-1 rounded-md border-2 border-solid bg-blue-300 border-blue-300 w-8 text-3xl"
                         onClick={function(e){
