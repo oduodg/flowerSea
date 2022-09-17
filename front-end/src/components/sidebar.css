@@ -38,7 +38,7 @@
   position: absolute;
   width: 253px;
   height: 20px;
-  left: 100px;
+  /* left: 100px; */
 
   font-family: "Pretendard";
   font-style: normal;
@@ -54,7 +54,7 @@
   position: absolute;
   width: 120px;
   height: 50px;
-  left: 65px;
+  /* left: 65px; */
   /* M_1 */
   background: #f6dff5;
   border-radius: 48.5px;
@@ -71,7 +71,7 @@
   position: absolute;
   width: 120px;
   height: 50px;
-  left: 200px;
+  /* left: 200px; */
   /* M_1 */
   background: #d9e1ff;
   border-radius: 48.5px;

@@ -113,11 +113,11 @@ export default function Cart() {
           switch(i){
             case 6:
               list[i] = (res[0].flowerPhoto);
-              result = list[i].substr(16);
+              result = list[i].substr(15);
               setLinks7(result);
             case 7:
               list[i] = (res[0].flowerPhoto);
-              result = list[i].substr(16);
+              result = list[i].substr(15);
               setLinks8(result);
             default:
           }
