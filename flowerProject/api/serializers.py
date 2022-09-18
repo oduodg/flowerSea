@@ -169,5 +169,5 @@ class PickUpLocationSerializer(serializers.ModelSerializer):
 class FlowerShopSerializer(serializers.ModelSerializer):
     class Meta:
         model = Shop
-        fields = ('shopName', 'location', 'phoneNum', 'openHours', 'x', 'y')
+        fields = ('idx', 'shopName', 'location', 'phoneNum', 'openHours', 'x', 'y')
 ##############################################

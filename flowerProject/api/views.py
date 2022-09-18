@@ -34,11 +34,11 @@ class MyPageAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
-    
+
     def put(self, request):
         if request.user:
             myinfo = UserInfo.objects.get(username = request.user.username)
-            serializer = MyPageSerializer(myinfo, data=request.data)
+            serializer = MyPageSerializer(myinfo, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
@@ -89,7 +89,7 @@ def SubflowerAPIView(request, shop):
 
 @api_view(['GET'])
 def BunchOfFlowersAPIView(request, shop):
-    bunchOfFlowers = BunchOfFlowers.objects.filter(shop=shop) 
+    bunchOfFlowers = BunchOfFlowers.objects.filter(shop=shop)
     serializer = BunchOfFlowersSerializer(bunchOfFlowers, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -100,7 +100,7 @@ def BunchOfFlowersAPIView(request, shop):
 class CartAPIView(APIView):
     def get(self, request): 
         if request.user:
-            # user=get_object_or_404(UserInfo, username = "jimin")    
+            # user=get_object_or_404(UserInfo, username = "jimin")
             user = UserInfo.objects.get(username = request.user.username)
             carts = Cart.objects.filter(user=user)
             cart = carts.last()
@@ -156,18 +156,6 @@ class CartAPIView(APIView):
                 serializer = CartSerializer(cart, many=False)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response('안돼~', status=status.HTTP_401_UNAUTHORIZED)
-    
-# class CartAllAPIView(APIView):      #유저의 모든 주문내역 불러오기
-#     def get(self, request):   
-#         if request.user:
-#             # user = UserInfo.objects.get(username = request.user.username)
-#             user=get_object_or_404(UserInfo, username = "jimin")
-#             cart = Cart.objects.filter(user=user).order_by('-idx')
-#             serializer = CartSerializer(cart, many=True)
-#             return Response(serializer.data, status=status.HTTP_200_OK)
-#         else:
-#             return Response(status=status.HTTP_401_UNAUTHORIZED)
-        
 #############################################
 
 ################ OrderTable 구현 #################
