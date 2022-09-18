@@ -5,6 +5,7 @@ import Sidebar_top from './sidebar_top';
 import axios from 'axios';
 
 export default function Sidebar({shopname, setShopname}) {
+	
 	const [shopinfo, setShopinfo] = useState(null);
 	const [change, setChange] = useState(null);
 	const [mains, setMains] = useState(null);
@@ -80,7 +81,6 @@ export default function Sidebar({shopname, setShopname}) {
 		}
 	}
 	const Main = ({ main }) => {
-		main.flowerPhoto = main.flowerPhoto.substr(16);
 		if(maincart.length < mains.length){
 			const maintmp = {
 				flower_id: main.idx,
@@ -90,7 +90,7 @@ export default function Sidebar({shopname, setShopname}) {
 		}
 		return (
 		  <div className='flex flex-row mt-8 border-b-2 border-pickupbt pb-4'>
-			<img src={"http://"+main.flowerPhoto} className='ml-2' alt="" width="100" />
+			<img src={"http://"+main.flowerPhoto.substr(16)} className='ml-2' alt="" width="100" />
 			<div className='flex flex-col text-lg mx-12'>
 				<div>{main.flowerName}</div>
 				<div>{main.oneFlowerPrice}원 / 1송이</div>
@@ -133,12 +133,6 @@ export default function Sidebar({shopname, setShopname}) {
 		);
 	}
 	const Sub = ({ sub }) => {
-		if(sub.flowerPhoto[15] === '/'){
-			sub.flowerPhoto = sub.flowerPhoto.substr(16);
-		}
-		else{
-			sub.flowerPhoto = sub.flowerPhoto.substr(15);
-		}
 		if(subcart.length < subs.length){
 			const subtmp = {
 				flower_id: sub.idx,
@@ -148,7 +142,11 @@ export default function Sidebar({shopname, setShopname}) {
 		}
 		return (
 		  <div className='flex flex-row mt-8 border-b-2 border-pickupbt pb-4'>
-			<img src={"http://"+sub.flowerPhoto} className='ml-2' alt="" width="100" />
+			{
+				sub.flowerPhoto[15] === '/'
+				?<img src={"http://"+sub.flowerPhoto.substr(16)} className='ml-2' alt="" width="100" />
+				:<img src={"http://"+sub.flowerPhoto.substr(15)} className='ml-2' alt="" width="100" />
+			}
 			<div className='flex flex-col text-lg mx-12'>
 				<div>{sub.flowerName}</div>
 				<div>{sub.oneFlowerPrice}원 / 1송이</div>
@@ -190,7 +188,6 @@ export default function Sidebar({shopname, setShopname}) {
 		);
 	}
 	const Bunch = ({ bunch }) => {
-		bunch.flowerPhoto = bunch.flowerPhoto.substr(15);
 		if(bunchcart.length < bunchs.length){
 			const bunchtmp = {
 				flower_id: bunch.idx,
@@ -200,8 +197,7 @@ export default function Sidebar({shopname, setShopname}) {
 		}
 		return (
 		  <div className='flex flex-row my-8 border-b-2 border-pickupbt pb-4'>
-			<img src={"http://"+bunch.flowerPhoto} className='ml-2' alt="" width="100"></img>
-			{/* <img className='ml-2' alt="" width="100" /> */}
+			<img src={"http://"+bunch.flowerPhoto.substr(15)} className='ml-2' alt="" width="100"></img>
 			<div className='flex flex-col text-lg ml-12 mr-12'>
 				<div>{bunch.color}</div>
 				<div>{bunch.price}원</div>
@@ -341,6 +337,7 @@ export default function Sidebar({shopname, setShopname}) {
 			}
 
 			const res = await axios.post(domain + "api/cart/", cart);
+			return navigate("/cart");
 		} catch (err) {
 			console.log(err)
 		}
@@ -395,11 +392,9 @@ export default function Sidebar({shopname, setShopname}) {
 									bunchs.map(bunch => (<Bunch bunch={bunch} />))
 								}
 							</div>
-							<div className="ml-12">
-								{/* <Link to='/cart'> */}
-									<button className="w-5/6 px-8 py-4 border-2 border-blue-300 rounded-md"
-									type='submit' onClick={onSubmit}>장바구니</button>
-								{/* </Link> */}
+							<div className="ml-12 mb-8">
+								<button className="w-5/6 px-8 py-4 border-2 border-blue-300 rounded-md"
+								type='submit' onClick={onSubmit}>장바구니</button>
 							</div>
 						</div>
 						:null
