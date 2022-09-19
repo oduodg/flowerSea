@@ -121,41 +121,59 @@ class CartAPIView(APIView):
                 cart = carts.last()
                 if serializer.data['mainFlower1_ID']:
                     mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower1_ID'])
+                    cart.shopname = mainflower.shop.shopName
                     cart.mainFlower1_name = mainflower.flowerName
+                    cart.mainFlower1_price = mainflower.oneFlowerPrice
                     price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower1_amount'])
                 if serializer.data['mainFlower2_ID']:
                     mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower2_ID'])
                     cart.mainFlower2_name = mainflower.flowerName
+                    cart.mainFlower2_price = mainflower.oneFlowerPrice
                     price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower2_amount'])
                 if serializer.data['mainFlower3_ID']:
                     mainflower = get_object_or_404(MainFlower, idx=serializer.data['mainFlower3_ID'])
                     cart.mainFlower3_name = mainflower.flowerName
+                    cart.mainFlower3_price = mainflower.oneFlowerPrice
                     price += mainflower.oneFlowerPrice * int(serializer.data['mainFlower3_amount'])
                 if serializer.data['subFlower1_ID']:
                     subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower1_ID'])
                     cart.subFlower1_name = subflower.flowerName
+                    cart.subFlower1_price = subflower.oneFlowerPrice
                     price += subflower.oneFlowerPrice * int(serializer.data['subFlower1_amount'])
                 if serializer.data['subFlower2_ID']:
                     subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower2_ID'])
                     cart.subFlower2_name = subflower.flowerName
+                    cart.subFlower2_price = subflower.oneFlowerPrice
                     price += subflower.oneFlowerPrice * int(serializer.data['subFlower2_amount'])
                 if serializer.data['subFlower3_ID']:
                     subflower = get_object_or_404(SubFlower, idx=serializer.data['subFlower3_ID'])
                     cart.subFlower3_name = subflower.flowerName
+                    cart.subFlower3_price = subflower.oneFlowerPrice
                     price += subflower.oneFlowerPrice * int(serializer.data['subFlower3_amount'])
                 if serializer.data['bunchOfFlowers1_ID']:
                     bunchofflowers = get_object_or_404(BunchOfFlowers, idx=serializer.data['bunchOfFlowers1_ID'])
                     cart.bunchOfFlowers1_color = bunchofflowers.color
+                    cart.bunchOfFlowers1_price = bunchofflowers.price
                     price += bunchofflowers.price * int(serializer.data['bunchOfFlowers1_amount'])
                 if serializer.data['bunchOfFlowers2_ID']:
                     bunchofflowers = get_object_or_404(BunchOfFlowers, idx=serializer.data['bunchOfFlowers2_ID'])
                     cart.bunchOfFlowers2_color = bunchofflowers.color
+                    cart.bunchOfFlowers2_price = bunchofflowers.price
                     price += bunchofflowers.price * int(serializer.data['bunchOfFlowers2_amount'])
                 cart.totalPrice = price
                 cart.save()
                 serializer = CartSerializer(cart, many=False)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response('안돼~', status=status.HTTP_401_UNAUTHORIZED)
+    
+    def delete(self, request):
+        if request.user:
+            user = UserInfo.objects.get(username = request.user.username)
+            carts = Cart.objects.filter(user=user)
+            carts.all().delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 #############################################
 
 ################ OrderTable 구현 #################

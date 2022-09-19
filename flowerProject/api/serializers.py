@@ -84,50 +84,52 @@ class BunchOfFlowersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BunchOfFlowers
-        fields = ('idx', 'flowerphoto', 'color', 'price')
+        fields = ('idx', 'flowerPhoto', 'color', 'price')
 ##############################################
 
 ###################CART 구현##################
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
-        fields = ('mainFlower1_ID', 'mainFlower1_amount', 
-                  'mainFlower2_ID', 'mainFlower2_amount',
-                  'mainFlower3_ID', 'mainFlower3_amount',
-                  'subFlower1_ID', 'subFlower1_amount',
-                  'subFlower2_ID', 'subFlower2_amount',
-                  'subFlower3_ID', 'subFlower3_amount',
-                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_amount',
-                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_amount',
+        fields = ('user', 'shopname',
+                  'mainFlower1_ID', 'mainFlower1_name', 'mainFlower1_amount', 'mainFlower1_price',
+                  'mainFlower2_ID', 'mainFlower2_name', 'mainFlower2_amount', 'mainFlower2_price',
+                  'mainFlower3_ID', 'mainFlower3_name', 'mainFlower3_amount', 'mainFlower3_price',
+                  'subFlower1_ID', 'subFlower1_name', 'subFlower1_amount','subFlower1_price',
+                  'subFlower2_ID', 'subFlower2_name', 'subFlower2_amount','subFlower2_price',
+                  'subFlower3_ID', 'subFlower3_name', 'subFlower3_amount','subFlower3_price',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_color', 'bunchOfFlowers1_amount','bunchOfFlowers1_price',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_color', 'bunchOfFlowers2_amount','bunchOfFlowers2_price',
                   'totalPrice'
                   )
 
 class CartPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
-        fields = ('user',
-                  'mainFlower1_ID', 'mainFlower1_name', 'mainFlower1_amount',
-                  'mainFlower2_ID', 'mainFlower2_name', 'mainFlower2_amount',
-                  'mainFlower3_ID', 'mainFlower3_name', 'mainFlower3_amount',
-                  'subFlower1_ID', 'subFlower1_name', 'subFlower1_amount',
-                  'subFlower2_ID', 'subFlower2_name', 'subFlower2_amount',
-                  'subFlower3_ID', 'subFlower3_name', 'subFlower3_amount',
-                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_color', 'bunchOfFlowers1_amount',
-                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_color', 'bunchOfFlowers2_amount',
+        fields = ('user', 'shopname',
+                  'mainFlower1_ID', 'mainFlower1_name', 'mainFlower1_amount', 'mainFlower1_price',
+                  'mainFlower2_ID', 'mainFlower2_name', 'mainFlower2_amount', 'mainFlower2_price',
+                  'mainFlower3_ID', 'mainFlower3_name', 'mainFlower3_amount', 'mainFlower3_price',
+                  'subFlower1_ID', 'subFlower1_name', 'subFlower1_amount','subFlower1_price',
+                  'subFlower2_ID', 'subFlower2_name', 'subFlower2_amount','subFlower2_price',
+                  'subFlower3_ID', 'subFlower3_name', 'subFlower3_amount','subFlower3_price',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_color', 'bunchOfFlowers1_amount','bunchOfFlowers1_price',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_color', 'bunchOfFlowers2_amount','bunchOfFlowers2_price',
                   'totalPrice'
                   )
 
 class CartAllSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
-        fields = ('mainFlower1_ID', 'mainFlower1_name', 'mainFlower1_amount',
-                  'mainFlower2_ID', 'mainFlower2_name', 'mainFlower2_amount',
-                  'mainFlower3_ID', 'mainFlower3_name', 'mainFlower3_amount',
-                  'subFlower1_ID', 'subFlower1_name', 'subFlower1_amount',
-                  'subFlower2_ID', 'subFlower2_name', 'subFlower2_amount',
-                  'subFlower3_ID', 'subFlower3_name', 'subFlower3_amount',
-                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_color', 'bunchOfFlowers1_amount',
-                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_color', 'bunchOfFlowers2_amount',
+        fields = ('user', 'shopname',
+                  'mainFlower1_ID', 'mainFlower1_name', 'mainFlower1_amount', 'mainFlower1_price',
+                  'mainFlower2_ID', 'mainFlower2_name', 'mainFlower2_amount', 'mainFlower2_price',
+                  'mainFlower3_ID', 'mainFlower3_name', 'mainFlower3_amount', 'mainFlower3_price',
+                  'subFlower1_ID', 'subFlower1_name', 'subFlower1_amount','subFlower1_price',
+                  'subFlower2_ID', 'subFlower2_name', 'subFlower2_amount','subFlower2_price',
+                  'subFlower3_ID', 'subFlower3_name', 'subFlower3_amount','subFlower3_price',
+                  'bunchOfFlowers1_ID', 'bunchOfFlowers1_color', 'bunchOfFlowers1_amount','bunchOfFlowers1_price',
+                  'bunchOfFlowers2_ID', 'bunchOfFlowers2_color', 'bunchOfFlowers2_amount','bunchOfFlowers2_price',
                   'totalPrice'
                   )
 
