@@ -11,10 +11,8 @@ export default function Sidebar({shopname, setShopname}) {
 	const [mains, setMains] = useState(null);
 	const [subs, setSubs] = useState(null);
 	const [bunchs, setBunchs] = useState(null);
-	const cart = {
-		// user : "",
-		// shopname : "",
-		mainFlower1_ID : null,
+	const [cart, setCart] = useState({
+		mainFlower1_ID : 1,
 		mainFlower1_amount : null,
 		mainFlower2_ID : null,
 		mainFlower2_amount : null,
@@ -30,7 +28,7 @@ export default function Sidebar({shopname, setShopname}) {
 		bunchOfFlowers1_amount : null,
 		bunchOfFlowers2_ID : null,
 		bunchOfFlowers2_amount : null
-	}
+	});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 	const [maincart, setMaincart] = useState([]);
@@ -65,8 +63,8 @@ export default function Sidebar({shopname, setShopname}) {
 		}
 	  }
 
-	// const domain = "http://3.38.97.195/";
-	const domain = "http://127.0.0.1:8000/";
+	const domain = "http://3.38.97.195/";
+	// const domain = "http://127.0.0.1:8000/";
 	const navigate = useNavigate();
 	const onClickDeliverBtn = () => {
 		alert("배달 서비스는 준비중입니다 :)")
@@ -140,7 +138,7 @@ export default function Sidebar({shopname, setShopname}) {
 			}
 			subcart.push(subtmp);
 		}
-		console.log(subcart);
+		// console.log(subcart);
 		return (
 		  <div className='flex flex-row mt-8 border-b-2 border-pickupbt pb-4'>
 			{
@@ -305,39 +303,55 @@ export default function Sidebar({shopname, setShopname}) {
 			if(finalmain[0]){
 				cart.mainFlower1_ID = finalmain[0].flower_id;
 				cart.mainFlower1_amount = finalmain[0].flower_amount;
+				setCart(cart);
 			}
 			if(finalmain[1]){
 				cart.mainFlower2_ID = finalmain[1].flower_id;
 				cart.mainFlower2_amount = finalmain[1].flower_amount;
+				setCart(cart);
 			}
 			if(finalmain[2]){
 				cart.mainFlower3_ID = finalmain[2].flower_id;
 				cart.mainFlower3_amount = finalmain[2].flower_amount;
+				setCart(cart);
 			}
 
 			if(finalsub[0]){
 				cart.subFlower1_ID = finalsub[0].flower_id;
 				cart.subFlower1_amount = finalsub[0].flower_amount;
+				setCart(cart);
 			}
 			if(finalsub[1]){
 				cart.subFlower2_ID = finalsub[1].flower_id;
 				cart.subFlower2_amount = finalsub[1].flower_amount;
+				setCart(cart);
 			}
 			if(finalsub[2]){
 				cart.subFlower3_ID = finalsub[2].flower_id;
 				cart.subFlower3_amount = finalsub[2].flower_amount;
+				setCart(cart);
 			}
 
 			if(finalbunch[0]){
 				cart.bunchOfFlowers1_ID = finalbunch[0].flower_id;
 				cart.bunchOfFlowers1_amount = finalbunch[0].flower_amount;
+				setCart(cart);
 			}
 			if(finalbunch[1]){
 				cart.bunchOfFlowers2_ID = finalbunch[1].flower_id;
 				cart.bunchOfFlowers2_amount = finalbunch[1].flower_amount;
+				setCart(cart);
 			}
-
-			const res = await axios.post(domain + "api/cart/", cart);
+			console.log(cart);
+			const accessToken = localStorage.getItem("userToken");
+			const res = await axios.post(domain + "api/cart/", JSON.stringify(cart), {
+				headers: {
+					Authorization: `token ${accessToken}`,
+					"Content-Type": "application/json",
+				}
+			});
+			console.log(res)
+			// const resq = await axios.post(domain + "api/cart/", cart);
 			return navigate("/cart");
 		} catch (err) {
 			console.log(err)

@@ -5,8 +5,8 @@ import axios from 'axios';
 
 
 export default function Cart() {
-  // const domain = "http://3.38.97.195/";
-  const domain = "http://127.0.0.1:8000/";
+  const domain = "http://3.38.97.195/";
+  // const domain = "http://127.0.0.1:8000/";
   
   const [carts, setCarts] = useState(null);  
   const [loading, setLoading] = useState(false);
@@ -34,7 +34,12 @@ export default function Cart() {
       // loading 상태를 true 로 바꿉니다.
       setLoading(true);
       
-      const response = await axios.get(domain + "api/cart/");
+      const accessToken = localStorage.getItem("userToken");
+      const response = await axios.get(domain + "api/cart/",{
+				headers: {
+				Authorization: `token ${accessToken}`
+				}
+			});
       setCarts(response.data); // 데이터는 response.data 안에 들어있습니다.
       console.log(response.data);
       if(response.data.shopname != ""){
@@ -44,16 +49,17 @@ export default function Cart() {
         flo[3] = response.data.subFlower1_ID;
         flo[4] = response.data.subFlower2_ID;
         flo[5] = response.data.subFlower3_ID;
-        flo[6] = response.data.bunchOfFlowers1_ID;
+        flo[6] = response.data.bunchOfFlowers1_ID; 
         flo[7] = response.data.bunchOfFlowers2_ID;
         
         // shop 정보 찾기 위한 과정
         let shops = await axios.get(domain + 'api/flowershop/');
+        // console.log(shops.data);
         shops = JSON.stringify(shops.data);
         const shop = JSON.parse(shops).filter(function(element){
           return element.shopName === response.data.shopname;
         }); 
-        console.log("shopis", shop[0].idx);
+        console.log("shopis", shop);
 
         // img 경로 저장을 위한 과정
         for(let i=0; i<8; i++){
