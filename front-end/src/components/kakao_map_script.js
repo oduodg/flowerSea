@@ -16,6 +16,7 @@ export default function KakaoMapScript(props) {
 	// var shoplist = [];
 	// 꽃집 위치 받아오기
 	const domain = "http://3.38.97.195/";
+	// const domain = "http://127.0.0.1:8000/";
 	
 	const getData = async () => {
 		try {

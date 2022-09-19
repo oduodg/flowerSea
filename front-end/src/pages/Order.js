@@ -39,13 +39,17 @@ export default function Order() {
             // const headers = {
             //     'Authorization': localStorage.getItem("userToken")
             // }
-            const response = await axios.get(domain + "api/cart/");
+            const accessToken = localStorage.getItem("userToken");
+            const response = await axios.get(domain + "api/cart/",{
+                        headers: {
+                        Authorization: `token ${accessToken}`
+                        }
+                    });
 
             console.log("-------------", response.data);
             setCarts(response.data);
             console.log(carts);
 
-            const accessToken = localStorage.getItem("userToken");
             const user = await axios.get(domain + "/api/userinfo/", {
                 headers: {
                   Authorization: `token ${accessToken}`
@@ -62,8 +66,18 @@ export default function Order() {
     };
     
     const onSubmit = async () => {
-        const res = await axios.post(domain + "api/ordertable/", requirement);
-        const del = await axios.delete(domain + "api/cart");
+        const accessToken = localStorage.getItem("userToken");
+        const res = await axios.post(domain + "api/ordertable/", JSON.stringify(requirement), {
+				headers: {
+					Authorization: `token ${accessToken}`,
+					"Content-Type": "application/json",
+				}
+			});
+        const del = await axios.delete(domain + "api/cart", {
+            headers: {
+                Authorization: `token ${accessToken}`
+            }
+        });
         console.log(del.data)
     }
     useEffect(() => {
