@@ -71,7 +71,7 @@ export default function Register() {
 				alert("모든 항목에 입력해주세요.");
 				return;
 			}
-			const res = await axios.post(domain + "api/userinfo/signup/", userData);
+			const res = await axios.put(domain + "api/userinfo/signup/", userData);
 		  //localStorage.setItem("userToken", res.data.token);
 			//localStorage.setItem("userName", res.data.name);
 			return navigate("/login");
