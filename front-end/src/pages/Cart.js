@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 export default function Cart() {
-//   const domain = "http://3.38.97.195/";
+  // const domain = "http://3.38.97.195/";
   const domain = "http://127.0.0.1:8000/";
   
   const [carts, setCarts] = useState(null);  

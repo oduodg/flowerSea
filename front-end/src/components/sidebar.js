@@ -140,6 +140,7 @@ export default function Sidebar({shopname, setShopname}) {
 			}
 			subcart.push(subtmp);
 		}
+		console.log(subcart);
 		return (
 		  <div className='flex flex-row mt-8 border-b-2 border-pickupbt pb-4'>
 			{

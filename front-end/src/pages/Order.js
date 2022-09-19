@@ -9,7 +9,7 @@ export default function Order() {
 	// const navigate = useNavigate();
 
     const domain = "http://127.0.0.1:8000/";
-    // const domain2 = "http://3.38.97.195/"
+    // const domain = "http://3.38.97.195/"
 
     const [carts, setCarts] = useState(null);
     const [loading, setLoading] = useState(false);
