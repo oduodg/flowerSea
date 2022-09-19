@@ -25,11 +25,19 @@ class LoginView(generics.GenericAPIView):
         user = UserInfo.objects.get(username=request.data['username'])
         name = user.name
         return Response({"token": token.key, "name": name}, status=status.HTTP_200_OK)
-
+class UserallAPIView(APIView):
+    def get(self, request):
+        myinfo = UserInfo.objects.all()
+        serializer = MyPageSerializer(myinfo, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        
 class MyPageAPIView(APIView):
     def get(self, request):
+        # if request.user.is_authenticated:
         if request.user:
-            myinfo = UserInfo.objects.get(username = request.user.username)
+            print(request.headers)
+            myinfo = UserInfo.objects.get(name = request.user.username)
+            # myinfo = UserInfo.objects.get(name = request.data['username'])
             serializer = MyPageSerializer(myinfo, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
@@ -37,8 +45,11 @@ class MyPageAPIView(APIView):
     
     def put(self, request):
         if request.user:
-            myinfo = UserInfo.objects.get(username = request.user.username)
-            serializer = MyPageSerializer(myinfo, data=request.data)
+            # print(request.data['username'])
+            # myinfo = UserInfo.objects.get(name = request.data['username'])
+            myinfo = UserInfo.objects.get(name = '이지민')
+            # print(myinfo)
+            serializer = MyPageSerializer(myinfo, many=False)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
@@ -100,15 +111,16 @@ def BunchOfFlowersAPIView(request, shop):
 
 class CartAPIView(APIView):
     def get(self, request): 
-        # if request.user:
-            user=get_object_or_404(UserInfo, username = "jimin")    
+        if request.user:
+            user=get_object_or_404(UserInfo, username = "jimin")   
+            # print(request.user) 
             # user = UserInfo.objects.get(username = request.user.username)
             carts = Cart.objects.filter(user=user)
             cart = carts.last()
             serializer = CartPostSerializer(cart, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        # else:
-        #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
     
     def post(self, request):
         # if request.user:
@@ -184,6 +196,12 @@ class CartAPIView(APIView):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         # return Response('안돼~', status=status.HTTP_401_UNAUTHORIZED)
+
+    def delete(self, request):
+        user=get_object_or_404(UserInfo, username = "jimin")
+        carts = Cart.objects.filter(user=user)
+        carts.all().delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
 class CartAllAPIView(APIView):      #유저의 모든 주문내역 불러오기
     def get(self, request):   
@@ -207,7 +225,7 @@ class OrderTableAPIView(APIView):
             serializer = OrderPostSerializer(data=request.data)
             # user = UserInfo.objects.get(username = request.user.username)
             user=get_object_or_404(UserInfo, username = "jimin")
-
+            print(serializer)
             # request의 user가 cart 객체를 가지고 있다면 == request의 user가 장바구니를 만들어 놓았다면
             # if Cart.objects.filter(user=request.user).exists():
             

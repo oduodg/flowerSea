@@ -11,6 +11,7 @@ urlpatterns = [
     path('userinfo/', MyPageAPIView.as_view()),
     path('userifo/delete/', UserDeleteAPIView.as_view()),
     path('userinfo/address/', UserAddressAPIView.as_view()),
+    path('userinfo/all/', UserallAPIView.as_view()),
     
     #Flowershop
     path('flowershop/', FlowerShopAPIView.as_view()),
