@@ -6,7 +6,8 @@ import axios from 'axios';
 export default function Address() {
 
     const navigate = useNavigate();
-    const domain = "http://127.0.0.1:8000/";
+    // const domain = "http://127.0.0.1:8000/";
+    const domain = "http://3.38.97.195/";
 
     const [AddressDepart, setAddressDepart] = useState("")
     const [AddressDest, setAddressDest] = useState("")

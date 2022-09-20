@@ -15,12 +15,13 @@ export default function KakaoMapScript(props) {
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 	// var shoplist = [];
 	// 꽃집 위치 받아오기
-	const domain = "http://127.0.0.1:8000/";
+	const domain = "http://3.38.97.195/";
+	// const domain = "http://127.0.0.1:8000/";
 	
 	const getData = async () => {
 		try {
 			// setName("string");
-			console.log("try 안");
+			// console.log("try 안");
 			const res = await axios.get(domain + "api/flowershop/");
 			let flowerShop = res.data;
 			console.log(flowerShop);
@@ -102,10 +103,11 @@ export default function KakaoMapScript(props) {
 
 				(function (marker, overlay) {
 					kakao.maps.event.addListener(marker, 'click', function () {
-						console.log(marker.Gb);
+						// e.preventDefault();
+						// console.log(marker.Gb);
 						props.setName(marker.Gb);
 						props.name=marker.Gb;
-						console.log(props.name);
+						// console.log(props.name);
 
 					});
 				})(marker, overlay);

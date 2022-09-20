@@ -62,14 +62,13 @@ const Login = () => {
 				<label className="" >비밀번호</label>
 				<input className="PWbox" type='password' id='pw' name='pw' value={pw} onChange={handlePw} placeholder ="비밀번호를 입력해주세요!"/>
 			</div>
-
-			<div className="lgbt">
-				<button className="button" type='submit' onClick={onSubmit}>로그인하기</button>
-			</div>
-			
-			<Link to='/register'>
-				<button className="GoRegister">회원가입하기</button>
-			</Link>
+				{/* <div className="lgbt"> */}
+					<button className="button" type='submit' onClick={onSubmit}>로그인하기</button>
+				{/* </div> */}
+				
+				<Link to='/register'>
+					<button className="GoRegister">회원가입하기</button>
+				</Link>
 		</div>
 	)
 };

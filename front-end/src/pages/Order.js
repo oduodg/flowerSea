@@ -8,8 +8,8 @@ export default function Order() {
     // const location = useLocation();
 	// const navigate = useNavigate();
 
-    const domain = "http://127.0.0.1:8000/";
-    // const domain2 = "http://3.38.97.195/"
+    // const domain = "http://127.0.0.1:8000/";
+    const domain = "http://3.38.97.195/"
 
     const [carts, setCarts] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -39,17 +39,26 @@ export default function Order() {
             // const headers = {
             //     'Authorization': localStorage.getItem("userToken")
             // }
-            const response = await axios.get(domain + "api/cart/");
+            const accessToken = localStorage.getItem("userToken");
+            const response = await axios.get(domain + "api/cart/",{
+                        headers: {
+                        Authorization: `token ${accessToken}`
+                        }
+                    });
 
             console.log("-------------", response.data);
             setCarts(response.data);
             console.log(carts);
 
-            // const user = await axios.get(domain + "api/userinfo/");
+            const user = await axios.get(domain + "/api/userinfo/", {
+                headers: {
+                  Authorization: `token ${accessToken}`
+              }
+            });
             // const user = await axios.get(domain2 + "api/userinfo/", {"headers": headers});
-            // // const user = await axios.get(domain2 + "api/userinfo/");
-            // setUserinfo(user.data);
-            // console.log(userinfo);
+            // const user = await axios.get(domain2 + "api/userinfo/");
+            setUserinfo(user.data);
+            console.log(user.data);
         } catch (e) {
             setError(e);
         }
@@ -57,8 +66,18 @@ export default function Order() {
     };
     
     const onSubmit = async () => {
-        const res = await axios.post(domain + "api/ordertable/", requirement);
-        const del = await axios.delete(domain + "api/cart");
+        const accessToken = localStorage.getItem("userToken");
+        const res = await axios.post(domain + "api/ordertable/", JSON.stringify(requirement), {
+				headers: {
+					Authorization: `token ${accessToken}`,
+					"Content-Type": "application/json",
+				}
+			});
+        const del = await axios.delete(domain + "api/cart", {
+            headers: {
+                Authorization: `token ${accessToken}`
+            }
+        });
         console.log(del.data)
     }
     useEffect(() => {
@@ -94,9 +113,9 @@ export default function Order() {
                             <div className='border-x-2 border-b-2 border-flower-pink py-2 text-center'>이메일</div>
                         </div> 
                         <div className='flex flex-col w-3/4'>
-                            <div className='border-2 border-flower-pink py-2 w-5/6 pl-4'>이름ddfdfdfdf</div>
-                            <div className='border-x-2 border-b-2 border-flower-pink py-2 w-5/6 pl-4'>휴대폰 번호</div>
-                            <div className='border-x-2 border-b-2 border-flower-pink py-2 w-5/6 pl-4'>이메일</div>
+                            <div className='border-2 border-flower-pink py-2 w-5/6 pl-4'>{userinfo.name}</div>
+                            <div className='border-x-2 border-b-2 border-flower-pink py-2 w-5/6 pl-4'>{userinfo.phoneNum}</div>
+                            <div className='border-x-2 border-b-2 border-flower-pink py-2 w-5/6 pl-4'>{userinfo.email}</div>
                         </div> 
                     </div>
                     <div className='f text-2xl pl-8 mb-4 ml-48 mr-40 border-b-2 border-flower-blue pb-2 mt-16'>요청사항</div>
@@ -104,39 +123,44 @@ export default function Order() {
                         <input className="w-full border-2 border-flower-pink py-2" type='text' id='req' name='req' maxLength='30' value={req} onChange={handleReq} placeholder ="요구사항을 입력해주세요."/>
                     </div>
                     <div className='f text-2xl pl-8 mb-4 ml-48 mr-40 border-b-2 border-flower-blue pb-2 mt-16'>결제수단</div>
-                    <div className='f flex flex-row ml-48 mr-40'>
-                        <span className="mr-4">신용카드</span>
-                            <input
-                            className="mr-16"
-                            type="radio"
-                            value="1"
-                            checked={pay === "1"}
-                            onChange={HandleClickRadioButton}
-                            />
-                        <span className="mr-4">계좌이체</span>
-                            <input
-                            className="mr-16"
-                            type="radio"
-                            value="2"
-                            checked={pay === "2"}
-                            onChange={HandleClickRadioButton}
-                            />
-                        <span className="mr-4">현장결제 - 카드</span>
-                            <input
-                            className="mr-16"
-                            type="radio"
-                            value="3"
-                            checked={pay === "3"}
-                            onChange={HandleClickRadioButton}
-                            />
-                        <span className="mr-4">현장결제 - 현금</span>
-                            <input
-                            className="mr-16"
-                            type="radio"
-                            value="4"
-                            checked={pay === "4"}
-                            onChange={HandleClickRadioButton}
-                            />
+                    <div className='f flex flex-row gap-24 sm:ml-24 md:ml-48 sm:mr-24 md:mr-48 '>
+                       <div className='flex flex-row gap-2'>
+                        <span className="ml-4 min-w-max">신용카드</span>
+                                <input
+                                type="radio"
+                                value="1"
+                                checked={pay === "1"}
+                                onChange={HandleClickRadioButton}
+                                />
+                       </div>
+                       <div className='flex flex-row gap-2'>
+                        <span className="min-w-max">계좌이체</span>
+                                <input
+                                type="radio"
+                                value="1"
+                                checked={pay === "1"}
+                                onChange={HandleClickRadioButton}
+                                />
+                       </div>
+                       <div className='flex flex-row gap-2'>
+                        <span className="min-w-max">현장결제 - 신용카드</span>
+                                <input
+                                type="radio"
+                                value="1"
+                                checked={pay === "1"}
+                                onChange={HandleClickRadioButton}
+                                />
+                       </div>
+                       <div className='flex flex-row gap-2'>
+                        <span className="min-w-max">현장결제 - 현금</span>
+                                <input
+                                type="radio"
+                                value="1"
+                                checked={pay === "1"}
+                                onChange={HandleClickRadioButton}
+                                />
+                       </div>
+                        
                     </div>
                     <div className='f text-2xl pl-8 mb-4 ml-48 mr-40 border-b-2 border-flower-blue pb-2 mt-16'>총 결제금액</div>
                     <div className='f flex flex-row-reverse text-2xl pl-8 mb-4 ml-48 mr-48 pb-2'>{carts.totalPrice}원</div>
