@@ -11,6 +11,7 @@ export default function Sidebar({shopname, setShopname}) {
 	const [mains, setMains] = useState(null);
 	const [subs, setSubs] = useState(null);
 	const [bunchs, setBunchs] = useState(null);
+	const [pickup, setPickup] = useState(0);
 	const [cart, setCart] = useState({
 		mainFlower1_ID : 1,
 		mainFlower1_amount : null,
@@ -75,6 +76,7 @@ export default function Sidebar({shopname, setShopname}) {
 			return navigate("/login");
 		}
 		else{
+			setPickup(1);
 			return navigate("/address");
 		}
 	}
@@ -375,12 +377,20 @@ export default function Sidebar({shopname, setShopname}) {
 		<>
 			<div className='absolute z-10 h-full overflow-auto text-2xl font-normal bg-white '>
 				<Sidebar_top />
-
-				<div className='flowerbuy ml-32 mt-14'>꽃 구매, 어떤 방식을 원하세요?</div>
-				<div className='flex flex-row mt-24'>
-					<button className='deliverbutton ml-20' onClick={onClickDeliverBtn}>배달</button>
-					<button className='pickupbutton ml-56' onClick={onClickPickup}>픽업</button>
-				</div>
+				{
+					pickup == 0
+					?(
+						<div className='flex flex-col'>
+							<div className='flowerbuy ml-32 mt-14'>꽃 구매, 어떤 방식을 원하세요?</div>
+							<div className='flex flex-row mt-24'>
+								<button className='deliverbutton ml-20' onClick={onClickDeliverBtn}>배달</button>
+								<button className='pickupbutton ml-56' onClick={onClickPickup}>픽업</button>
+							</div>
+						</div>
+					)
+					:null
+				}
+				
 				<div className='border-y-2 text-center text-sm font-bold mt-20 py-4'>당신의 주변, 이렇게 많은 꽃집이 있답니다!</div>
 				<div className='flex flex-col mt-4'>
 					{

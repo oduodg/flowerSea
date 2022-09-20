@@ -58,7 +58,7 @@ export default function Order() {
             // const user = await axios.get(domain2 + "api/userinfo/", {"headers": headers});
             // const user = await axios.get(domain2 + "api/userinfo/");
             setUserinfo(user.data);
-            // console.log(userinfo);
+            console.log(user.data);
         } catch (e) {
             setError(e);
         }
