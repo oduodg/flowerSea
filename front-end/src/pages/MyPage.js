@@ -88,7 +88,7 @@ export default function MyPage() {
           <button className="GoOrderTable">주문 목록</button>
         </Link>
       </div>
-      {/* <div className="rgbt">
+      <div className="rgbt">
         <Link to="/mypageedit">
           <button className="rgbutton">수정하기</button>
         </Link>
