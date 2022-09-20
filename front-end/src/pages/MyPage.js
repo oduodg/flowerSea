@@ -92,7 +92,7 @@ export default function MyPage() {
         <Link to="/mypageedit">
           <button className="rgbutton">수정하기</button>
         </Link>
-      </div>
+      </div> */}
     </div>
   )
 }

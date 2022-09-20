@@ -3,17 +3,12 @@ import MapContainer from '../components/map_container';
 import Sidebar from '../components/sidebar';
 
 export default function Main() {
-  const [shop, setShop] = useState(null);
-  // const parentFunction = (x) => {
-  //   setShop(x);
-  //   console.log(x);
-  // };
-  console.log("shop is ", shop);
+  const [shopname, setShopName] = useState(null);
   
   return (
     <>
-      <Sidebar shop={shop} setShop = {setShop}/>
-      <MapContainer shop={shop} setShop = {setShop}/>
+      <Sidebar shopname={shopname} setShopName = {setShopName}/>
+      <MapContainer shopname={shopname} setShopName = {setShopName}/>
     </>
   )
 }

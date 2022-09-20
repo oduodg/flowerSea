@@ -8,8 +8,8 @@ export default function Order() {
     // const location = useLocation();
 	// const navigate = useNavigate();
 
-    const domain = "http://127.0.0.1:8000/";
-    // const domain2 = "http://3.38.97.195/"
+    // const domain = "http://127.0.0.1:8000/";
+    const domain = "http://3.38.97.195/"
 
     const [carts, setCarts] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -39,17 +39,26 @@ export default function Order() {
             // const headers = {
             //     'Authorization': localStorage.getItem("userToken")
             // }
-            const response = await axios.get(domain + "api/cart/");
+            const accessToken = localStorage.getItem("userToken");
+            const response = await axios.get(domain + "api/cart/",{
+                        headers: {
+                        Authorization: `token ${accessToken}`
+                        }
+                    });
 
-            console.log("-------------", response.data)
+            console.log("-------------", response.data);
             setCarts(response.data);
-            console.log(carts)
+            console.log(carts);
 
-            // const user = await axios.get(domain + "api/userinfo/");
+            const user = await axios.get(domain + "/api/userinfo/", {
+                headers: {
+                  Authorization: `token ${accessToken}`
+              }
+            });
             // const user = await axios.get(domain2 + "api/userinfo/", {"headers": headers});
-            // // const user = await axios.get(domain2 + "api/userinfo/");
-            // setUserinfo(user.data);
-            // console.log(userinfo);
+            // const user = await axios.get(domain2 + "api/userinfo/");
+            setUserinfo(user.data);
+            console.log(user.data);
         } catch (e) {
             setError(e);
         }
@@ -57,8 +66,18 @@ export default function Order() {
     };
     
     const onSubmit = async () => {
-        const res = await axios.post(domain + "api/ordertable/", requirement);
-        const del = await axios.delete(domain + "api/cart");
+        const accessToken = localStorage.getItem("userToken");
+        const res = await axios.post(domain + "api/ordertable/", JSON.stringify(requirement), {
+				headers: {
+					Authorization: `token ${accessToken}`,
+					"Content-Type": "application/json",
+				}
+			});
+        const del = await axios.delete(domain + "api/cart", {
+            headers: {
+                Authorization: `token ${accessToken}`
+            }
+        });
         console.log(del.data)
     }
     useEffect(() => {
@@ -94,9 +113,9 @@ export default function Order() {
                             <div className='border-x-2 border-b-2 border-flower-pink py-2 text-center'>이메일</div>
                         </div> 
                         <div className='flex flex-col w-3/4'>
-                            <div className='border-2 border-flower-pink py-2 w-5/6 pl-4'>이름ddfdfdfdf</div>
-                            <div className='border-x-2 border-b-2 border-flower-pink py-2 w-5/6 pl-4'>휴대폰 번호</div>
-                            <div className='border-x-2 border-b-2 border-flower-pink py-2 w-5/6 pl-4'>이메일</div>
+                            <div className='border-2 border-flower-pink py-2 w-5/6 pl-4'>{userinfo.name}</div>
+                            <div className='border-x-2 border-b-2 border-flower-pink py-2 w-5/6 pl-4'>{userinfo.phoneNum}</div>
+                            <div className='border-x-2 border-b-2 border-flower-pink py-2 w-5/6 pl-4'>{userinfo.email}</div>
                         </div> 
                     </div>
                     <div className='f text-2xl pl-8 mb-4 ml-48 mr-40 border-b-2 border-flower-blue pb-2 mt-16'>요청사항</div>
