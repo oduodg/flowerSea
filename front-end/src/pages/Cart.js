@@ -263,7 +263,7 @@ export default function Cart() {
 		<form name="orderform" id="orderform" className="orderform" onSubmit="return false;"> 		
 				<input type="hidden" name="cmd" value="order" />
 				<div className="border-b-2 border-solid mx-2 pb-4" id="basket">
-          <div className="flex flex-row border-b-2 mb-16 mt-8">
+          <div className="flex flex-row border-b-2 mb-16 mt-12">
             <div className="ml-8"><img src="./images/icon_cart_color.png" alt="" width="60" /></div>
             <div className="f text-3xl pt-6 ml-2">장바구니</div>
           </div>
