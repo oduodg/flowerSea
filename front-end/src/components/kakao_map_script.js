@@ -80,6 +80,7 @@ export default function KakaoMapScript(props) {
 					// 	customOverlay.close();
 					// });
 					kakao.maps.event.addListener(marker, 'click', function () {
+						// e.preventDefault();
 						// console.log(marker.Gb);
 						props.setName(marker.Gb);
 						props.name=marker.Gb;

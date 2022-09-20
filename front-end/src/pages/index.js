@@ -7,4 +7,4 @@ export { default as MyPage } from './MyPage';
 export { default as Address } from './Address';
 export { default as OrderTable } from './OrderTable';
 export { default as Payed } from './Payed';
-export { default as MyPageEdit } from './MyPageEdit'
+export { default as MyPageEdit } from './MyPageEdit';

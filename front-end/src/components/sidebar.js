@@ -406,15 +406,15 @@ export default function Sidebar({shopname, setShopname}) {
 							<div>
 								<div className='mt-2 text-center text-lg border-b-2 border-flower-pink bg-flower-pink'>Main Flower (최대 3개)</div>
 								{
-									mains.map(main => (<Main main={main} />))
+									mains.map(main => (<Main key={main} main={main} />))
 								}
 								<div className='text-center text-lg border-b-2 border-flower-pink bg-flower-pink'>Sub Flower (최대 3개)</div>
 								{
-									subs.map(sub => (<Sub sub={sub} />))
+									subs.map(sub => (<Sub key={sub} sub={sub} />))
 								}
 								<div className='text-center text-lg border-b-2 border-flower-pink bg-flower-pink'>Bunch Of Flower (최대 2개)</div>
 								{
-									bunchs.map(bunch => (<Bunch bunch={bunch} />))
+									bunchs.map(bunch => (<Bunch key={bunch} bunch={bunch} />))
 								}
 							</div>
 							<div className="ml-12 mb-8">
