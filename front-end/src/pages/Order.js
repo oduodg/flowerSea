@@ -41,9 +41,9 @@ export default function Order() {
             // }
             const response = await axios.get(domain + "api/cart/");
 
-            console.log("-------------", response.data)
+            console.log("-------------", response.data);
             setCarts(response.data);
-            console.log(carts)
+            console.log(carts);
 
             // const user = await axios.get(domain + "api/userinfo/");
             // const user = await axios.get(domain2 + "api/userinfo/", {"headers": headers});

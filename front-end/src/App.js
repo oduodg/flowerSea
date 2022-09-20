@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Main, Login, Register, Cart, MyPage, Address, OrderTable, Payed, MyPageEdit } from './pages';
+import { Main, Login, Register, Cart, MyPage, Address, OrderTable, Payed, MyPageEdit, Rate } from './pages';
 import Header from './components/header';
 import Order from './pages/Order';
 
@@ -19,6 +19,8 @@ export default function App() {
         <Route path="/ordertable" element={<OrderTable />} />
         <Route path="/order" element={<Order />} />
         <Route path="/Payed" element={<Payed />} />
+        <Route path="/rate" element={<Rate />} />
+
       </Routes>
     </BrowserRouter>
   );
