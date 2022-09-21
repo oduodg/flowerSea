@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic",
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+body{
+    overflow: scroll;
+}
+
+.login{
+    position: absolute;
+    width: 357px;
+    height: 32px;
+    left: 50%; 
+    margin-left: -239px;
+    top: 215px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 38px;
+
+    /* B_8 */
+
+    color: #000000;
+}
+.loginbd{
+    /* Line 1 */
+
+    position: absolute;
+    width: 478.01px;
+    height: 0px;
+    left: 50%; 
+    margin-left: -239px;
+    top: 253px;
+
+    /* B_5 */
+
+    border: 1px solid #CCCCCC;
+    transform: rotate(0.36deg);
+}
+.loginlogo{
+    /* Vector */
+
+    /* position: absolute; */
+    left: 0%;
+    right: 4.44%;
+    top: 0.42%;
+    bottom: 3.61%;
+
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    left: 895px;
+    top: 180px;
+    /* background: #000000; */
+}
+.ID{
+    position: absolute;
+    width: 357px;
+    height: 34px;
+    left: 50%; 
+    margin-left: -239px;
+    top: 300px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+
+    /* B_7 */
+
+    color: black;
+
+}
+
+.GoRegister{
+    position: absolute;
+    width: 330px;
+    height: 20px;
+
+    left: 50%; 
+    margin-left: -169px;
+    top: 700px;
+    text-align: center;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+
+    /* M_2_2 */
+
+    color: #9d9d9d;
+
+}
+
+.PW{
+    position: absolute;
+    width: 357px;
+    height: 34px;
+    left: 50%; 
+    margin-left: -239px;
+    top: 440px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+
+    /* B_7 */
+
+    color: black;
+
+}
+.IDbox{
+    /* Rectangle 53 */
+
+    box-sizing: border-box;
+
+    /* position: absolute; */
+    width: 478px;
+    height: 68px;
+    left: 530px;
+    top: 426px;
+
+    /* B_1 */
+
+    background: #FFFFFF;
+    /* B_7 */
+
+    border: 1px solid #8E8E92;
+    border-radius: 11px;
+    padding-left:1rem;
+
+}
+.PWbox{
+    box-sizing: border-box;
+
+    /* position: absolute; */
+    width: 478px;
+    height: 68px;
+    left: 530px;
+    top: 560px;
+
+    /* B_7 */
+
+    border: 1px solid #8E8E92;
+    border-radius: 11px;
+
+    padding-left:1rem;
+}
+.bt{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 330px;
+    height: 61px;
+    left: 604px;
+    top: 709px;
+
+    /* M_2_2 */
+
+
+    border: 2px solid #8DA6FF;
+    border-radius: 11px;
+}
+
+.lgbt{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 330px;
+    height: 61px;
+    left: 50%; 
+    margin-left: -169px;
+    top: 600px;
+
+    /* M_2_2 */
+
+    border: 2px solid #8DA6FF;
+    border-radius: 11px;
+}
+
+.button{
+    position: flex;
+    width: 330px;
+    height: 61px;
+    left: 604px;
+    top: 700px;
+    margin-bottom: 200px;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+
+    /* M_2_2 */
+
+    color: #8DA6FF;
+
+}

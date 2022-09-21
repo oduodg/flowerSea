@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap');
+
+.info-title {
+    display: block;
+    background: #fade9d;
+    color: #fff;
+    text-align: center;
+    height: 24px;
+    line-height:22px;
+    border-radius:4px;
+    padding:0px 10px;
+    font-family: 'Sunflower', sans-serif;
+    font-weight: bolder
+
+}

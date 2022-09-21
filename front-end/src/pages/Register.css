@@ -138,9 +138,9 @@ body{
     font-size: 15px;
     line-height: 38px;
 
-    /* B_8 */
+    /* B_7 */
 
-    color: #000000;
+    color: black;
 }
 
 .PWwrite{
@@ -203,12 +203,30 @@ body{
     border-color: rgb(154, 150, 150);
 }
 
+.qwer{
+    position: absolute;
+    top: 4.5rem;
+    right: 1524px;
+}
+
+.qwer2{
+    position: absolute;
+    top: -2rem;
+    right: 1524px;
+}
+
+.qwer3{
+    position: absolute;
+    top: 10rem;
+    right: 1520px;
+}
+
 .rgAddress{
     position: absolute;
     width: 357px;
     height: 32px;
     left: 400px;
-    top: 520px;
+    top: 0px;
 
     font-family: 'Pretendard';
     font-style: normal;

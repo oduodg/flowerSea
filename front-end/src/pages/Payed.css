@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic",
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+body{
+    overflow: scroll;
+}    
+
+.payed{
+    position: absolute;
+    width: 357px;
+    height: 32px;
+    left: 720px;
+    top: 200px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 38px;
+
+    /* B_8 */
+
+    color: #000000;
+
+}
+
+.again{
+    position: absolute;
+    width: 357px;
+    height: 32px;
+    left: 590px;
+    top: 250px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 38px;
+
+    /* B_8 */
+
+    color: #000000;
+
+}
+
+
+
+.pybt{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 330px;
+    height: 61px;
+    left: 604px;
+    top: 350px;
+
+    /* M_2_2 */
+
+    border: 2px solid #8DA6FF;
+    border-radius: 11px;
+
+
+}
+.pybutton{
+    position: flex;
+    width: 330px;
+    height: 61px;
+    left: 604px;
+    top: 880px;
+
+    margin-bottom: 200px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+
+    /* M_2_2 */
+
+    color: #8DA6FF;
+
+}
