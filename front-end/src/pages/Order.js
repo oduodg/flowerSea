@@ -73,12 +73,12 @@ export default function Order() {
 					"Content-Type": "application/json",
 				}
 			});
-        const del = await axios.delete(domain + "api/cart", {
-            headers: {
-                Authorization: `token ${accessToken}`
-            }
-        });
-        console.log(del.data)
+        // const del = await axios.delete(domain + "api/cart", {
+        //     headers: {
+        //         Authorization: `token ${accessToken}`
+        //     }
+        // });
+        // console.log(del.data)
     }
     useEffect(() => {
         console.log("useeffect")
@@ -123,44 +123,39 @@ export default function Order() {
                         <input className="w-full border-2 border-flower-pink py-2" type='text' id='req' name='req' maxLength='30' value={req} onChange={handleReq} placeholder ="요구사항을 입력해주세요."/>
                     </div>
                     <div className='f text-2xl pl-8 mb-4 ml-48 mr-40 border-b-2 border-flower-blue pb-2 mt-16'>결제수단</div>
-                    <div className='f flex flex-row gap-24 sm:ml-24 md:ml-48 sm:mr-24 md:mr-48 '>
-                       <div className='flex flex-row gap-2'>
-                        <span className="ml-4 min-w-max">신용카드</span>
-                                <input
-                                type="radio"
-                                value="1"
-                                checked={pay === "1"}
-                                onChange={HandleClickRadioButton}
-                                />
-                       </div>
-                       <div className='flex flex-row gap-2'>
-                        <span className="min-w-max">계좌이체</span>
-                                <input
-                                type="radio"
-                                value="1"
-                                checked={pay === "1"}
-                                onChange={HandleClickRadioButton}
-                                />
-                       </div>
-                       <div className='flex flex-row gap-2'>
-                        <span className="min-w-max">현장결제 - 신용카드</span>
-                                <input
-                                type="radio"
-                                value="1"
-                                checked={pay === "1"}
-                                onChange={HandleClickRadioButton}
-                                />
-                       </div>
-                       <div className='flex flex-row gap-2'>
-                        <span className="min-w-max">현장결제 - 현금</span>
-                                <input
-                                type="radio"
-                                value="1"
-                                checked={pay === "1"}
-                                onChange={HandleClickRadioButton}
-                                />
-                       </div>
-                        
+                    <div className='f flex flex-row ml-48 mr-40'>
+                        <span className="mr-4">신용카드</span>
+                            <input
+                            className="mr-16"
+                            type="radio"
+                            value="1"
+                            checked={pay === "1"}
+                            onChange={HandleClickRadioButton}
+                            />
+                        <span className="mr-4">계좌이체</span>
+                            <input
+                            className="mr-16"
+                            type="radio"
+                            value="2"
+                            checked={pay === "2"}
+                            onChange={HandleClickRadioButton}
+                            />
+                        <span className="mr-4">현장결제 - 카드</span>
+                            <input
+                            className="mr-16"
+                            type="radio"
+                            value="3"
+                            checked={pay === "3"}
+                            onChange={HandleClickRadioButton}
+                            />
+                        <span className="mr-4">현장결제 - 현금</span>
+                            <input
+                            className="mr-16"
+                            type="radio"
+                            value="4"
+                            checked={pay === "4"}
+                            onChange={HandleClickRadioButton}
+                            />
                     </div>
                     <div className='f text-2xl pl-8 mb-4 ml-48 mr-40 border-b-2 border-flower-blue pb-2 mt-16'>총 결제금액</div>
                     <div className='f flex flex-row-reverse text-2xl pl-8 mb-4 ml-48 mr-48 pb-2'>{carts.totalPrice}원</div>
